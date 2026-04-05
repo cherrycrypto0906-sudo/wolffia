@@ -8,7 +8,7 @@ export const CONFIG = {
   // === LINK LIÊN KẾT ===
   zaloLink: "https://zalo.me/g/dwrlrtrnnnivi1xhmzbu", // Link tham gia cộng đồng Zalo
   depositLink: "https://example.com/thanh-toan", // Link thanh toán cọc nhanh nếu có
-  formDestination: "https://formspree.io/f/placeholder", // Endpoint nhận dữ liệu form (VD: Google Sheets, Formspree, Make webhook)
+  formDestination: "https://forms.gle/2Hz8oszqrQpLqYai9", // Link Google Form để gửi dữ liệu
 
   // === THUẬT TOÁN SOCIAL PROOF (Ảo) ===
   socialProof: {

@@ -27,7 +27,8 @@ export const LeadForm = () => {
     if (formData.depositType === 'deposit') {
       setStep('payment');
     } else {
-      // Simulate sending form to CONFIG.formDestination
+      // Redirect to Google Form
+      window.open(CONFIG.formDestination, '_blank');
       setTimeout(() => {
         setStep('success');
       }, 800);
@@ -35,6 +36,8 @@ export const LeadForm = () => {
   };
 
   const handlePaymentConfirmed = () => {
+    // Redirect to Google Form after payment
+    window.open(CONFIG.formDestination, '_blank');
     setTimeout(() => {
       setStep('success');
     }, 800);
