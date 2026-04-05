@@ -27,20 +27,34 @@ export const LeadForm = () => {
     if (formData.depositType === 'deposit') {
       setStep('payment');
     } else {
-      // Redirect to Google Form
-      window.open(CONFIG.formDestination, '_blank');
-      setTimeout(() => {
-        setStep('success');
-      }, 800);
+      // Send form data to Formspree
+      fetch(CONFIG.formDestination, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        setTimeout(() => {
+          setStep('success');
+        }, 800);
+      })
+      .catch(err => console.error('Form submission error:', err));
     }
   };
 
   const handlePaymentConfirmed = () => {
-    // Redirect to Google Form after payment
-    window.open(CONFIG.formDestination, '_blank');
-    setTimeout(() => {
-      setStep('success');
-    }, 800);
+    // Send form data to Formspree after payment confirmation
+    fetch(CONFIG.formDestination, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+    .then(() => {
+      setTimeout(() => {
+        setStep('success');
+      }, 800);
+    })
+    .catch(err => console.error('Form submission error:', err));
   };
 
   const handleChange = (e) => {
