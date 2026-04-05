@@ -78,7 +78,6 @@ export const LeadForm = () => {
   };
 
   const sepayInfo = CONFIG.sepayConfig;
-  const qrUrl = `https://img.vietqr.io/image/${sepayInfo.bankId}-${sepayInfo.accountNumber}-compact2.png?amount=${sepayInfo.depositAmount}&addInfo=${encodeURIComponent(formData.phone)}&accountName=${encodeURIComponent(sepayInfo.accountName)}`;
 
   return (
     <section id="lead-form" className="form-section section-padding">
@@ -160,7 +159,7 @@ export const LeadForm = () => {
               
               <div className="qr-container">
                 <div className="qr-frame">
-                  <img src={qrUrl} alt="Sepay QR Code" className="qr-image" />
+                  <img src={CONFIG.images.qrPayment} alt="Mã QR chuyển khoản Techcombank" className="qr-image" />
                 </div>
                 
                 <div className="bank-details-card mt-3">

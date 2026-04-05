@@ -41,7 +41,8 @@ export const CONFIG = {
     smoothie: "/assets/gallery_smoothie.png",
     breakfast: "/assets/gallery_breakfast.png",
     lifestyle: "/assets/lifestyle_table.png",
-    nutritionChart: "/assets/wolffia_nutrition_chart.png"
+    nutritionChart: "/assets/wolffia_nutrition_v2.jpg",
+    qrPayment: "/assets/qr_payment_techcombank.jpg"
   },
 
 
@@ -49,10 +50,10 @@ export const CONFIG = {
 
   // === THIẾT LẬP THANH TOÁN (VIETQR) ===
   sepayConfig: {
-    bankId: "MB",           // ID ngân hàng (MB, VCB, ICB, ...)
-    bankName: "MBBank",     // Tên hiển thị
-    accountNumber: "09012345678", // Số tài khoản
-    accountName: "NGUYEN VAN A",  // Tên chủ tài khoản
+    bankId: "TCB",           // ID ngân hàng (MB, VCB, ICB, TCB, ...)
+    bankName: "Techcombank",     // Tên hiển thị
+    accountNumber: "1903 5892 3780 11", // Số tài khoản
+    accountName: "NGUYEN THI ANH NGUYET",  // Tên chủ tài khoản
     depositAmount: 29000    // Số tiền đặt cọc
   },
 
