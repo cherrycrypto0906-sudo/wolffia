@@ -6,7 +6,7 @@ export const CONFIG = {
   slotsRemaining: 12, // Số suất còn lại hiển thị trên UI
 
   // === LINK LIÊN KẾT ===
-  zaloLink: "https://zalo.me/g/placeholder", // Link tham gia cộng đồng Zalo
+  zaloLink: "https://zalo.me/g/dwrlrtrnnnivi1xhmzbu", // Link tham gia cộng đồng Zalo
   depositLink: "https://example.com/thanh-toan", // Link thanh toán cọc nhanh nếu có
   formDestination: "https://formspree.io/f/placeholder", // Endpoint nhận dữ liệu form (VD: Google Sheets, Formspree, Make webhook)
 
@@ -41,7 +41,7 @@ export const CONFIG = {
     smoothie: "/assets/gallery_smoothie.png",
     breakfast: "/assets/gallery_breakfast.png",
     lifestyle: "/assets/lifestyle_table.png",
-    nutritionChart: "/assets/media__1775323960972.jpg"
+    nutritionChart: "/assets/wolffia_nutrition_chart.png"
   },
 
 
