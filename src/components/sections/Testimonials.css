@@ -1,0 +1,162 @@
+.testimonials-section {
+  background-color: #fafbfc;
+  overflow: hidden;
+}
+
+.testimonials-header {
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.testimonials-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}
+
+.testimonials-subheadline {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+.screenshots-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.feedback-screenshot {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  width: 100%;
+  width: 380px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.feedback-screenshot:hover {
+  transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.fb-screen-header {
+  padding: 14px 16px;
+  background: #fdfdfd;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.fb-screen-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fb-screen-user img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.fb-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.fb-user-info strong {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.fb-user-info span {
+  font-size: 0.75rem;
+  color: #8e8e93;
+  margin-top: 2px;
+}
+
+.fb-screen-body {
+  padding: 20px 16px;
+  background: #ffffff;
+}
+
+.fb-time {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #a0a0a5;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.fb-msg-row {
+  display: flex;
+  margin-bottom: 16px;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.fb-msg-row.fb-shop {
+  justify-content: flex-end;
+}
+
+.fb-msg-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.fb-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 80%;
+}
+
+.fb-customer .fb-bubble {
+  background: #f1f0f0;
+  color: #1a1a1a;
+  padding: 12px 16px;
+  border-radius: 18px 18px 18px 4px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.fb-shop .fb-bubble {
+  background: var(--primary);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 18px 18px 4px 18px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .testimonials-header h2 {
+    font-size: 2rem;
+  }
+  .screenshots-gallery {
+    gap: 2rem;
+  }
+  .feedback-screenshot {
+    width: 100%;
+    margin-bottom: 1rem;
+    transform: none !important;
+  }
+  .feedback-screenshot:hover {
+    transform: none !important;
+  }
+}

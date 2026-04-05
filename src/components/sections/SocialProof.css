@@ -1,0 +1,117 @@
+.social-proof-section {
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.proof-headline {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.counters-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 30px;
+  background: var(--bg-color);
+  border-radius: var(--rounded-lg);
+  min-width: 250px;
+  text-align: center;
+}
+
+.counter-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.counter-icon.alt {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.counter-icon.danger {
+  background-color: #FFEBEE;
+  color: #D32F2F;
+}
+
+.counter-number {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.counter-label {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Live Activity Popup */
+.live-activity-popup {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: white;
+  padding: 16px 20px;
+  border-radius: var(--rounded-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 998;
+  border-left: 4px solid var(--primary);
+  transform: translateX(-150%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.live-activity-popup.visible {
+  transform: translateX(0);
+}
+
+.popup-icon {
+  font-size: 1.25rem;
+}
+
+.popup-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+  max-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .proof-headline {
+    font-size: 1.8rem;
+  }
+  .counter-item {
+    width: 100%;
+  }
+  .live-activity-popup {
+    bottom: 90px; /* Above mobile sticky cta */
+    left: 16px;
+    right: 16px;
+    border-radius: var(--rounded-sm);
+  }
+  .popup-text {
+    max-width: none;
+  }
+}

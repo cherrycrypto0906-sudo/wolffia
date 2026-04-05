@@ -1,0 +1,77 @@
+.floating-zalo {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background-color: #0068FF; /* Zalo Official Color */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 104, 255, 0.4);
+  z-index: 1000;
+  transition: transform var(--transition-fast);
+  animation: pulse 2s infinite;
+}
+
+.floating-zalo:hover {
+  transform: scale(1.1);
+}
+
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  padding: 12px 20px;
+  z-index: 999;
+  transform: translateY(100%);
+  transition: transform var(--transition-normal);
+  display: none; /* Only show on mobile */
+}
+
+.sticky-cta.visible {
+  transform: translateY(0);
+}
+
+.sticky-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.sticky-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-text strong {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.sticky-text span {
+  font-size: 0.8rem;
+  color: #E53E3E;
+  font-weight: 500;
+}
+
+.sticky-btn {
+  padding: 10px 24px;
+}
+
+@media (max-width: 768px) {
+  .sticky-cta {
+    display: block;
+  }
+  
+  .floating-zalo {
+    bottom: 84px; /* Move up above sticky cta */
+  }
+}

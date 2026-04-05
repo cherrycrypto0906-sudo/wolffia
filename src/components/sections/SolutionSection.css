@@ -1,0 +1,132 @@
+.solution-section {
+  background-color: var(--bg-cream);
+  overflow: hidden;
+}
+
+.solution-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.solution-visual {
+  flex: 1;
+}
+
+.solution-image-container {
+  position: relative;
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.solution-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+.solution-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
+  border-radius: var(--rounded-full);
+  font-weight: 600;
+  color: var(--primary-dark);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-md);
+}
+
+.solution-content {
+  flex: 1;
+}
+
+.solution-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.solution-subheadline {
+  font-size: 1.25rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.solution-body {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 40px;
+}
+
+.solution-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.benefit-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 12px 20px;
+  border-radius: var(--rounded-full);
+  font-weight: 500;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.benefit-chip:hover {
+  transform: translateY(-2px);
+}
+
+.benefit-icon {
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .solution-container {
+    flex-direction: column-reverse;
+  }
+  .solution-image {
+    aspect-ratio: 16/9;
+  }
+}
+
+@media (max-width: 768px) {
+  .solution-content h2 {
+    font-size: 2rem;
+  }
+  .solution-subheadline {
+    font-size: 1.15rem;
+  }
+}
+
+.nutrition-chart-container {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.nutrition-chart-img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.mt-5 {
+  margin-top: 3rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}
