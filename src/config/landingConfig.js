@@ -27,10 +27,10 @@ export const CONFIG = {
     logo: "/assets/logo_black.png",
     productBox: "/assets/hero_product.png",
     heroCarousel: [
-      "/assets/hero_wolffia_product.avif",
-      "/assets/gallery_noodles.png",
-      "/assets/gallery_salad.png",
-      "/assets/gallery_breakfast.png"
+      "/assets/hero_pizza_wolffia.avif",
+      "/assets/hero_toast_wolffia.webp",
+      "/assets/hero_pasta_wolffia.jpg",
+      "/assets/hero_flatbread_wolffia.jpg"
     ],
     solutionFood: "/assets/hero_pond.png",
     heroFood: "/assets/hero_product_v2.png",
