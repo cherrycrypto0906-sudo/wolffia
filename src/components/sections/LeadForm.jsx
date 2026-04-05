@@ -27,34 +27,49 @@ export const LeadForm = () => {
     if (formData.depositType === 'deposit') {
       setStep('payment');
     } else {
-      // Send form data to Formspree
+      // Send form data to Google Apps Script
+      console.log('Sending data to:', CONFIG.formDestination);
+      console.log('Form data:', formData);
+      
       fetch(CONFIG.formDestination, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        mode: 'no-cors'
       })
-      .then(() => {
+      .then(response => {
+        console.log('Response:', response);
         setTimeout(() => {
           setStep('success');
         }, 800);
       })
-      .catch(err => console.error('Form submission error:', err));
+      .catch(err => {
+        console.error('Form submission error:', err);
+        alert('Lỗi gửi dữ liệu: ' + err.message);
+      });
     }
   };
 
   const handlePaymentConfirmed = () => {
-    // Send form data to Formspree after payment confirmation
+    // Send form data to Google Apps Script after payment confirmation
+    console.log('Sending payment data to:', CONFIG.formDestination);
+    
     fetch(CONFIG.formDestination, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(formData),
+      mode: 'no-cors'
     })
-    .then(() => {
+    .then(response => {
+      console.log('Payment response:', response);
       setTimeout(() => {
         setStep('success');
       }, 800);
     })
-    .catch(err => console.error('Form submission error:', err));
+    .catch(err => {
+      console.error('Payment form submission error:', err);
+      alert('Lỗi gửi dữ liệu: ' + err.message);
+    });
   };
 
   const handleChange = (e) => {
