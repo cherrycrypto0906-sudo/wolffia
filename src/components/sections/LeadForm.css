@@ -332,6 +332,16 @@
   font-weight: 700;
 }
 
+.upload-hint,
+.payment-lock-hint {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.payment-lock-hint {
+  margin-top: 10px;
+}
+
 
 .btn-download-qr {
   display: flex;

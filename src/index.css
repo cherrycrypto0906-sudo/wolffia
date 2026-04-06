@@ -183,6 +183,13 @@ img {
   background-color: var(--primary-light);
 }
 
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 /* Reveal utility class for Intersection Observer */
 .reveal {
   opacity: 0;

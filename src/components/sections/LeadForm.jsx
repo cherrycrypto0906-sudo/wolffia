@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import './LeadForm.css';
@@ -14,64 +14,96 @@ export const LeadForm = () => {
     quantity: '1',
     depositType: 'free',
     note: '',
-    screenshot: null
+    screenshot: null,
+    screenshotBase64: '',
+    screenshotMimeType: '',
+    screenshotUploadedAt: ''
   });
-
   const [step, setStep] = useState('form'); // 'form' | 'payment' | 'success'
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isReadingScreenshot, setIsReadingScreenshot] = useState(false);
+
+  useEffect(() => {
+    const handlePackageSelected = (event) => {
+      if (!event?.detail) return;
+      setFormData((prev) => ({ ...prev, packageId: event.detail }));
+    };
+
+    window.addEventListener('selectPackage', handlePackageSelected);
+    return () => window.removeEventListener('selectPackage', handlePackageSelected);
+  }, []);
+
+  const selectedPackage = CONFIG.packages.find((pkg) => pkg.id === formData.packageId);
 
   const copyToClipboard = (text, type) => {
     navigator.clipboard.writeText(text);
     alert(`Đã sao chép ${type}: ${text}`);
   };
 
-  const handleSubmit = (e) => {
+  const buildSubmissionPayload = (status) => ({
+    ...formData,
+    screenshot: undefined,
+    screenshotFileName: formData.screenshot?.name || '',
+    screenshotFileSize: formData.screenshot?.size || 0,
+    packageName: selectedPackage?.name || '',
+    packagePrice: selectedPackage?.price || '',
+    depositAmount: formData.depositType === 'deposit' ? CONFIG.sepayConfig.depositAmount : 0,
+    submissionStatus: status,
+    submittedAt: new Date().toISOString(),
+    destinationSheet: CONFIG.sheetUrl
+  });
+
+  const submitFormData = async (status) => {
+    const payload = buildSubmissionPayload(status);
+
+    await fetch(CONFIG.formDestination, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     if (formData.depositType === 'deposit') {
       setStep('payment');
-    } else {
-      // Send form data to Google Apps Script
-      console.log('Sending data to:', CONFIG.formDestination);
-      console.log('Form data:', formData);
-      
-      fetch(CONFIG.formDestination, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-        mode: 'no-cors'
-      })
-      .then(response => {
-        console.log('Response:', response);
-        setTimeout(() => {
-          setStep('success');
-        }, 800);
-      })
-      .catch(err => {
-        console.error('Form submission error:', err);
-        alert('Lỗi gửi dữ liệu: ' + err.message);
-      });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      await submitFormData('free_reservation');
+      setTimeout(() => {
+        setStep('success');
+        setIsSubmitting(false);
+      }, 800);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setIsSubmitting(false);
+      alert('Lỗi gửi dữ liệu: ' + err.message);
     }
   };
 
-  const handlePaymentConfirmed = () => {
-    // Send form data to Google Apps Script after payment confirmation
-    console.log('Sending payment data to:', CONFIG.formDestination);
-    
-    fetch(CONFIG.formDestination, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-      mode: 'no-cors'
-    })
-    .then(response => {
-      console.log('Payment response:', response);
+  const handlePaymentConfirmed = async () => {
+    if (!formData.screenshotBase64 || isSubmitting || isReadingScreenshot) {
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      await submitFormData('deposit_paid');
       setTimeout(() => {
         setStep('success');
+        setIsSubmitting(false);
       }, 800);
-    })
-    .catch(err => {
+    } catch (err) {
       console.error('Payment form submission error:', err);
+      setIsSubmitting(false);
       alert('Lỗi gửi dữ liệu: ' + err.message);
-    });
+    }
   };
 
   const handleChange = (e) => {
@@ -80,6 +112,7 @@ export const LeadForm = () => {
   };
 
   const sepayInfo = CONFIG.sepayConfig;
+  const isPaymentConfirmDisabled = !formData.screenshotBase64 || isReadingScreenshot || isSubmitting;
 
   return (
     <section id="lead-form" className="form-section section-padding">
@@ -147,8 +180,8 @@ export const LeadForm = () => {
                 <textarea name="note" rows="3" value={formData.note} onChange={handleChange} placeholder="Thời gian nhận hàng mong muốn..."></textarea>
               </div>
 
-              <Button type="submit" className="w-100 btn-submit">
-                Giữ chỗ ngay
+              <Button type="submit" className="w-100 btn-submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Đang gửi thông tin...' : 'Giữ chỗ ngay'}
               </Button>
             </form>
           )}
@@ -208,20 +241,35 @@ export const LeadForm = () => {
                       onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
+                          setIsReadingScreenshot(true);
                           const reader = new FileReader();
                           reader.onloadend = () => {
                             setFormData(prev => ({ 
                               ...prev, 
-                              screenshot: file,
-                              screenshotBase64: reader.result 
+                              screenshot: {
+                                name: file.name,
+                                size: file.size
+                              },
+                              screenshotBase64: typeof reader.result === 'string' ? reader.result : '',
+                              screenshotMimeType: file.type,
+                              screenshotUploadedAt: new Date().toISOString()
                             }));
+                            setIsReadingScreenshot(false);
+                          };
+                          reader.onerror = () => {
+                            setIsReadingScreenshot(false);
+                            alert('Không đọc được ảnh. Bạn vui lòng thử lại.');
                           };
                           reader.readAsDataURL(file);
                         }
                       }} 
                     />
                   </label>
-                  <p className="upload-hint">Để Diệp Châu xác nhận suất của bạn nhanh nhất</p>
+                  <p className="upload-hint">
+                    {isReadingScreenshot
+                      ? 'Đang xử lý ảnh xác nhận...'
+                      : 'Ảnh sau khi tải lên sẽ được gửi sang Google Sheet để Diệp Châu đối soát nhanh hơn'}
+                  </p>
                 </div>
               </div>
 
@@ -229,9 +277,20 @@ export const LeadForm = () => {
                 <div className="info-alert">
                   💡 Sau khi chuyển khoản, bạn sẽ được đưa vào cộng đồng Zalo để theo dõi lịch giao hàng.
                 </div>
-                <Button className="w-100 btn-submit mt-3" onClick={handlePaymentConfirmed}>
-                  Tôi đã chuyển khoản xong
+                <Button
+                  className="w-100 btn-submit mt-3"
+                  onClick={handlePaymentConfirmed}
+                  disabled={isPaymentConfirmDisabled}
+                >
+                  {isSubmitting
+                    ? 'Đang xác nhận thanh toán...'
+                    : isReadingScreenshot
+                      ? 'Đang tải ảnh lên...'
+                      : 'Tôi đã chuyển khoản xong'}
                 </Button>
+                {isPaymentConfirmDisabled && !isSubmitting && (
+                  <p className="payment-lock-hint">Vui lòng tải ảnh xác nhận chuyển khoản để mở nút thanh toán.</p>
+                )}
                 <a href={qrPaymentImg} download="QR_Payment_DiepChau.jpg" className="btn-download-qr mt-3">
                   📥 Tải mã QR về máy
                 </a>
