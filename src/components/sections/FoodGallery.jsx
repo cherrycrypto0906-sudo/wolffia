@@ -11,7 +11,7 @@ export const FoodGallery = () => {
 
   const galleryItems = [
     { title: "Gỏi / Salad", image: CONFIG.images.salad },
-    { title: "Cà ri / Súp", image: CONFIG.images.soup },
+    { title: "Cơm / Cháo", image: CONFIG.images.soup },
     { title: "Bánh xèo / Chiên", image: CONFIG.images.noodles },
     { title: "Smoothie bowl", image: CONFIG.images.smoothie },
     { title: "Bữa sáng healthy", image: CONFIG.images.breakfast }

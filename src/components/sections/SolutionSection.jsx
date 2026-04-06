@@ -3,6 +3,7 @@ import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaCheckCircle } from 'react-icons/fa';
 import './SolutionSection.css';
+import nutritionChartImg from '../../assets/wolffia_nutrition_v2.jpg';
 
 export const SolutionSection = () => {
   const benefits = [
@@ -63,7 +64,7 @@ export const SolutionSection = () => {
         <RevealOnScroll delay={400} className="text-center">
           <h3 className="mb-4" style={{ color: 'var(--primary-dark)' }}>Hồ sơ dinh dưỡng vượt trội</h3>
           <div className="nutrition-chart-container">
-            <img src={CONFIG.images.nutritionChart} alt="Dinh dưỡng Wolffia" className="nutrition-chart-img" />
+            <img src={nutritionChartImg} alt="Dinh dưỡng Wolffia" className="nutrition-chart-img" />
           </div>
         </RevealOnScroll>
       </div>

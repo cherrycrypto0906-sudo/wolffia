@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import './LeadForm.css';
+import qrPaymentImg from '../../assets/qr_payment_v3.jpg';
 
 export const LeadForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +13,8 @@ export const LeadForm = () => {
     packageId: CONFIG.packages[0]?.id || 'goi1',
     quantity: '1',
     depositType: 'free',
-    note: ''
+    note: '',
+    screenshot: null
   });
 
   const [step, setStep] = useState('form'); // 'form' | 'payment' | 'success'
@@ -159,7 +161,10 @@ export const LeadForm = () => {
               
               <div className="qr-container">
                 <div className="qr-frame">
-                  <img src={CONFIG.images.qrPayment} alt="Mã QR chuyển khoản Techcombank" className="qr-image" />
+                  <img src={qrPaymentImg} alt="Mã QR chuyển khoản Techcombank" className="qr-image" />
+                  <a href={qrPaymentImg} download="QR_Payment_DiepChau.jpg" className="btn-download-qr mt-2">
+                    📥 Tải mã QR về máy
+                  </a>
                 </div>
                 
                 <div className="bank-details-card mt-3">
@@ -176,11 +181,47 @@ export const LeadForm = () => {
                     <span className="label">Số tiền:</span>
                     <span className="value highlight">{sepayInfo.depositAmount.toLocaleString()}đ</span>
                   </div>
-                  <div className="detail-item" onClick={() => copyToClipboard(formData.phone, 'Số điện thoại')}>
+                  <div className="detail-item" onClick={() => copyToClipboard(`${formData.name} ${formData.phone}`, 'Nội dung')}>
                     <span className="label">Nội dung ck:</span>
-                    <span className="value mono">{formData.phone}</span>
+                    <span className="value highlight-box">{formData.name} {formData.phone}</span>
                     <span className="copy-hint">📋</span>
                   </div>
+                  <div className="transfer-note-alert mt-2">
+                    ⚠️ <strong>Lưu ý:</strong> Nội dung chuyển khoản: Tên + Số điện thoại của bạn
+                  </div>
+                </div>
+
+                <div className="screenshot-upload-section mt-4">
+                  <label className="upload-label">
+                    <div className="upload-icon">📸</div>
+                    <div className="upload-text">
+                      {formData.screenshot ? (
+                        <span className="filename">{formData.screenshot.name}</span>
+                      ) : (
+                        <span>Tải ảnh/chụp màn hình xác nhận chuyển khoản</span>
+                      )}
+                    </div>
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      style={{ display: 'none' }} 
+                      onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onloadend = () => {
+                            setFormData(prev => ({ 
+                              ...prev, 
+                              screenshot: file,
+                              screenshotBase64: reader.result 
+                            }));
+                          };
+                          reader.readAsDataURL(file);
+                        }
+                      }} 
+                    />
+                  </label>
+                  <p className="upload-hint">Để Diệp Châu xác nhận suất của bạn nhanh nhất</p>
                 </div>
               </div>
 
@@ -191,6 +232,9 @@ export const LeadForm = () => {
                 <Button className="w-100 btn-submit mt-3" onClick={handlePaymentConfirmed}>
                   Tôi đã chuyển khoản xong
                 </Button>
+                <a href={qrPaymentImg} download="QR_Payment_DiepChau.jpg" className="btn-download-qr mt-3">
+                  📥 Tải mã QR về máy
+                </a>
                 <button className="btn-back mt-3" onClick={() => setStep('form')}>← Thay đổi thông tin</button>
               </div>
             </div>

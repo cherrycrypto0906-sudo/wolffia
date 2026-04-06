@@ -36,13 +36,12 @@ export const CONFIG = {
     heroFood: "/assets/hero_product_v2.png",
     closeUp: "/assets/hero_product_v2.png",
     salad: "/assets/gallery_salad.png",
-    soup: "/assets/gallery_soup.png",
+    soup: "/assets/gallery_rice_porridge.png",
     noodles: "/assets/gallery_noodles.png",
     smoothie: "/assets/gallery_smoothie.png",
     breakfast: "/assets/gallery_breakfast.png",
     lifestyle: "/assets/lifestyle_table.png",
-    nutritionChart: "/assets/wolffia_nutrition_v2.jpg",
-    qrPayment: "/assets/qr_payment_techcombank.jpg"
+    qrPayment: "/assets/qr_payment_v3.jpg"
   },
 
 
