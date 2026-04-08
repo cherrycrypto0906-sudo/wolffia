@@ -1,6 +1,6 @@
 # Google Apps Script for Wolffia QR payments
 
-File [Code.gs](/Users/tt/Desktop/Website%20AI/Wolffia%20landing%20page/google-apps-script/Code.gs) receives the form payload from the landing page, saves uploaded payment screenshots into Google Drive, and appends a row into the Google Sheet:
+File [Code.gs](/Users/tt/Desktop/Website%20AI/Wolffia%20landing%20page/google-apps-script/Code.gs) receives the survey payload from the landing page, saves uploaded images when present, and appends a row into the Google Sheet:
 
 - [Target sheet](https://docs.google.com/spreadsheets/d/12F6jLbSPf6KJUQPIXxQ6ar77NTtJqDNHulNVVj1F9Yg/edit?gid=0#gid=0)
 
@@ -18,15 +18,16 @@ File [Code.gs](/Users/tt/Desktop/Website%20AI/Wolffia%20landing%20page/google-ap
 
 ## What gets saved
 
-- Customer info and package details
-- `submissionStatus` such as `free_reservation` or `deposit_paid`
-- Screenshot metadata
-- Public Drive link of the uploaded screenshot
+- `submittedAt`, `submissionStatus`, `surveyName`, `leadSource`
+- Customer info: `name`, `phone`
+- Survey answers: `persona`, `challenges`, `desiredBenefit`, `giftInterest`, `note`
+- Destination metadata for debugging
+- Screenshot metadata and Drive link when the form includes an image
 - A ready-to-render `=IMAGE("...")` formula in the `screenshotFormula` column
 - Full raw payload for debugging
 
 ## Notes
 
-- The script uses the first sheet tab by default.
-- Uploaded screenshots are stored in a Drive folder named `Wolffia Payment Uploads`.
-- The landing page already sends `screenshotBase64`, `screenshotMimeType`, `screenshotFileName`, and the destination sheet URL, so no frontend change is needed beyond what is already in repo.
+- The script uses the first sheet tab by default unless you pass `sheetName`.
+- Uploaded images are stored in a Drive folder named `Wolffia Uploads`.
+- The current landing page sends survey fields directly, including multiple selected `challenges`.

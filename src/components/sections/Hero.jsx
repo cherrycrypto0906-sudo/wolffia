@@ -66,7 +66,7 @@ export const Hero = () => {
 
           <RevealOnScroll delay={500} className="hero-actions">
             <Button onClick={scrollToForm} className="hero-cta-main">
-              Giữ chỗ trước hôm nay
+              Nhận quà tặng
             </Button>
             <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-outline hero-cta-sub">
               Vào cộng đồng Zalo

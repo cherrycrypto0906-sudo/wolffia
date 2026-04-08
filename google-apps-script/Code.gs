@@ -1,6 +1,6 @@
 const DEFAULT_SPREADSHEET_ID = '12F6jLbSPf6KJUQPIXxQ6ar77NTtJqDNHulNVVj1F9Yg';
 const DEFAULT_SHEET_NAME = '';
-const IMAGE_FOLDER_NAME = 'Wolffia Payment Uploads';
+const IMAGE_FOLDER_NAME = 'Wolffia Uploads';
 
 function doPost(e) {
   try {
@@ -66,17 +66,17 @@ function ensureHeaders_(sheet) {
   const headers = [
     'submittedAt',
     'submissionStatus',
+    'surveyName',
+    'leadSource',
     'name',
     'phone',
-    'zalo',
-    'location',
-    'packageId',
-    'packageName',
-    'packagePrice',
-    'quantity',
-    'depositType',
-    'depositAmount',
+    'persona',
+    'challenges',
+    'desiredBenefit',
+    'giftInterest',
     'note',
+    'destinationSheet',
+    'sheetName',
     'screenshotFileName',
     'screenshotMimeType',
     'screenshotFileSize',
@@ -92,19 +92,7 @@ function ensureHeaders_(sheet) {
     return headers;
   }
 
-  const existingHeaders = sheet
-    .getRange(1, 1, 1, Math.max(sheet.getLastColumn(), headers.length))
-    .getValues()[0]
-    .map(String);
-
-  const isSame = headers.every(function(header, index) {
-    return existingHeaders[index] === header;
-  });
-
-  if (!isSame) {
-    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-  }
-
+  sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   return headers;
 }
 
@@ -138,7 +126,7 @@ function buildScreenshotName_(payload, extension) {
   const safeName = sanitizeFileName_(payload.name || 'khach-hang');
   const safePhone = sanitizeFileName_(payload.phone || 'phone');
   const timestamp = Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
-  return 'payment-' + safeName + '-' + safePhone + '-' + timestamp + '.' + extension;
+  return 'upload-' + safeName + '-' + safePhone + '-' + timestamp + '.' + extension;
 }
 
 function sanitizeFileName_(value) {
@@ -160,17 +148,17 @@ function buildRow_(headers, payload, screenshotInfo) {
   const values = {
     submittedAt: payload.submittedAt || new Date().toISOString(),
     submissionStatus: payload.submissionStatus || '',
+    surveyName: payload.surveyName || '',
+    leadSource: payload.leadSource || '',
     name: payload.name || '',
     phone: payload.phone || '',
-    zalo: payload.zalo || '',
-    location: payload.location || '',
-    packageId: payload.packageId || '',
-    packageName: payload.packageName || '',
-    packagePrice: payload.packagePrice || '',
-    quantity: payload.quantity || '',
-    depositType: payload.depositType || '',
-    depositAmount: payload.depositAmount || '',
+    persona: payload.persona || '',
+    challenges: normalizeChallenges_(payload.challenges),
+    desiredBenefit: payload.desiredBenefit || '',
+    giftInterest: payload.giftInterest || '',
     note: payload.note || '',
+    destinationSheet: payload.destinationSheet || '',
+    sheetName: payload.sheetName || '',
     screenshotFileName: payload.screenshotFileName || '',
     screenshotMimeType: payload.screenshotMimeType || '',
     screenshotFileSize: payload.screenshotFileSize || '',
@@ -184,6 +172,18 @@ function buildRow_(headers, payload, screenshotInfo) {
   return headers.map(function(header) {
     return values[header] || '';
   });
+}
+
+function normalizeChallenges_(challenges) {
+  if (Array.isArray(challenges)) {
+    return challenges.join(' | ');
+  }
+
+  if (typeof challenges === 'string') {
+    return challenges;
+  }
+
+  return '';
 }
 
 function extractSpreadsheetId_(sheetUrl) {

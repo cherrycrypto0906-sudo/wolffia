@@ -16,7 +16,7 @@ export const Header = () => {
         </a>
         <div className="header-actions">
           <Button onClick={scrollToForm} className="header-cta">
-            Giữ chỗ sớm
+            Nhận quà tặng
           </Button>
         </div>
       </div>

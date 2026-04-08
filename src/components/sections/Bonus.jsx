@@ -33,7 +33,7 @@ export const Bonus = () => {
               ))}
             </ul>
             <Button onClick={scrollToForm} className="bonus-cta">
-              Giữ chỗ trước ngay
+              Nhận quà tặng
             </Button>
           </div>
         </RevealOnScroll>

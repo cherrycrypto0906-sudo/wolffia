@@ -1,312 +1,224 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import './LeadForm.css';
-import qrPaymentImg from '../../assets/qr_payment_v3.jpg';
+
+const PERSONA_OPTIONS = [
+  'Dân văn phòng bận rộn',
+  'Mẹ bỉm muốn chuẩn bị bữa nhanh mà đủ chất',
+  'Người ăn chay / plant-based',
+  'Người tập luyện muốn bổ sung dinh dưỡng xanh',
+  'Người lười ăn rau nhưng vẫn muốn khỏe'
+];
+
+const CHALLENGE_OPTIONS = [
+  'Không có thời gian chuẩn bị bữa ăn',
+  'Khó ăn đủ rau mỗi ngày',
+  'Muốn ăn lành mạnh hơn nhưng chưa biết bắt đầu từ đâu',
+  'Cần món nhanh, gọn mà vẫn đủ chất',
+  'Muốn đổi bữa cho đỡ ngán'
+];
+
+const BENEFIT_OPTIONS = [
+  'Ăn xanh dễ hơn mỗi ngày',
+  'Có thêm đạm thực vật và dinh dưỡng tự nhiên',
+  'Chuẩn bị bữa ăn nhanh hơn',
+  'Hỗ trợ giữ dáng, đẹp da, nhẹ bụng',
+  'Có thêm lựa chọn lành mạnh cho cả nhà'
+];
+
+const GIFT_OPTIONS = [
+  'Có, gửi mình ngay nhé',
+  'Có, nhưng mình muốn xem thêm thông tin trước',
+  'Hiện tại mình chưa cần'
+];
 
 export const LeadForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    zalo: '',
-    location: '',
-    packageId: CONFIG.packages[0]?.id || 'goi1',
-    quantity: '1',
-    depositType: 'free',
-    note: '',
-    screenshot: null,
-    screenshotBase64: '',
-    screenshotMimeType: '',
-    screenshotUploadedAt: ''
+    persona: '',
+    challenges: [],
+    desiredBenefit: '',
+    giftInterest: '',
+    note: ''
   });
-  const [step, setStep] = useState('form'); // 'form' | 'payment' | 'success'
+  const [step, setStep] = useState('form');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isReadingScreenshot, setIsReadingScreenshot] = useState(false);
 
-  useEffect(() => {
-    const handlePackageSelected = (event) => {
-      if (!event?.detail) return;
-      setFormData((prev) => ({ ...prev, packageId: event.detail }));
-    };
-
-    window.addEventListener('selectPackage', handlePackageSelected);
-    return () => window.removeEventListener('selectPackage', handlePackageSelected);
-  }, []);
-
-  const selectedPackage = CONFIG.packages.find((pkg) => pkg.id === formData.packageId);
-
-  const copyToClipboard = (text, type) => {
-    navigator.clipboard.writeText(text);
-    alert(`Đã sao chép ${type}: ${text}`);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const buildSubmissionPayload = (status) => ({
-    ...formData,
-    screenshot: undefined,
-    screenshotFileName: formData.screenshot?.name || '',
-    screenshotFileSize: formData.screenshot?.size || 0,
-    packageName: selectedPackage?.name || '',
-    packagePrice: selectedPackage?.price || '',
-    depositAmount: formData.depositType === 'deposit' ? CONFIG.sepayConfig.depositAmount : 0,
-    submissionStatus: status,
-    submittedAt: new Date().toISOString(),
-    destinationSheet: CONFIG.sheetUrl
-  });
-
-  const submitFormData = async (status) => {
-    const payload = buildSubmissionPayload(status);
-
-    await fetch(CONFIG.formDestination, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
+  const handleChallengeChange = (option) => {
+    setFormData((prev) => {
+      const exists = prev.challenges.includes(option);
+      return {
+        ...prev,
+        challenges: exists
+          ? prev.challenges.filter((item) => item !== option)
+          : [...prev.challenges, option]
+      };
     });
   };
+
+  const buildSubmissionPayload = () => ({
+    ...formData,
+    submissionStatus: 'cookbook_survey',
+    surveyName: 'Wolffia Cookbook Survey',
+    leadSource: 'landing_page',
+    destinationSheet: CONFIG.sheetUrl,
+    submittedAt: new Date().toISOString()
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
 
-    if (formData.depositType === 'deposit') {
-      setStep('payment');
-      return;
-    }
-
     try {
       setIsSubmitting(true);
-      await submitFormData('free_reservation');
+
+      await fetch(CONFIG.formDestination, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildSubmissionPayload()),
+        mode: 'no-cors'
+      });
+
       setTimeout(() => {
         setStep('success');
         setIsSubmitting(false);
       }, 800);
     } catch (err) {
-      console.error('Form submission error:', err);
+      console.error('Survey submission error:', err);
       setIsSubmitting(false);
       alert('Lỗi gửi dữ liệu: ' + err.message);
     }
   };
-
-  const handlePaymentConfirmed = async () => {
-    if (!formData.screenshotBase64 || isSubmitting || isReadingScreenshot) {
-      return;
-    }
-
-    try {
-      setIsSubmitting(true);
-      await submitFormData('deposit_paid');
-      setTimeout(() => {
-        setStep('success');
-        setIsSubmitting(false);
-      }, 800);
-    } catch (err) {
-      console.error('Payment form submission error:', err);
-      setIsSubmitting(false);
-      alert('Lỗi gửi dữ liệu: ' + err.message);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const sepayInfo = CONFIG.sepayConfig;
-  const isPaymentConfirmDisabled = !formData.screenshotBase64 || isReadingScreenshot || isSubmitting;
 
   return (
     <section id="lead-form" className="form-section section-padding">
       <div className="container form-container">
         <div className="form-wrapper">
           <div className="form-header text-center">
-            <h2>Giữ chỗ Wolffia tươi từ Diệp Châu</h2>
-            <p>Nếu bạn cũng muốn ăn tốt hơn theo cách gọn hơn, nhanh hơn và đỡ mệt hơn, hãy để lại thông tin để Diệp Châu giữ suất cho bạn.</p>
+            <span className="form-kicker">Khảo sát nhận quà tặng</span>
+            <h2>Nhận Cookbook món ngon với Wolffia</h2>
+            <p>Điền nhanh 5 câu hỏi ngắn để Diệp Châu gửi bạn file cookbook với các món ăn nhanh, gọn, đủ chất và dễ áp dụng mỗi ngày.</p>
           </div>
 
           {step === 'form' && (
             <form className="lead-form" onSubmit={handleSubmit}>
-              <div className="form-group row">
-                <div className="col">
-                  <label>Họ và tên *</label>
-                  <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Nhập tên của bạn" />
-                </div>
-                <div className="col">
-                  <label>Số điện thoại *</label>
-                  <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="VD: 09xx xxx xxx" />
-                </div>
-              </div>
-
-              <div className="form-group row">
-                <div className="col">
-                  <label>Zalo (nếu khác sđt)</label>
-                  <input type="tel" name="zalo" value={formData.zalo} onChange={handleChange} placeholder="Số Zalo của bạn" />
-                </div>
-                <div className="col">
-                  <label>Khu vực nhận hàng *</label>
-                  <input type="text" name="location" required value={formData.location} onChange={handleChange} placeholder="Quận/Huyện, TP" />
-                </div>
+              <div className="form-group">
+                <label>Tên của bạn *</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Nhập tên của bạn"
+                />
               </div>
 
               <div className="form-group">
-                <label>Gói quan tâm *</label>
-                <select name="packageId" required value={formData.packageId} onChange={handleChange}>
-                  <option value="" disabled>-- Chọn gói sản phẩm --</option>
-                  {CONFIG.packages.map(pkg => (
-                    <option key={pkg.id} value={pkg.id}>{pkg.name} - {pkg.price}đ</option>
+                <label>Số điện thoại / Zalo *</label>
+                <input
+                  type="text"
+                  name="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Nhập số điện thoại hoặc Zalo"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Bạn thuộc nhóm nào dưới đây? *</label>
+                <select name="persona" required value={formData.persona} onChange={handleChange}>
+                  <option value="" disabled>Chọn nhóm phù hợp nhất</option>
+                  {PERSONA_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
                   ))}
                 </select>
               </div>
 
-              <div className="form-group row align-center">
-                <div className="col">
-                  <label>Số lượng mong muốn</label>
-                  <input type="number" name="quantity" min="1" value={formData.quantity} onChange={handleChange} />
+              <div className="form-group">
+                <label>Khó khăn lớn nhất của bạn khi ăn uống hằng ngày là gì? *</label>
+                <div className="deposit-options survey-options checkbox-options">
+                  {CHALLENGE_OPTIONS.map((option) => (
+                    <label key={option} className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        checked={formData.challenges.includes(option)}
+                        onChange={() => handleChallengeChange(option)}
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
                 </div>
-              </div>
-
-              <div className="form-group deposit-options">
-                <label className="radio-label">
-                  <input type="radio" name="depositType" value="free" checked={formData.depositType === 'free'} onChange={handleChange} />
-                  <span><strong>Giữ chỗ miễn phí</strong> (Sẽ nhận thông báo khi có hàng)</span>
-                </label>
-                <label className="radio-label">
-                  <input type="radio" name="depositType" value="deposit" checked={formData.depositType === 'deposit'} onChange={handleChange} />
-                  <span><strong>Đặt cọc 29.000đ</strong> (Ưu tiên giao sớm, trừ vào đơn hàng)</span>
-                </label>
+                <input
+                  type="hidden"
+                  name="challenge"
+                  value={formData.challenges.join(', ')}
+                  required={formData.challenges.length === 0}
+                />
               </div>
 
               <div className="form-group">
-                <label>Ghi chú thêm (nếu có)</label>
-                <textarea name="note" rows="3" value={formData.note} onChange={handleChange} placeholder="Thời gian nhận hàng mong muốn..."></textarea>
+                <label>Nếu có Wolffia tươi dễ dùng trong 30 giây, bạn muốn nó giúp mình điều gì nhất? *</label>
+                <select name="desiredBenefit" required value={formData.desiredBenefit} onChange={handleChange}>
+                  <option value="" disabled>Chọn điều bạn quan tâm nhất</option>
+                  {BENEFIT_OPTIONS.map((option) => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Bạn có muốn nhận file Cookbook các món ngon, nhanh, gọn, đủ chất với Wolffia không? *</label>
+                <div className="deposit-options survey-options">
+                  {GIFT_OPTIONS.map((option) => (
+                    <label key={option} className="radio-label">
+                      <input
+                        type="radio"
+                        name="giftInterest"
+                        value={option}
+                        checked={formData.giftInterest === option}
+                        onChange={handleChange}
+                        required
+                      />
+                      <span>{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Bạn muốn Diệp Châu chia sẻ thêm điều gì trong cookbook? (không bắt buộc)</label>
+                <textarea
+                  name="note"
+                  rows="3"
+                  value={formData.note}
+                  onChange={handleChange}
+                  placeholder="Ví dụ: món cho bữa sáng, smoothie, món cho bé, món ăn chay..."
+                />
               </div>
 
               <Button type="submit" className="w-100 btn-submit" disabled={isSubmitting}>
-                {isSubmitting ? 'Đang gửi thông tin...' : 'Giữ chỗ ngay'}
+                {isSubmitting ? 'Đang gửi khảo sát...' : 'Nhận cookbook miễn phí'}
               </Button>
             </form>
-          )}
-
-          {step === 'payment' && (
-            <div className="payment-state text-center">
-              <div className="payment-badge">Chờ thanh toán cọc</div>
-              <h3>Quét mã QR để hoàn tất</h3>
-              <p className="payment-subtitle">Hệ thống sẽ tự động xác nhận sau khi nhận được 29.000đ từ bạn.</p>
-              
-              <div className="qr-container">
-                <div className="qr-frame">
-                  <img src={qrPaymentImg} alt="Mã QR chuyển khoản Techcombank" className="qr-image" />
-                  <a href={qrPaymentImg} download="QR_Payment_DiepChau.jpg" className="btn-download-qr mt-2">
-                    📥 Tải mã QR về máy
-                  </a>
-                </div>
-                
-                <div className="bank-details-card mt-3">
-                  <div className="detail-item" onClick={() => copyToClipboard(sepayInfo.accountNumber, 'Số tài khoản')}>
-                    <span className="label">Số tài khoản:</span>
-                    <span className="value">{sepayInfo.accountNumber}</span>
-                    <span className="copy-hint">📋</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="label">Ngân hàng:</span>
-                    <span className="value">{sepayInfo.bankName}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="label">Số tiền:</span>
-                    <span className="value highlight">{sepayInfo.depositAmount.toLocaleString()}đ</span>
-                  </div>
-                  <div className="detail-item" onClick={() => copyToClipboard(`${formData.name} ${formData.phone}`, 'Nội dung')}>
-                    <span className="label">Nội dung ck:</span>
-                    <span className="value highlight-box">{formData.name} {formData.phone}</span>
-                    <span className="copy-hint">📋</span>
-                  </div>
-                  <div className="transfer-note-alert mt-2">
-                    ⚠️ <strong>Lưu ý:</strong> Nội dung chuyển khoản: Tên + Số điện thoại của bạn
-                  </div>
-                </div>
-
-                <div className="screenshot-upload-section mt-4">
-                  <label className="upload-label">
-                    <div className="upload-icon">📸</div>
-                    <div className="upload-text">
-                      {formData.screenshot ? (
-                        <span className="filename">{formData.screenshot.name}</span>
-                      ) : (
-                        <span>Tải ảnh/chụp màn hình xác nhận chuyển khoản</span>
-                      )}
-                    </div>
-                    <input 
-                      type="file" 
-                      accept="image/*" 
-                      style={{ display: 'none' }} 
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          setIsReadingScreenshot(true);
-                          const reader = new FileReader();
-                          reader.onloadend = () => {
-                            setFormData(prev => ({ 
-                              ...prev, 
-                              screenshot: {
-                                name: file.name,
-                                size: file.size
-                              },
-                              screenshotBase64: typeof reader.result === 'string' ? reader.result : '',
-                              screenshotMimeType: file.type,
-                              screenshotUploadedAt: new Date().toISOString()
-                            }));
-                            setIsReadingScreenshot(false);
-                          };
-                          reader.onerror = () => {
-                            setIsReadingScreenshot(false);
-                            alert('Không đọc được ảnh. Bạn vui lòng thử lại.');
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }} 
-                    />
-                  </label>
-                  <p className="upload-hint">
-                    {isReadingScreenshot
-                      ? 'Đang xử lý ảnh xác nhận...'
-                      : 'Ảnh sau khi tải lên sẽ được gửi sang Google Sheet để Diệp Châu đối soát nhanh hơn'}
-                  </p>
-                </div>
-              </div>
-
-              <div className="payment-actions">
-                <div className="info-alert">
-                  💡 Sau khi chuyển khoản, bạn sẽ được đưa vào cộng đồng Zalo để theo dõi lịch giao hàng.
-                </div>
-                <Button
-                  className="w-100 btn-submit mt-3"
-                  onClick={handlePaymentConfirmed}
-                  disabled={isPaymentConfirmDisabled}
-                >
-                  {isSubmitting
-                    ? 'Đang xác nhận thanh toán...'
-                    : isReadingScreenshot
-                      ? 'Đang tải ảnh lên...'
-                      : 'Tôi đã chuyển khoản xong'}
-                </Button>
-                {isPaymentConfirmDisabled && !isSubmitting && (
-                  <p className="payment-lock-hint">Vui lòng tải ảnh xác nhận chuyển khoản để mở nút thanh toán.</p>
-                )}
-                <a href={qrPaymentImg} download="QR_Payment_DiepChau.jpg" className="btn-download-qr mt-3">
-                  📥 Tải mã QR về máy
-                </a>
-                <button className="btn-back mt-3" onClick={() => setStep('form')}>← Thay đổi thông tin</button>
-              </div>
-            </div>
           )}
 
           {step === 'success' && (
             <div className="success-state text-center">
               <div className="success-icon">✅</div>
-              <h3>Cảm ơn bạn đã giữ chỗ!</h3>
-              <p>Diệp Châu đã nhận được thông tin của bạn. Chúng tôi sẽ liên hệ trong thời gian sớm nhất để xác nhận.</p>
-              
+              <h3>Diệp Châu đã nhận thông tin của bạn</h3>
+              <p>Cookbook sẽ được gửi đến số điện thoại hoặc Zalo bạn vừa để lại. Cảm ơn bạn đã dành 1 phút để chia sẻ nhu cầu của mình.</p>
+
               <div className="success-zalo-box">
-                <p>Trong lúc chờ đợi, mời bạn tham gia cộng đồng Zalo để theo dõi đợt mở suất và xem lịch giao hàng nhé!</p>
+                <p>Nếu muốn theo dõi thêm mẹo ăn xanh nhanh gọn và các đợt mở bán Wolffia tươi, bạn có thể vào cộng đồng Zalo tại đây.</p>
                 <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-primary w-100 mt-3">
                   Vào cộng đồng Zalo
                 </a>

@@ -8,7 +8,7 @@ export const CONFIG = {
   // === LINK LIÊN KẾT ===
   zaloLink: "https://zalo.me/g/dwrlrtrnnnivi1xhmzbu", // Link tham gia cộng đồng Zalo
   depositLink: "https://example.com/thanh-toan", // Link thanh toán cọc nhanh nếu có
-  formDestination: "https://script.google.com/macros/s/AKfycbxqdWBUaP8NNgkE4yZ4dT7_JHO1yagNynyUtUuy8zKLPUhvIr8Q7LvTp6YuBya9TGuPAA/exec", // Google Apps Script → Google Sheets
+  formDestination: "https://script.google.com/macros/s/AKfycbxwvabPdBcbkwYB67ZPjdNkLi3jZgv15cgGSJx6J_x9Av_3UX93MZCLQgodYlic_dik3A/exec", // Google Apps Script → Google Sheets
   sheetUrl: "https://docs.google.com/spreadsheets/d/12F6jLbSPf6KJUQPIXxQ6ar77NTtJqDNHulNVVj1F9Yg/edit?gid=0#gid=0", // Sheet lưu lead + ảnh xác nhận chuyển khoản
 
   // === THUẬT TOÁN SOCIAL PROOF (Ảo) ===
@@ -122,7 +122,7 @@ export const CONFIG = {
       price: "89.000",
       description: "Vừa đẹp để bắt đầu dùng đều trong vài bữa",
       badge: "Bán chạy nhất",
-      ctaText: "Giữ chỗ gói này"
+      ctaText: "Nhận quà tặng"
     },
     {
       id: "goi-healthy",
@@ -142,7 +142,7 @@ export const CONFIG = {
       price: "249.000",
       description: "Phù hợp gia đình nhỏ hoặc người dùng thường xuyên",
       badge: "",
-      ctaText: "Giữ chỗ gói Gia Đình"
+      ctaText: "Nhận quà tặng"
     },
     {
       id: "goi-tuan",

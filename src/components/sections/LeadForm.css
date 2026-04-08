@@ -25,6 +25,19 @@
   color: var(--text-muted);
 }
 
+.form-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -72,6 +85,33 @@
   padding: 16px;
   border-radius: var(--rounded-sm);
   border: 1px solid var(--border-color);
+}
+
+.survey-options {
+  display: grid;
+  gap: 10px;
+}
+
+.checkbox-options {
+  gap: 12px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+  accent-color: var(--primary);
+  transform: scale(1.15);
+}
+
+.checkbox-label span {
+  color: var(--text-main);
 }
 
 .radio-label {

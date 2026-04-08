@@ -32,11 +32,11 @@ export const FloatingActions = () => {
       <div className={`sticky-cta ${showSticky ? 'visible' : ''}`}>
         <div className="sticky-content">
           <div className="sticky-text">
-            <strong>Giữ chỗ hôm nay</strong>
+            <strong>Nhận quà tặng</strong>
             <span>Chỉ còn {CONFIG.slotsRemaining} suất</span>
           </div>
           <button onClick={scrollToForm} className="btn btn-primary sticky-btn">
-            Giữ chỗ
+            Nhận quà tặng
           </button>
         </div>
       </div>

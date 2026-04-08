@@ -45,7 +45,7 @@ export const FinalCTA = () => {
 
           <div className="final-actions">
             <Button onClick={scrollToForm} className="btn-final-primary">
-              Giữ chỗ trước hôm nay
+              Nhận quà tặng
             </Button>
             <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-outline btn-final-sub">
               Vào cộng đồng Zalo
