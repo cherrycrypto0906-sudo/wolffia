@@ -8,7 +8,7 @@ export const CONFIG = {
   // === LINK LIÊN KẾT ===
   zaloLink: "https://zalo.me/g/dwrlrtrnnnivi1xhmzbu", // Link tham gia cộng đồng Zalo
   depositLink: "https://example.com/thanh-toan", // Link thanh toán cọc nhanh nếu có
-  formDestination: "https://script.google.com/macros/s/AKfycbxwvabPdBcbkwYB67ZPjdNkLi3jZgv15cgGSJx6J_x9Av_3UX93MZCLQgodYlic_dik3A/exec", // Google Apps Script → Google Sheets
+  formDestination: "https://script.google.com/macros/s/AKfycbya2ray_a1BewE7AIfLaX17thGq986PaIKWTjsQCHqDClPTCMD2xI-s6Nk5a5pSmFRW6Q/exec", // Google Apps Script → Google Sheets
   sheetUrl: "https://docs.google.com/spreadsheets/d/12F6jLbSPf6KJUQPIXxQ6ar77NTtJqDNHulNVVj1F9Yg/edit?gid=0#gid=0", // Sheet lưu lead + ảnh xác nhận chuyển khoản
 
   // === THUẬT TOÁN SOCIAL PROOF (Ảo) ===
