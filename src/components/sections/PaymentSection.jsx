@@ -351,10 +351,10 @@ export const PaymentSection = () => {
             <RevealOnScroll className="form-wrapper payment-card payment-page-card">
               <div className="success-state text-center">
                 <div className="success-icon">🎉</div>
-                <h3>Cherry đã nhận thanh toán của bạn rồi</h3>
-                <p>Cảm ơn bạn nhiều nha. Bên Cherry sẽ chuẩn bị đơn <strong>{selectedPackage.name}</strong> và liên hệ lại sớm để chốt thời gian giao hàng phù hợp nhất.</p>
+                <h3>Diệp Châu đã nhận thanh toán của bạn rồi</h3>
+                <p>Cảm ơn bạn nhiều nha. Bên Diệp Châu sẽ chuẩn bị đơn <strong>{selectedPackage.name}</strong> và liên hệ lại sớm để chốt thời gian giao hàng phù hợp nhất.</p>
                 <div className="success-zalo-box">
-                  <p>Bạn cứ để ý điện thoại giúp Cherry. Nếu cần hỗ trợ thêm, chat ngay ở góc phải là được.</p>
+                  <p>Bạn cứ để ý điện thoại giúp Diệp Châu. Nếu cần hỗ trợ thêm, chat ngay ở góc phải là được.</p>
                   <Button onClick={() => { setStep('form'); setPaymentStatus('pending_payment'); setFormData({ name: '', phone: '', address: '', quantity: '1', note: '' }); }} variant="outline">
                     Tạo đơn mới
                   </Button>

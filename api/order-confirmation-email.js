@@ -6,31 +6,31 @@ const buildOrderConfirmation = ({ name, productName, amount, address }) => {
   const displayName = name || 'bạn';
   const displayAmount = `${Number(amount || 0).toLocaleString('vi-VN')}đ`;
 
-  const subject = `Cherry đã nhận đơn ${productName || 'Wolffia'} của bạn rồi nè`;
+  const subject = `Diệp Châu đã nhận đơn ${productName || 'Wolffia'} của bạn rồi nè`;
   const text = `Chào ${displayName},
 
-Cherry xác nhận đã nhận đơn hàng của bạn rồi nha.
+Diệp Châu xác nhận đã nhận đơn hàng của bạn rồi nha.
 
 Sản phẩm: ${productName || 'Wolffia'}
 Số tiền: ${displayAmount}
 
-Nếu mọi thứ đã đúng, bên Cherry sẽ chuẩn bị hàng và sắp xếp giao theo thông tin bạn để lại${address ? ` tại ${address}` : ''}.
+Nếu mọi thứ đã đúng, bên Diệp Châu sẽ chuẩn bị hàng và sắp xếp giao theo thông tin bạn để lại${address ? ` tại ${address}` : ''}.
 
-Thật ra đơn giản thôi, bạn chỉ cần để ý điện thoại giúp Cherry. Khi hàng sẵn sàng bên mình sẽ nhắn hoặc gọi để chốt lại thời gian nhận cho tiện nhất.
+Thật ra đơn giản thôi, bạn chỉ cần để ý điện thoại giúp Diệp Châu. Khi hàng sẵn sàng bên mình sẽ nhắn hoặc gọi để chốt lại thời gian nhận cho tiện nhất.
 
 Cảm ơn bạn đã tin Diệp Châu nha.
 
-Cherry mời bạn ❤️`;
+Diệp Châu mời bạn ❤️`;
 
   const html = `<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.6;color:#243424">
     <p>Chào ${displayName},</p>
-    <p>Cherry xác nhận đã nhận đơn hàng của bạn rồi nha.</p>
+    <p>Diệp Châu xác nhận đã nhận đơn hàng của bạn rồi nha.</p>
     <p><strong>Sản phẩm:</strong> ${productName || 'Wolffia'}<br />
     <strong>Số tiền:</strong> ${displayAmount}</p>
-    <p>Nếu mọi thứ đã đúng, bên Cherry sẽ chuẩn bị hàng và sắp xếp giao theo thông tin bạn để lại${address ? ` tại ${address}` : ''}.</p>
-    <p>Thật ra đơn giản thôi, bạn chỉ cần để ý điện thoại giúp Cherry. Khi hàng sẵn sàng bên mình sẽ nhắn hoặc gọi để chốt lại thời gian nhận cho tiện nhất.</p>
+    <p>Nếu mọi thứ đã đúng, bên Diệp Châu sẽ chuẩn bị hàng và sắp xếp giao theo thông tin bạn để lại${address ? ` tại ${address}` : ''}.</p>
+    <p>Thật ra đơn giản thôi, bạn chỉ cần để ý điện thoại giúp Diệp Châu. Khi hàng sẵn sàng bên mình sẽ nhắn hoặc gọi để chốt lại thời gian nhận cho tiện nhất.</p>
     <p>Cảm ơn bạn đã tin Diệp Châu nha.</p>
-    <p>Cherry mời bạn ❤️</p>
+    <p>Diệp Châu mời bạn ❤️</p>
   </div>`;
 
   return { subject, text, html };

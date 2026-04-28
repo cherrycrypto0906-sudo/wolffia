@@ -61,6 +61,6 @@
 
 **💡 Tất cả bài đều:**
 - Post dài 150-250 từ trên Facebook
-- Theo brand voice Cherry (thân thiện, gần gũi, có emoji)
+- Theo brand voice Diệp Châu (thân thiện, gần gũi, có emoji)
 - CTA rõ ràng → [Link form]
 - Mỗi bài 1 ngày 1 post (tối ưu thời gian engage cuối chiều)

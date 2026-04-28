@@ -9,7 +9,7 @@
 | Ngày | Điểm Giống Giọng (1-10) | Phản Hồi Người Xem | Thêm/Chỉnh Brand Voice | Nhận Xét Ngắn |
 |------|------------------------|-------------------|----------------------|--------------|
 | **Ngày 1** | 7 | Chưa phản ứng | Cần tự nhiên hơn, thêm từ "nhé" | Giọng văn tạm được nhưng chưa mượt lắm |
-| **Ngày 2** | 9 | Chatbot hỏa tốc | Thêm kịch bản chốt đơn nhanh | Giọng Cherry rất chuẩn, chatbot phản hồi mượt |
+| **Ngày 2** | 9 | Chatbot hỏa tốc | Thêm kịch bản chốt đơn nhanh | Giọng Diệp Châu rất chuẩn, chatbot phản hồi mượt |
 | **Ngày 3** | | | | |
 | **Ngày 4** | | | | |
 | **Ngày 5** | | | | |
@@ -83,7 +83,7 @@ Viết 3-5 câu:
 - Bạn có tin tưởng AI hơn không?
 
 **VD:**
-"Ngày 1 AI viết cứng nhắc, máy móc. Ngày 7 AI đã nắm được emoji pattern, cách nói 'siêu siêu' + 'em', tone gần gũi hơn nhiều. Engagement cũng tăng từ 30 → 80 lượt. AI bây giờ giống Cherry hơn 70%. Còn cần chỉnh ở chỗ: dùng 'không' thay 'kô' để chuẩn hơn."
+"Ngày 1 AI viết cứng nhắc, máy móc. Ngày 7 AI đã nắm được emoji pattern, cách nói 'siêu siêu' + 'em', tone gần gũi hơn nhiều. Engagement cũng tăng từ 30 → 80 lượt. AI bây giờ giống Diệp Châu hơn 70%. Còn cần chỉnh ở chỗ: dùng 'không' thay 'kô' để chuẩn hơn."
 
 ---
 

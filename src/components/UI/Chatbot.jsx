@@ -21,7 +21,7 @@ const parseFaqs = () => {
 
   return blocks.map((block) => {
     const questionMatch = block.match(/\*\*Hỏi:\s*"([\s\S]*?)"\*\*/);
-    const answerMatch = block.match(/\*\*Cherry đáp:\*\*\s*"([\s\S]*?)"/);
+    const answerMatch = block.match(/\*\*Diệp Châu đáp:\*\*\s*"([\s\S]*?)"/);
 
     return {
       question: questionMatch ? questionMatch[1].trim() : '',
@@ -82,7 +82,7 @@ const buildBotReply = (message, faqs, closeMessage, waitlistMessage) => {
   }
 
   return {
-    text: 'Cherry hiểu nè. Nếu chị muốn, cứ hỏi Cherry về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.',
+    text: 'Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.',
     showLeadButton: false,
   };
 };
@@ -219,8 +219,8 @@ export const Chatbot = () => {
         <div className="chatbot-window" role="dialog" aria-label="Chatbot tư vấn Wolffia">
           <div className="chatbot-header">
             <div>
-              <h3>Cherry tu van 24/7</h3>
-              <p>Hoi nhanh de Cherry tra loi lien</p>
+              <h3>Diep Chau tu van 24/7</h3>
+              <p>Hoi nhanh de Diep Chau tra loi lien</p>
             </div>
             <button type="button" className="close-btn" onClick={() => setIsOpen(false)} aria-label="Đóng chatbot">
               <FaTimes size={18} />
