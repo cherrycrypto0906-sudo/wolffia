@@ -5,16 +5,16 @@ import { FaGift } from 'react-icons/fa';
 import './Bonus.css';
 
 export const Bonus = () => {
-  const scrollToForm = () => {
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSurvey = () => {
+    document.getElementById('gift-survey')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const benefitsList = [
-    "Ưu tiên xác nhận khi mở đơn",
-    "Nhận hướng dẫn dùng Wolffia dễ nhất",
-    "Có gợi ý món nhanh, đơn giản",
-    "Được mời vào cộng đồng Zalo",
-    "Ưu tiên hơn khi hàng ít"
+    "Nhận cookbook món nhanh với Wolffia",
+    "Có thêm ý tưởng bữa sáng, sinh tố, salad",
+    "Dễ hình dung cách dùng trước khi mua",
+    "Phù hợp cho người mới chưa biết bắt đầu sao",
+    "Điền nhanh trong 1 phút là xong"
   ];
 
   return (
@@ -23,7 +23,7 @@ export const Bonus = () => {
         <RevealOnScroll className="bonus-container">
           <div className="bonus-content">
             <div className="bonus-icon"><FaGift /></div>
-            <h2>Giữ chỗ sớm để đỡ phải canh từng đợt mở suất</h2>
+            <h2>Muốn xem thêm ý tưởng món ăn trước thì nhận quà miễn phí</h2>
             <ul className="bonus-list">
               {benefitsList.map((item, index) => (
                 <li key={index}>
@@ -32,8 +32,8 @@ export const Bonus = () => {
                 </li>
               ))}
             </ul>
-            <Button onClick={scrollToForm} className="bonus-cta">
-              Nhận quà tặng
+            <Button onClick={scrollToSurvey} className="bonus-cta">
+              Đi đến khảo sát nhận quà
             </Button>
           </div>
         </RevealOnScroll>

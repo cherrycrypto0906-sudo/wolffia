@@ -20,8 +20,12 @@ export const FinalCTA = () => {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-  const scrollToForm = () => {
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToPayment = () => {
+    window.location.href = '/thanhtoan';
+  };
+
+  const scrollToSurvey = () => {
+    document.getElementById('gift-survey')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -44,12 +48,12 @@ export const FinalCTA = () => {
           </div>
 
           <div className="final-actions">
-            <Button onClick={scrollToForm} className="btn-final-primary">
-              Nhận quà tặng
+            <Button onClick={scrollToPayment} className="btn-final-primary">
+              Đặt hàng ngay
             </Button>
-            <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-outline btn-final-sub">
-              Vào cộng đồng Zalo
-            </a>
+            <button type="button" onClick={scrollToSurvey} className="btn btn-outline btn-final-sub">
+              Nhận quà miễn phí
+            </button>
           </div>
         </RevealOnScroll>
 

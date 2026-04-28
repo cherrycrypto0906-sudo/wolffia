@@ -4,8 +4,8 @@ import { Button } from '../UI/Button';
 import './Header.css';
 
 export const Header = () => {
-  const scrollToForm = () => {
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToPayment = () => {
+    window.location.href = '/thanhtoan';
   };
 
   return (
@@ -15,8 +15,8 @@ export const Header = () => {
           <img src={CONFIG.images.logo} alt="Wolffia tươi Diệp Châu" className="logo-img" />
         </a>
         <div className="header-actions">
-          <Button onClick={scrollToForm} className="header-cta">
-            Nhận quà tặng
+          <Button onClick={scrollToPayment} className="header-cta">
+            Đặt hàng ngay
           </Button>
         </div>
       </div>

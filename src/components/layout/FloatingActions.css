@@ -2,22 +2,29 @@
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 56px;
-  height: 56px;
-  background-color: #0068FF; /* Zalo Official Color */
+  width: 60px;
+  height: 60px;
+  background-color: white;
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0, 104, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 104, 255, 0.25);
   z-index: 1000;
   transition: transform var(--transition-fast);
   animation: pulse 2s infinite;
+  overflow: hidden;
 }
 
 .floating-zalo:hover {
   transform: scale(1.1);
+}
+
+.zalo-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .sticky-cta {

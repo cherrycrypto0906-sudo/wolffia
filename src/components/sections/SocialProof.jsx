@@ -54,7 +54,7 @@ export const SocialProof = () => {
             <RevealOnScroll delay={200} className="counter-item">
               <div className="counter-icon alt"><FaBell /></div>
               <div className="counter-number">{CONFIG.socialProof.totalInZalo}</div>
-              <div className="counter-label">Khách đã vào cộng đồng Zalo</div>
+              <div className="counter-label">Khách đã đăng ký nhận tin</div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={300} className="counter-item">

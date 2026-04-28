@@ -11,6 +11,88 @@
   box-shadow: var(--shadow-lg);
 }
 
+.gift-layout,
+.order-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.gift-info-card,
+.order-form-card,
+.payment-card {
+  height: 100%;
+}
+
+.gift-layout {
+  grid-template-columns: 1fr;
+}
+
+.gift-main-card,
+.gift-step-card {
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.gift-step-single {
+  min-height: 0;
+}
+
+.gift-info-card {
+  background: linear-gradient(180deg, #f7fbf4 0%, #ffffff 100%);
+  border-radius: var(--rounded-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 28px;
+}
+
+.gift-info-card h2 {
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin-bottom: 14px;
+}
+
+.gift-info-card p {
+  color: var(--text-muted);
+}
+
+.gift-info-box,
+.gift-zalo-box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: var(--rounded-md);
+  background: white;
+  border: 1px solid var(--border-color);
+}
+
+.gift-info-box ul {
+  margin-top: 8px;
+}
+
+.gift-info-box h3,
+.gift-zalo-box h3 {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+}
+
+.gift-info-box ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: var(--text-main);
+}
+
+.gift-info-box li + li {
+  margin-top: 8px;
+}
+
+.gift-zalo-btn {
+  margin-top: 14px;
+  width: 100%;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .form-header {
   margin-bottom: 30px;
 }
@@ -188,6 +270,40 @@
 /* Payment State */
 .payment-state {
   padding: 10px 0;
+}
+
+.package-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.package-chip {
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 14px 12px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.package-chip strong {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.package-chip span {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.package-chip.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  box-shadow: var(--shadow-sm);
 }
 
 .payment-badge {
@@ -423,12 +539,70 @@
   color: var(--primary);
 }
 
+.payment-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.package-picker-single {
+  grid-template-columns: 1fr;
+}
+
+.order-section .form-wrapper {
+  max-width: none;
+}
+
+.order-layout {
+  align-items: stretch;
+}
+
+.order-layout.order-single {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+
+.order-layout.qr-page {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+
+.payment-card {
+  align-self: start;
+}
+
+.payment-page-card {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.payment-status-hint {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   .form-wrapper {
     padding: 24px 20px;
   }
+  .package-picker {
+    grid-template-columns: 1fr;
+  }
   .form-group.row {
     flex-direction: column;
     gap: 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  .gift-layout,
+  .order-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .gift-info-card {
+    padding: 24px 20px;
   }
 }

@@ -5,11 +5,9 @@ import { Button } from '../UI/Button';
 import './Pricing.css';
 
 export const Pricing = () => {
-  const scrollToForm = (packageId) => {
-    // Optionally update a state variable here to pre-select, but simple scroll works for now
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
-    // Attempt to set a custom attribute or dispatch event for the form if we wanted to auto-select
-    window.dispatchEvent(new CustomEvent('selectPackage', { detail: packageId }));
+  const scrollToPayment = (packageId) => {
+    window.sessionStorage.setItem('selectedPackageId', packageId);
+    window.location.href = '/thanhtoan';
   };
 
   return (
@@ -47,13 +45,13 @@ export const Pricing = () => {
                 <Button 
                   variant={pkg.badge ? 'primary' : 'outline'} 
                   className="w-100" 
-                  onClick={() => scrollToForm(pkg.id)}
+                  onClick={() => scrollToPayment(pkg.id)}
                 >
                   {pkg.ctaText}
                 </Button>
                 {pkg.badge && (
                   <div className="text-center mt-2" style={{ fontSize: '0.85rem', color: 'var(--primary)'}}>
-                    <i>* Áp dụng giá ưu đãi khi cọc/giữ chỗ</i>
+                    <i>* Quét QR để thanh toán đúng giá của gói này</i>
                   </div>
                 )}
               </div>
@@ -63,8 +61,8 @@ export const Pricing = () => {
 
         <RevealOnScroll delay={400} className="pricing-note text-center">
           <p>
-            Bạn có thể giữ chỗ miễn phí hoặc đặt cọc <strong>29.000đ</strong> để ưu tiên chắc suất.<br/>
-            Khoản cọc sẽ được trừ vào đơn hàng và <strong>đảm bảo bạn được hưởng mức giá ưu đãi trên</strong>.
+            Hàng được vớt tươi, đóng hộp và giao lạnh ngay trong ngày để giữ độ giòn tốt nhất.<br/>
+            Nếu muốn tối ưu tiền hàng và tiền ship, <strong>Combo 3 hộp</strong> và <strong>Combo 5 hộp</strong> sẽ lợi hơn mua lẻ.
           </p>
           <div className="scarcity-alert">
             🚨 <strong>{CONFIG.scarcity}</strong>

@@ -31,8 +31,12 @@ export const Hero = () => {
     return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
   };
 
-  const scrollToForm = () => {
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToPayment = () => {
+    window.location.href = '/thanhtoan';
+  };
+
+  const scrollToSurvey = () => {
+    document.getElementById('gift-survey')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -65,12 +69,12 @@ export const Hero = () => {
           </RevealOnScroll>
 
           <RevealOnScroll delay={500} className="hero-actions">
-            <Button onClick={scrollToForm} className="hero-cta-main">
-              Nhận quà tặng
+            <Button onClick={scrollToPayment} className="hero-cta-main">
+              Đặt hàng ngay
             </Button>
-            <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-outline hero-cta-sub">
-              Vào cộng đồng Zalo
-            </a>
+            <button type="button" onClick={scrollToSurvey} className="btn btn-outline hero-cta-sub">
+              Nhận cookbook miễn phí
+            </button>
           </RevealOnScroll>
 
           <RevealOnScroll delay={600}>

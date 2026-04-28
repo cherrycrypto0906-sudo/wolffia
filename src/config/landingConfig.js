@@ -7,19 +7,18 @@ export const CONFIG = {
 
   // === LINK LIÊN KẾT ===
   zaloLink: "https://zalo.me/g/dwrlrtrnnnivi1xhmzbu", // Link tham gia cộng đồng Zalo
-  depositLink: "https://example.com/thanh-toan", // Link thanh toán cọc nhanh nếu có
-  formDestination: "https://script.google.com/macros/s/AKfycbya2ray_a1BewE7AIfLaX17thGq986PaIKWTjsQCHqDClPTCMD2xI-s6Nk5a5pSmFRW6Q/exec", // Google Apps Script → Google Sheets
+  formDestination: "https://script.google.com/macros/s/AKfycbxWU1tFOdn2MYz9rVhdexhymCYnGmCUXQNRl7bTIHi4CKpsKzVSkuElGij1yXBJMKYE/exec", // Google Apps Script → Google Sheets
   sheetUrl: "https://docs.google.com/spreadsheets/d/12F6jLbSPf6KJUQPIXxQ6ar77NTtJqDNHulNVVj1F9Yg/edit?gid=0#gid=0", // Sheet lưu lead + ảnh xác nhận chuyển khoản
 
   // === THUẬT TOÁN SOCIAL PROOF (Ảo) ===
   socialProof: {
     totalInterested: 127,
     totalInZalo: 43,
-    recentActivities: [
-      "Chị Linh ở Thủ Đức vừa giữ chỗ Gói 3 Bữa Xanh",
-      "Một khách hàng ở Quận 7 vừa vào cộng đồng Zalo",
-      "Chị Mai vừa đặt cọc giữ suất giao đợt tới",
-      "Khách tại Bình Thạnh vừa chọn Gói Healthy"
+      recentActivities: [
+      "Chị Linh ở Thủ Đức vừa chốt hộp dùng thử 100g",
+      "Một khách hàng ở Quận 7 vừa để lại thông tin nhận quà",
+      "Chị Mai vừa đặt Combo 3 hộp giao lạnh trong ngày",
+      "Khách tại Bình Thạnh vừa chọn Combo 5 hộp"
     ]
   },
 
@@ -42,7 +41,7 @@ export const CONFIG = {
     smoothie: "/assets/gallery_smoothie.png",
     breakfast: "/assets/gallery_breakfast.png",
     lifestyle: "/assets/lifestyle_table.png",
-    qrPayment: "/assets/qr_payment_v3.jpg"
+     qrPayment: "/assets/qr_payment_techcombank.jpg"
   },
 
 
@@ -50,11 +49,11 @@ export const CONFIG = {
 
   // === THIẾT LẬP THANH TOÁN (VIETQR) ===
   sepayConfig: {
-    bankId: "TCB",           // ID ngân hàng (MB, VCB, ICB, TCB, ...)
-    bankName: "Techcombank",     // Tên hiển thị
-    accountNumber: "1903 5892 3780 11", // Số tài khoản
-    accountName: "NGUYEN THI ANH NGUYET",  // Tên chủ tài khoản
-    depositAmount: 29000    // Số tiền đặt cọc
+    bankId: "ICB",
+    bankName: "VietinBank",
+    accountNumber: "105883279786",
+    accountName: "NGUYEN NGOC BAO CHAU",
+    transferPrefix: "SEVQR"
   },
 
 
@@ -66,11 +65,11 @@ export const CONFIG = {
   // === REVIEWS / ZALO CHAT ===
   chatReviews: [
     {
-      name: "Ngọc Anh",
+      name: "Lan Anh",
       avatar: "https://i.pravatar.cc/100?img=5",
       time: "Hôm nay 09:12",
       messages: [
-        "Em mới nhận sáng nay rắc lên cháo cho bé ăn thử. Lúc đầu sợ bé kén ăn mà cuối cùng cu cậu ăn sạch luôn 🤣"
+        "Cứ tưởng con sẽ nhè ra vì màu xanh, ai dè hạt nhỏ tí bé tưởng kẹo nên xúc ăn ngon lành. Trộm vía dạo này con đi vệ sinh đều hơn, mẹ đỡ phải ép ăn rau mỗi bữa."
       ],
       isCustomer: true
     },
@@ -79,16 +78,16 @@ export const CONFIG = {
       avatar: "/logo.png",
       time: "Hôm nay 09:15",
       messages: [
-        "Dạ Diệp Châu cảm ơn chị ạ, vì Wolffia có vị nhạt dễ hòa quyện nên các bé rất dễ ăn đó ạ 🥰"
+        "Dạ em cảm ơn chị ạ, hạt Wolffia nhỏ và giòn nhẹ nên nhiều bé đón nhận dễ hơn rau lá. Nhà mình cứ rắc vào món quen là bé ăn tự nhiên lắm ạ."
       ],
       isCustomer: false
     },
     {
-      name: "Tuấn Minh",
+      name: "Anh Hoàng",
       avatar: "https://i.pravatar.cc/100?img=11",
       time: "Hôm nay 12:30",
       messages: [
-        "Sản phẩm đóng gói cẩn thận. Mình mang theo đi làm rắc vào tô phở buổi sáng, nhanh gọn."
+        "Tìm nguồn đạm thực vật thay ức gà cho đỡ ngán thì gặp cái này. Đổ 1 hộp vào máy xay chung với whey, uống nhanh gọn mà không bị đầy bụng như ăn đậu."
       ],
       isCustomer: true
     },
@@ -97,7 +96,7 @@ export const CONFIG = {
       avatar: "/logo.png",
       time: "Hôm nay 12:45",
       messages: [
-        "Dạ đúng rồi anh, thiết kế hộp nhỏ gọn rất tiện mang theo đến chỗ làm để luôn có rau tươi ạ."
+        "Dạ đúng rồi anh, nhiều khách tập luyện cũng thích vì thêm được đạm xanh mà vẫn nhẹ bụng, không cần chuẩn bị cầu kỳ như bữa phụ thông thường ạ."
       ],
       isCustomer: false
     }
@@ -105,54 +104,37 @@ export const CONFIG = {
   // === GÓI SẢN PHẨM & GIÁ ===
   packages: [
     {
-      id: "goi-lam-quen",
-      name: "Gói Làm Quen",
-      weight: "80g",
-      originalPrice: "69.000",
+      id: "gia-dung-thu",
+      name: "Gói dùng thử",
+      weight: "100g / 1 hộp",
+      originalPrice: "85.000",
       price: "49.000",
-      description: "Dành cho người mới muốn thử 1–2 món đầu tiên",
-      badge: "",
-      ctaText: "Thử gói này"
+      description: "Ưu đãi ra mắt mẻ mới cho người muốn thử độ tươi và độ dễ ăn trước",
+      badge: "Dễ thử nhất",
+      ctaText: "Đặt hàng ngay",
+      transferCode: "DUNGTHU"
     },
     {
-      id: "goi-3-bua",
-      name: "Gói 3 Bữa Xanh",
-      weight: "150g",
-      originalPrice: "129.000",
-      price: "89.000",
-      description: "Vừa đẹp để bắt đầu dùng đều trong vài bữa",
+      id: "combo-3-hop",
+      name: "Combo 3 hộp",
+      weight: "3 x 100g",
+      originalPrice: "147.000",
+      price: "135.000",
+      description: "Phù hợp cho gia đình 3-4 người ăn trong 2-3 ngày",
       badge: "Bán chạy nhất",
-      ctaText: "Nhận quà tặng"
+      ctaText: "Đặt hàng ngay",
+      transferCode: "COMBO3"
     },
     {
-      id: "goi-healthy",
-      name: "Gói Healthy",
-      weight: "300g",
-      originalPrice: "219.000",
-      price: "159.000",
-      description: "Cho người muốn ăn xanh thường xuyên hơn trong tuần",
-      badge: "",
-      ctaText: "Chọn gói Healthy"
-    },
-    {
-      id: "goi-gia-dinh",
-      name: "Gói Gia Đình",
-      weight: "500g",
-      originalPrice: "349.000",
-      price: "249.000",
-      description: "Phù hợp gia đình nhỏ hoặc người dùng thường xuyên",
-      badge: "",
-      ctaText: "Nhận quà tặng"
-    },
-    {
-      id: "goi-tuan",
-      name: "Gói Giữ Chỗ Theo Tuần",
-      weight: "4 x 150g",
-      originalPrice: "449.000",
-      price: "339.000",
-      description: "Ưu tiên giữ suất mỗi tuần cho người muốn duy trì đều",
-      badge: "",
-      ctaText: "Nhận tư vấn gói tuần"
+      id: "combo-5-hop",
+      name: "Combo 5 hộp",
+      weight: "5 x 100g",
+      originalPrice: "245.000",
+      price: "210.000",
+      description: "Đủ dùng cho 1 tuần eat-clean, tặng kèm cẩm nang Recipe",
+      badge: "Tặng recipe",
+      ctaText: "Đặt hàng ngay",
+      transferCode: "COMBO5"
     }
   ]
 };

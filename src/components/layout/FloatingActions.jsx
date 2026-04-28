@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
-import { FaCommentDots } from 'react-icons/fa';
 import './FloatingActions.css';
 
 export const FloatingActions = () => {
@@ -19,24 +18,24 @@ export const FloatingActions = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToForm = () => {
-    document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToPayment = () => {
+    window.location.href = '/thanhtoan';
   };
 
   return (
     <>
       <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="floating-zalo" aria-label="Chat Zalo">
-        <FaCommentDots size={24} />
+        <img src="/zalo-mark.svg" alt="Zalo" className="zalo-icon" />
       </a>
 
       <div className={`sticky-cta ${showSticky ? 'visible' : ''}`}>
         <div className="sticky-content">
           <div className="sticky-text">
-            <strong>Nhận quà tặng</strong>
+            <strong>Đặt hàng ngay</strong>
             <span>Chỉ còn {CONFIG.slotsRemaining} suất</span>
           </div>
-          <button onClick={scrollToForm} className="btn btn-primary sticky-btn">
-            Nhận quà tặng
+          <button onClick={scrollToPayment} className="btn btn-primary sticky-btn">
+            Đặt hàng ngay
           </button>
         </div>
       </div>
