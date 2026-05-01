@@ -2,24 +2,26 @@ import React from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaClock, FaLeaf, FaDumbbell } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './PainSection.css';
 
 export const PainSection = () => {
+  const { t } = useTranslation();
   const painCards = [
     {
       icon: <FaClock size={28} />,
-      title: "Muốn ăn tốt hơn nhưng quá bận",
-      text: "Không có đủ thời gian lên thực đơn, đi chợ, nấu nướng và dọn dẹp mỗi ngày."
+      title: t('painSection.cards.0.title'),
+      text: t('painSection.cards.0.text')
     },
     {
       icon: <FaLeaf size={28} />,
-      title: "Muốn healthy hơn nhưng ngại chuẩn bị",
-      text: "Ngại các thao tác sơ chế rau củ, chần, luộc, xay ép cồng kềnh."
+      title: t('painSection.cards.1.title'),
+      text: t('painSection.cards.1.text')
     },
     {
       icon: <FaDumbbell size={28} />,
-      title: "Muốn duy trì nhưng dễ bỏ cuộc",
-      text: "Ăn đồ luộc mãi cũng chán, ăn đa dạng thì mất công, cuối cùng lại quay về thói quen cũ."
+      title: t('painSection.cards.2.title'),
+      text: t('painSection.cards.2.text')
     }
   ];
 
@@ -29,31 +31,20 @@ export const PainSection = () => {
         
         <div className="pain-header text-center">
           <RevealOnScroll>
-            <h2>Biết nên ăn tốt hơn là một chuyện.<br/>Duy trì được mỗi ngày lại là chuyện khác.</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: t('painSection.headline') }} />
           </RevealOnScroll>
           <RevealOnScroll delay={100}>
             <p className="pain-subheadline">
-              Phần lớn mọi người không thiếu ý thức ăn uống. Chỉ là cuộc sống quá bận, nên bữa ăn thường bị làm cho nhanh, cho tiện, cho xong.
+              {t('painSection.subheadline')}
             </p>
           </RevealOnScroll>
         </div>
 
         <div className="pain-split">
           <RevealOnScroll className="pain-text-column">
-            <p>
-              Mẹ bỉm thì bận con, bận nhà.<br/>
-              Người đi làm thì xoay giữa công việc và đủ thứ việc nhỏ.<br/>
-              Người muốn ăn healthy hơn thì lại dễ bỏ cuộc vì quá mất thời gian chuẩn bị.
-            </p>
-            <p>
-              Muốn ăn xanh hơn, nhưng ngại sơ chế.<br/>
-              Muốn bữa healthy nhanh mà không nhàm.<br/>
-              Muốn chăm mình hơn, nhưng không muốn thêm việc.
-            </p>
-            <div className="pain-highlight">
-              Thứ nhiều người thật sự cần không phải là thêm áp lực.<br/>
-              Mà là một cách ăn tốt hơn đủ dễ để làm được mỗi ngày.
-            </div>
+            <p dangerouslySetInnerHTML={{ __html: t('painSection.splitText1') }} />
+            <p dangerouslySetInnerHTML={{ __html: t('painSection.splitText2') }} />
+            <div className="pain-highlight" dangerouslySetInnerHTML={{ __html: t('painSection.highlight') }} />
           </RevealOnScroll>
           
           <RevealOnScroll className="pain-image-column" delay={200}>

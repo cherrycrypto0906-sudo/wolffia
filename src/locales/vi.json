@@ -1,0 +1,303 @@
+{
+  "header": {
+    "orderNow": "Đặt hàng ngay"
+  },
+  "hero": {
+    "eyebrow": "Cho những ngày muốn ăn tử tế hơn, nhưng không còn thời gian để cầu kỳ",
+    "headlinePrefix": "Muốn ăn tốt hơn, nhưng ngày nào cũng",
+    "headlineHighlight": "quá bận",
+    "subheadline": "Diệp Châu mang đến Wolffia tươi – một nguyên liệu xanh mới, nhỏ gọn, dễ dùng, dễ thêm vào các món quen thuộc để bữa ăn mỗi ngày tươi hơn, gọn hơn và đỡ áp lực hơn.",
+    "supporting": "Không cần thay đổi cả chế độ ăn. Chỉ cần một thứ đủ tiện để bạn thật sự muốn dùng lại trong những ngày bận rộn.",
+    "ctaMain": "Đặt hàng ngay",
+    "ctaSub": "Nhận cookbook miễn phí",
+    "urgencyBadge": "Hàng tươi – mở suất giới hạn mỗi ngày",
+    "urgencySlots": "Hôm nay chỉ mở {{slots}} suất giữ chỗ",
+    "urgencyRemaining": "Còn đúng {{remaining}} suất",
+    "floatingBadge": "🌱 Thay đổi cách ăn của bạn"
+  },
+  "config": {
+    "guarantee": "100% tươi mới thu hoạch trong ngày - Hoàn tiền nếu không tươi",
+    "scarcity": "Chỉ thu hoạch giới hạn 50 suất/ngày để đảm bảo độ tươi ngon nhất",
+    "socialProof": {
+      "recentActivities": [
+        "Chị Linh ở Thủ Đức vừa chốt hộp dùng thử 100g",
+        "Một khách hàng ở Quận 7 vừa để lại thông tin nhận quà",
+        "Chị Mai vừa đặt Combo 3 hộp giao lạnh trong ngày",
+        "Khách tại Bình Thạnh vừa chọn Combo 5 hộp"
+      ]
+    },
+    "galleryItems": [
+      { "title": "Gỏi / Salad" },
+      { "title": "Cơm / Cháo" },
+      { "title": "Bánh xèo / Chiên" },
+      { "title": "Smoothie bowl" },
+      { "title": "Bữa sáng healthy" }
+    ],
+    "faq": [
+      {
+        "q": "Cái này là gì vậy em?",
+        "a": "Dạ đây là Wolffia Diệp Châu chị nha, một loại đạm xanh được tuyển chọn, nuôi trong nhà màng công nghệ cao với nước lọc tinh khiết và dinh dưỡng hữu cơ. Bên em làm theo hướng sạch, khép kín nên chị có thể dùng rất yên tâm ạ."
+      },
+      {
+        "q": "Có cần rửa lại hay nấu chín không?",
+        "a": "Dạ không cần ạ. Mở hộp là rắc trực tiếp vào cháo, sinh tố hoặc salad ăn ngay. Ăn sống là cách tốt nhất để giữ 100% protein và vitamin B12 quý giá trong Wolffia."
+      },
+      {
+        "q": "Vị nó có đắng hay nồng mùi cỏ không?",
+        "a": "Hoàn toàn không chị nhé. Vị nó thanh nhẹ như nước mát, kết cấu giòn tan li ti như trứng cá. Chị rắc vào món gì nó sẽ mang hương vị của món đó, cực kỳ dễ ăn cho cả bé nhỏ."
+      },
+      {
+        "q": "Sản phẩm này ăn có tanh hay hăng mùi không?",
+        "a": "Không có luôn chị ạ. Vì bên em không vớt từ ao tự nhiên mà nuôi trong hệ thống nhà màng khép kín với nước sạch. Nên ăn rất thanh, không hăng, không tanh, không có mùi bùn đâu chị."
+      },
+      {
+        "q": "Trẻ nhỏ bắt đầu ăn dặm dùng được chưa?",
+        "a": "Rất lý tưởng. Hạt siêu nhỏ, mềm, không gây hóc. Mẹ chỉ cần rắc 1 muỗng cà phê vào bát cháo vừa múc ra chén, khuấy đều là bé đã có thêm chất xơ và đạm thực vật."
+      },
+      {
+        "q": "Nên bắt đầu với gói nào?",
+        "a": "Nếu chị mới thử, cứ bắt đầu bằng hộp dùng thử 100g giá 49.000đ là nhẹ nhất. Nếu muốn tối ưu hơn tiền hàng và tiền ship thì lấy Combo 3 hoặc Combo 5 sẽ lời hơn nhiều."
+      },
+      {
+        "q": "Có giao nhanh trong ngày không?",
+        "a": "Có ạ. Bên em hỗ trợ giao hỏa tốc tại TP.HCM. Hàng được vớt tươi, đóng hộp và giao lạnh ngay trong ngày để giữ độ giòn."
+      },
+      {
+        "q": "Bảo quản thế nào cho đúng?",
+        "a": "Nhận hàng xong chị cho ngay vào ngăn mát tủ lạnh ở 4-8°C. Dùng ngon nhất trong 5-7 ngày. Khi lấy sản phẩm nhớ dùng muỗng sạch, đậy kín nắp và không để ngăn đá."
+      }
+    ],
+    "chatReviews": [
+      {
+        "name": "Lan Anh",
+        "time": "Hôm nay 09:12",
+        "messages": [
+          "Cứ tưởng con sẽ nhè ra vì màu xanh, ai dè hạt nhỏ tí bé tưởng kẹo nên xúc ăn ngon lành. Trộm vía dạo này con đi vệ sinh đều hơn, mẹ đỡ phải ép ăn rau mỗi bữa."
+        ]
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Hôm nay 09:15",
+        "messages": [
+          "Dạ em cảm ơn chị ạ, hạt Wolffia nhỏ và giòn nhẹ nên nhiều bé đón nhận dễ hơn rau lá. Nhà mình cứ rắc vào món quen là bé ăn tự nhiên lắm ạ."
+        ]
+      },
+      {
+        "name": "Anh Hoàng",
+        "time": "Hôm nay 12:30",
+        "messages": [
+          "Tìm nguồn đạm thực vật thay ức gà cho đỡ ngán thì gặp cái này. Đổ 1 hộp vào máy xay chung với whey, uống nhanh gọn mà không bị đầy bụng như ăn đậu."
+        ]
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Hôm nay 12:45",
+        "messages": [
+          "Dạ đúng rồi anh, nhiều khách tập luyện cũng thích vì thêm được đạm xanh mà vẫn nhẹ bụng, không cần chuẩn bị cầu kỳ như bữa phụ thông thường ạ."
+        ]
+      }
+    ],
+    "packages": {
+      "gia-dung-thu": {
+        "name": "Gói dùng thử",
+        "description": "Ưu đãi ra mắt mẻ mới cho người muốn thử độ tươi và độ dễ ăn trước",
+        "badge": "Dễ thử nhất",
+        "ctaText": "Đặt hàng ngay"
+      },
+      "combo-3-hop": {
+        "name": "Combo 3 hộp",
+        "description": "Phù hợp cho gia đình 3-4 người ăn trong 2-3 ngày",
+        "badge": "Bán chạy nhất",
+        "ctaText": "Đặt hàng ngay"
+      },
+      "combo-5-hop": {
+        "name": "Combo 5 hộp",
+        "description": "Đủ dùng cho 1 tuần eat-clean, tặng kèm cẩm nang Recipe",
+        "badge": "Tặng recipe",
+        "ctaText": "Đặt hàng ngay"
+      }
+    }
+  },
+  "painSection": {
+    "headline": "Biết nên ăn tốt hơn là một chuyện.<br/>Duy trì được mỗi ngày lại là chuyện khác.",
+    "subheadline": "Phần lớn mọi người không thiếu ý thức ăn uống. Chỉ là cuộc sống quá bận, nên bữa ăn thường bị làm cho nhanh, cho tiện, cho xong.",
+    "splitText1": "Mẹ bỉm thì bận con, bận nhà.<br/>Người đi làm thì xoay giữa công việc và đủ thứ việc nhỏ.<br/>Người muốn ăn healthy hơn thì lại dễ bỏ cuộc vì quá mất thời gian chuẩn bị.",
+    "splitText2": "Muốn ăn xanh hơn, nhưng ngại sơ chế.<br/>Muốn bữa healthy nhanh mà không nhàm.<br/>Muốn chăm mình hơn, nhưng không muốn thêm việc.",
+    "highlight": "Thứ nhiều người thật sự cần không phải là thêm áp lực.<br/>Mà là một cách ăn tốt hơn đủ dễ để làm được mỗi ngày.",
+    "cards": [
+      {
+        "title": "Muốn ăn tốt hơn nhưng quá bận",
+        "text": "Không có đủ thời gian lên thực đơn, đi chợ, nấu nướng và dọn dẹp mỗi ngày."
+      },
+      {
+        "title": "Muốn healthy hơn nhưng ngại chuẩn bị",
+        "text": "Ngại các thao tác sơ chế rau củ, chần, luộc, xay ép cồng kềnh."
+      },
+      {
+        "title": "Muốn duy trì nhưng dễ bỏ cuộc",
+        "text": "Ăn đồ luộc mãi cũng chán, ăn đa dạng thì mất công, cuối cùng lại quay về thói quen cũ."
+      }
+    ]
+  },
+  "solutionSection": {
+    "badge": "Gọn gàng, sạch sẽ, chuẩn tươi",
+    "headline": "Diệp Châu chọn Wolffia như một cách ăn xanh nhẹ nhàng hơn cho ngày bận rộn",
+    "subheadline": "Dễ thêm vào món quen. Nhanh gọn. Nhìn đẹp. Không tạo cảm giác phải cố quá nhiều.",
+    "body": "Wolffia là kiểu nguyên liệu bạn có thể thêm nhanh vào salad, cháo, súp, mì hay bowl ăn sáng. Chỉ một chút thôi cũng đủ làm bữa ăn trông tươi hơn, có gu hơn và khiến việc ăn uống tử tế trở nên dễ bắt đầu lại hơn.",
+    "nutritionTitle": "Hồ sơ dinh dưỡng vượt trội",
+    "benefits": [
+      "Dễ dùng mỗi ngày",
+      "Ít áp lực hơn",
+      "Hợp món quen",
+      "Nhìn là muốn ăn"
+    ]
+  },
+  "benefitsSection": {
+    "headline": "Vì sao Wolffia hợp với những người muốn ăn tốt hơn nhưng không có nhiều thời gian?",
+    "cards": [
+      "Dễ dùng, không rườm rà",
+      "Giúp bữa ăn đỡ nhàm chán",
+      "Nhìn tươi, đẹp, có cảm hứng hơn",
+      "Hợp với mẹ bỉm và người bận rộn",
+      "Không cần nấu quá cầu kỳ",
+      "Mở đơn giới hạn để ưu tiên độ tươi"
+    ]
+  },
+  "pricingSection": {
+    "headline": "Chọn gói phù hợp với nhịp sống của bạn",
+    "subheadline": "Từ gói thử nhỏ đến gói dùng đều trong tuần, Diệp Châu có lựa chọn để bạn bắt đầu theo cách nhẹ nhàng nhất.",
+    "qrNote": "* Quét QR để thanh toán đúng giá của gói này",
+    "deliveryNote": "Hàng được vớt tươi, đóng hộp và giao lạnh ngay trong ngày để giữ độ giòn tốt nhất.<br/>Nếu muốn tối ưu tiền hàng và tiền ship, <strong>Combo 3 hộp</strong> và <strong>Combo 5 hộp</strong> sẽ lợi hơn mua lẻ."
+  },
+  "paymentSection": {
+    "formKicker": "Đặt hàng",
+    "formHeadline": "Điền thông tin nhận hàng rồi thanh toán",
+    "formSubheadline": "Chọn gói, điền thông tin người nhận. Sau đó hệ thống sẽ hiện đúng mã QR và nội dung chuyển khoản cho đơn của bạn.",
+    "labels": {
+      "package": "Chọn gói muốn đặt *",
+      "name": "Họ và tên *",
+      "namePlaceholder": "Nhập họ và tên người nhận",
+      "phone": "Số điện thoại *",
+      "phonePlaceholder": "Nhập số điện thoại nhận hàng",
+      "quantity": "Số lượng *",
+      "quantityPlaceholder": "Nhập số lượng",
+      "address": "Địa chỉ nhận hàng *",
+      "addressPlaceholder": "Nhập địa chỉ nhận hàng đầy đủ",
+      "note": "Ghi chú thêm (không bắt buộc)",
+      "notePlaceholder": "Ví dụ: giao giờ nào tiện, gọi trước khi giao, lưu ý ship...",
+      "submit": "Đặt hàng ngay",
+      "submitting": "Đang lưu đơn..."
+    },
+    "qr": {
+      "kicker": "Thanh toán SePay",
+      "headline": "Quét QR cho đơn hàng của bạn",
+      "subheadline": "Thông tin thanh toán đã sẵn sàng. Chỉ cần chuyển đúng như bên dưới.",
+      "orderLabel": "Đơn hàng",
+      "bank": "Ngân hàng",
+      "accountNumber": "Số tài khoản",
+      "accountName": "Chủ tài khoản",
+      "customer": "Khách hàng",
+      "phone": "Số điện thoại",
+      "amount": "Số tiền",
+      "transferContent": "Nội dung CK",
+      "noteTemplate": "Chuyen khoan dung {{amount}} va giu nguyen noi dung {{content}}",
+      "noteFull": "Nội dung chuyển khoản đang theo công thức <strong>{{prefix}} + tên gói + tên + số điện thoại</strong> và đã được nhúng trực tiếp vào mã QR. Vui lòng không sửa nội dung này.",
+      "statusHint": "Đang chờ xác nhận thanh toán từ ngân hàng...",
+      "infoAlert": "Sau khi bạn chuyển khoản xong, trang này sẽ tự cập nhật khi đơn hàng được xác nhận thanh toán.",
+      "checkBtn": "Kiểm tra thanh toán",
+      "editBtn": "Sửa lại thông tin đơn hàng"
+    },
+    "success": {
+      "headline": "Diệp Châu đã nhận thanh toán của bạn rồi",
+      "message": "Cảm ơn bạn nhiều nha. Bên Diệp Châu sẽ chuẩn bị đơn <strong>{{package}}</strong> và liên hệ lại sớm để chốt thời gian giao hàng phù hợp nhất.",
+      "hint": "Bạn cứ để ý điện thoại giúp Diệp Châu. Nếu cần hỗ trợ thêm, chat ngay ở góc phải là được.",
+      "newOrderBtn": "Tạo đơn mới"
+    }
+  },
+  "leadForm": {
+    "giftInfo": {
+      "kicker": "Nhận quà tặng",
+      "headline": "Khảo sát nhanh để nhận cookbook miễn phí",
+      "subheadline": "Điền khảo sát ngắn, tham gia nhóm Zalo rồi tải file PDF ngay trên website.",
+      "processTitle": "Quy trình nhận quà",
+      "steps": [
+        "Bước 1: điền khảo sát để Diệp Châu hiểu nhu cầu của bạn",
+        "Bước 2: tham gia nhóm Zalo để theo dõi món thật và đợt mở hàng",
+        "Bước 3: mở nút tải file PDF cookbook ngay trên web"
+      ]
+    },
+    "form": {
+      "kicker": "Khảo sát nhận quà tặng",
+      "headline": "Nhận Cookbook món ngon với Wolffia",
+      "subheadline": "Điền nhanh vài câu để Diệp Châu gửi quà đúng nhu cầu của bạn qua email.",
+      "labels": {
+        "name": "Tên của bạn *",
+        "namePlaceholder": "Nhập tên của bạn",
+        "email": "Email để nhận quà *",
+        "emailPlaceholder": "Nhập email của bạn",
+        "persona": "Bạn thuộc nhóm nào dưới đây? *",
+        "personaPlaceholder": "Chọn nhóm phù hợp nhất",
+        "challenge": "Khó khăn lớn nhất của bạn khi ăn uống hằng ngày là gì? *",
+        "benefit": "Nếu có Wolffia tươi dễ dùng, bạn muốn nó giúp mình điều gì nhất? *",
+        "benefitPlaceholder": "Chọn điều bạn quan tâm nhất",
+        "gift": "Bạn có muốn nhận cookbook miễn phí không? *",
+        "note": "Bạn muốn Diệp Châu chia sẻ thêm điều gì trong cookbook? (không bắt buộc)",
+        "notePlaceholder": "Ví dụ: món cho bữa sáng, món cho bé, smoothie, eat-clean...",
+        "submit": "Nhận quà tặng",
+        "submitting": "Đang gửi khảo sát..."
+      }
+    },
+    "zaloStep": {
+      "headline": "Khảo sát đã xong",
+      "subheadline": "Tham gia nhóm Zalo trước, sau đó xác nhận để mở trang tải PDF.",
+      "boxText": "Vào nhóm Zalo để xem món thật, feedback thật và cập nhật đợt hàng mới.",
+      "joinBtn": "Tham gia nhóm Zalo",
+      "joinedBtn": "Tôi đã tham gia Zalo"
+    },
+    "downloadStep": {
+      "headline": "Quà của bạn đã sẵn sàng",
+      "subheadline": "Bạn có thể tải file PDF ngay bên dưới. Nếu muốn đặt hàng luôn thì đi tiếp xuống phần đặt hàng.",
+      "downloadBtn": "Tải file PDF",
+      "orderBtn": "Đi đến phần đặt hàng"
+    }
+  },
+  "faqSection": {
+    "headline": "Có thể bạn cũng đang thắc mắc"
+  },
+  "foodGallery": {
+    "headline": "Ngày bận vẫn có thể ăn xanh theo cách ngon mắt hơn",
+    "subheadline": "Chỉ cần thêm một chút Wolffia, món quen đã trông tươi hơn và bớt nhàm hơn rất nhiều.",
+    "closing": "Một nguyên liệu nhỏ, nhưng đủ để làm bạn muốn ăn ở nhà nhiều hơn."
+  },
+  "socialProof": {
+    "headline": "Nhiều khách chọn giữ chỗ sớm vì ngày bận thường không muốn chờ tới lúc thích rồi lại hết suất",
+    "stats": {
+      "interested": "Người đã để lại thông tin",
+      "inZalo": "Khách đã đăng ký nhận tin",
+      "slots": "Suất còn lại hôm nay"
+    }
+  },
+  "testimonials": {
+    "headline": "Mọi người nói gì về Wolffia?",
+    "subheadline": "Tâm lý chung của rất nhiều khách hàng mới. Hãy xem những người đã trải nghiệm thực tế nói gì về \"hạt xanh\" này nhé.",
+    "activeNow": "Đang hoạt động"
+  },
+  "chatbot": {
+    "fallback": "Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.",
+    "header": {
+      "title": "Diệp Châu tư vấn 24/7",
+      "subtitle": "Hỏi nhanh để Diệp Châu trả lời liền"
+    },
+    "messages": {
+      "ctaLeadForm": "Đi đến form danh sách chờ"
+    },
+    "options": {
+      "label": "Gợi ý để hỏi nhanh",
+      "buyNow": "Mình muốn mua ngay",
+      "thinkMore": "Để mình nghĩ thêm"
+    },
+    "input": {
+      "placeholder": "Ví dụ: giá bao nhiêu, có hợp cho bé không..."
+    }
+  }
+}

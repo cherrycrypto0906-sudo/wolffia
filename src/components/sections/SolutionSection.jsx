@@ -2,16 +2,14 @@ import React from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './SolutionSection.css';
 import nutritionChartImg from '../../assets/wolffia_nutrition_v2.jpg';
 
 export const SolutionSection = () => {
-  const benefits = [
-    "Dễ dùng mỗi ngày",
-    "Ít áp lực hơn",
-    "Hợp món quen",
-    "Nhìn là muốn ăn"
-  ];
+  const { t } = useTranslation();
+  const benefits = t('solutionSection.benefits', { returnObjects: true });
+
 
   return (
     <section className="solution-section section-padding">
@@ -24,26 +22,25 @@ export const SolutionSection = () => {
               className="solution-image" 
             />
             <div className="solution-badge">
-              Gọn gàng, sạch sẽ, chuẩn tươi
+              {t('solutionSection.badge')}
             </div>
           </RevealOnScroll>
         </div>
         
         <div className="solution-content">
           <RevealOnScroll>
-            <h2>Diệp Châu chọn Wolffia như một cách ăn xanh nhẹ nhàng hơn cho ngày bận rộn</h2>
+            <h2>{t('solutionSection.headline')}</h2>
           </RevealOnScroll>
 
           <RevealOnScroll delay={100}>
             <h3 className="solution-subheadline">
-              Dễ thêm vào món quen. Nhanh gọn. Nhìn đẹp. Không tạo cảm giác phải cố quá nhiều.
+              {t('solutionSection.subheadline')}
             </h3>
           </RevealOnScroll>
 
           <RevealOnScroll delay={200}>
             <p className="solution-body">
-              Wolffia là kiểu nguyên liệu bạn có thể thêm nhanh vào salad, cháo, súp, mì hay bowl ăn sáng.
-              Chỉ một chút thôi cũng đủ làm bữa ăn trông tươi hơn, có gu hơn và khiến việc ăn uống tử tế trở nên dễ bắt đầu lại hơn.
+              {t('solutionSection.body')}
             </p>
           </RevealOnScroll>
 
@@ -62,7 +59,7 @@ export const SolutionSection = () => {
       
       <div className="container mt-5">
         <RevealOnScroll delay={400} className="text-center">
-          <h3 className="mb-4" style={{ color: 'var(--primary-dark)' }}>Hồ sơ dinh dưỡng vượt trội</h3>
+          <h3 className="mb-4" style={{ color: 'var(--primary-dark)' }}>{t('solutionSection.nutritionTitle')}</h3>
           <div className="nutrition-chart-container">
             <img src={nutritionChartImg} alt="Dinh dưỡng Wolffia" className="nutrition-chart-img" />
           </div>

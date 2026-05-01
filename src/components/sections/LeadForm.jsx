@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
+import { useTranslation } from 'react-i18next';
 import './LeadForm.css';
 
 const PERSONA_OPTIONS = [
@@ -34,6 +35,13 @@ const GIFT_OPTIONS = [
 ];
 
 export const LeadForm = () => {
+  const { t } = useTranslation();
+  
+  const PERSONA_OPTIONS = t('leadForm.form.options.persona', { returnObjects: true });
+  const CHALLENGE_OPTIONS = t('leadForm.form.options.challenges', { returnObjects: true });
+  const BENEFIT_OPTIONS = t('leadForm.form.options.benefits', { returnObjects: true });
+  const GIFT_OPTIONS = t('leadForm.form.options.gifts', { returnObjects: true });
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -132,56 +140,56 @@ export const LeadForm = () => {
           {step === 'form' && (
             <>
               <div className="gift-info-card">
-                <span className="form-kicker">Nhận quà tặng</span>
-                <h2>Khảo sát nhanh để nhận cookbook miễn phí</h2>
-                <p>Điền khảo sát ngắn, tham gia nhóm Zalo rồi tải file PDF ngay trên website.</p>
+                <span className="form-kicker">{t('leadForm.giftInfo.kicker')}</span>
+                <h2>{t('leadForm.giftInfo.headline')}</h2>
+                <p>{t('leadForm.giftInfo.subheadline')}</p>
 
                 <div className="gift-info-box">
-                  <h3>Quy trình nhận quà</h3>
+                  <h3>{t('leadForm.giftInfo.processTitle')}</h3>
                   <ul>
-                    <li>Bước 1: điền khảo sát để Diệp Châu hiểu nhu cầu của bạn</li>
-                    <li>Bước 2: tham gia nhóm Zalo để theo dõi món thật và đợt mở hàng</li>
-                    <li>Bước 3: mở nút tải file PDF cookbook ngay trên web</li>
+                    {t('leadForm.giftInfo.steps', { returnObjects: true }).map((step, idx) => (
+                      <li key={idx}>{step}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
               <div className="form-wrapper gift-main-card">
                 <div className="form-header text-center">
-                  <span className="form-kicker">Khảo sát nhận quà tặng</span>
-                  <h2>Nhận Cookbook món ngon với Wolffia</h2>
-                  <p>Điền nhanh vài câu để Diệp Châu gửi quà đúng nhu cầu của bạn qua email.</p>
+                  <span className="form-kicker">{t('leadForm.form.kicker')}</span>
+                  <h2>{t('leadForm.form.headline')}</h2>
+                  <p>{t('leadForm.form.subheadline')}</p>
                 </div>
 
                 <form className="lead-form" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label>Tên của bạn *</label>
+                    <label>{t('leadForm.form.labels.name')}</label>
                     <input
                       type="text"
                       name="name"
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Nhập tên của bạn"
+                      placeholder={t('leadForm.form.labels.namePlaceholder')}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label>Email để nhận quà *</label>
+                    <label>{t('leadForm.form.labels.email')}</label>
                     <input
                       type="email"
                       name="email"
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="Nhập email của bạn"
+                      placeholder={t('leadForm.form.labels.emailPlaceholder')}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label>Bạn thuộc nhóm nào dưới đây? *</label>
+                    <label>{t('leadForm.form.labels.persona')}</label>
                     <select name="persona" required value={formData.persona} onChange={handleChange}>
-                      <option value="" disabled>Chọn nhóm phù hợp nhất</option>
+                      <option value="" disabled>{t('leadForm.form.labels.personaPlaceholder')}</option>
                       {PERSONA_OPTIONS.map((option) => (
                         <option key={option} value={option}>{option}</option>
                       ))}
@@ -189,7 +197,7 @@ export const LeadForm = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Khó khăn lớn nhất của bạn khi ăn uống hằng ngày là gì? *</label>
+                    <label>{t('leadForm.form.labels.challenge')}</label>
                     <div className="deposit-options survey-options checkbox-options">
                       {CHALLENGE_OPTIONS.map((option) => (
                         <label key={option} className="checkbox-label">
@@ -211,9 +219,9 @@ export const LeadForm = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Nếu có Wolffia tươi dễ dùng, bạn muốn nó giúp mình điều gì nhất? *</label>
+                    <label>{t('leadForm.form.labels.benefit')}</label>
                     <select name="desiredBenefit" required value={formData.desiredBenefit} onChange={handleChange}>
-                      <option value="" disabled>Chọn điều bạn quan tâm nhất</option>
+                      <option value="" disabled>{t('leadForm.form.labels.benefitPlaceholder')}</option>
                       {BENEFIT_OPTIONS.map((option) => (
                         <option key={option} value={option}>{option}</option>
                       ))}
@@ -221,7 +229,7 @@ export const LeadForm = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Bạn có muốn nhận cookbook miễn phí không? *</label>
+                    <label>{t('leadForm.form.labels.gift')}</label>
                     <div className="deposit-options survey-options">
                       {GIFT_OPTIONS.map((option) => (
                         <label key={option} className="radio-label">
@@ -240,18 +248,18 @@ export const LeadForm = () => {
                   </div>
 
                   <div className="form-group">
-                    <label>Bạn muốn Diệp Châu chia sẻ thêm điều gì trong cookbook? (không bắt buộc)</label>
+                    <label>{t('leadForm.form.labels.note')}</label>
                     <textarea
                       name="note"
                       rows="3"
                       value={formData.note}
                       onChange={handleChange}
-                      placeholder="Ví dụ: món cho bữa sáng, món cho bé, smoothie, eat-clean..."
+                      placeholder={t('leadForm.form.labels.notePlaceholder')}
                     />
                   </div>
 
                   <Button type="submit" className="w-100 btn-submit" disabled={isSubmitting}>
-                    {isSubmitting ? 'Đang gửi khảo sát...' : 'Nhận quà tặng'}
+                    {isSubmitting ? t('leadForm.form.labels.submitting') : t('leadForm.form.labels.submit')}
                   </Button>
                 </form>
               </div>
@@ -262,16 +270,16 @@ export const LeadForm = () => {
             <div className="form-wrapper gift-step-card gift-step-single">
               <div className="success-state text-center">
                 <div className="success-icon">✅</div>
-                <h3>Khảo sát đã xong</h3>
-                <p>Tham gia nhóm Zalo trước, sau đó xác nhận để mở trang tải PDF.</p>
+                <h3>{t('leadForm.zaloStep.headline')}</h3>
+                <p>{t('leadForm.zaloStep.subheadline')}</p>
 
                 <div className="success-zalo-box">
-                  <p>Vào nhóm Zalo để xem món thật, feedback thật và cập nhật đợt hàng mới.</p>
+                  <p>{t('leadForm.zaloStep.boxText')}</p>
                   <a href={CONFIG.zaloLink} target="_blank" rel="noreferrer" className="btn btn-outline gift-zalo-btn">
-                    Tham gia nhóm Zalo
+                    {t('leadForm.zaloStep.joinBtn')}
                   </a>
                   <button type="button" onClick={() => { setHasJoinedZalo(true); setStep('download'); }} className="btn btn-primary w-100 mt-3">
-                    Tôi đã tham gia Zalo
+                    {t('leadForm.zaloStep.joinedBtn')}
                   </button>
                 </div>
               </div>
@@ -282,15 +290,15 @@ export const LeadForm = () => {
             <div className="form-wrapper gift-step-card gift-step-single">
               <div className="success-state text-center">
                 <div className="success-icon">🎁</div>
-                <h3>Quà của bạn đã sẵn sàng</h3>
-                <p>Bạn có thể tải file PDF ngay bên dưới. Nếu muốn đặt hàng luôn thì đi tiếp xuống phần đặt hàng.</p>
+                <h3>{t('leadForm.downloadStep.headline')}</h3>
+                <p>{t('leadForm.downloadStep.subheadline')}</p>
 
                 <div className="success-zalo-box">
                   <a href="/api/cookbook-pdf" className="btn btn-primary w-100 mt-3">
-                    Tải file PDF
+                    {t('leadForm.downloadStep.downloadBtn')}
                   </a>
                   <button type="button" onClick={scrollToPayment} className="btn btn-outline w-100 mt-3">
-                    Đi đến phần đặt hàng
+                    {t('leadForm.downloadStep.orderBtn')}
                   </button>
                 </div>
               </div>

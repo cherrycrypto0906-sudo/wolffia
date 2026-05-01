@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaUserPlus, FaBell, FaFire } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './SocialProof.css';
 
 export const SocialProof = () => {
+  const { t } = useTranslation();
   const [activePopup, setActivePopup] = useState(null);
 
   useEffect(() => {
     // Luân phiên hiển thị popup live activity
-    const activities = CONFIG.socialProof.recentActivities;
+    const activities = t('config.socialProof.recentActivities', { returnObjects: true }) || [];
     let index = 0;
     
     // Initial delay before showing first popup
@@ -40,7 +42,7 @@ export const SocialProof = () => {
           
           <RevealOnScroll className="text-center">
             <h2 className="proof-headline">
-              Nhiều khách chọn giữ chỗ sớm vì ngày bận thường không muốn chờ tới lúc thích rồi lại hết suất
+              {t('socialProof.headline')}
             </h2>
           </RevealOnScroll>
 
@@ -48,19 +50,19 @@ export const SocialProof = () => {
             <RevealOnScroll delay={100} className="counter-item">
               <div className="counter-icon"><FaUserPlus /></div>
               <div className="counter-number">{CONFIG.socialProof.totalInterested}</div>
-              <div className="counter-label">Người đã để lại thông tin</div>
+              <div className="counter-label">{t('socialProof.stats.interested')}</div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={200} className="counter-item">
               <div className="counter-icon alt"><FaBell /></div>
               <div className="counter-number">{CONFIG.socialProof.totalInZalo}</div>
-              <div className="counter-label">Khách đã đăng ký nhận tin</div>
+              <div className="counter-label">{t('socialProof.stats.inZalo')}</div>
             </RevealOnScroll>
 
             <RevealOnScroll delay={300} className="counter-item">
               <div className="counter-icon danger"><FaFire /></div>
               <div className="counter-number">{CONFIG.slotsRemaining}</div>
-              <div className="counter-label">Suất còn lại hôm nay</div>
+              <div className="counter-label">{t('socialProof.stats.slots')}</div>
             </RevealOnScroll>
           </div>
 

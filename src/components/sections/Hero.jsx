@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
+import { useTranslation } from 'react-i18next';
 import './Hero.css';
 
 export const Hero = () => {
+  const { t } = useTranslation();
   const [timeLeft, setTimeLeft] = useState(CONFIG.countdownMinutes * 60);
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
 
@@ -46,34 +48,34 @@ export const Hero = () => {
         <div className="hero-content">
           <RevealOnScroll delay={100}>
             <span className="hero-eyebrow">
-              Cho những ngày muốn ăn tử tế hơn, nhưng không còn thời gian để cầu kỳ
+              {t('hero.eyebrow')}
             </span>
           </RevealOnScroll>
           
           <RevealOnScroll delay={200}>
             <h1 className="hero-headline">
-              Muốn ăn tốt hơn, nhưng ngày nào cũng <span>quá bận</span>
+              {t('hero.headlinePrefix')} <span>{t('hero.headlineHighlight')}</span>
             </h1>
           </RevealOnScroll>
 
           <RevealOnScroll delay={300}>
             <p className="hero-subheadline">
-              Diệp Châu mang đến Wolffia tươi – một nguyên liệu xanh mới, nhỏ gọn, dễ dùng, dễ thêm vào các món quen thuộc để bữa ăn mỗi ngày tươi hơn, gọn hơn và đỡ áp lực hơn.
+              {t('hero.subheadline')}
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={400}>
             <p className="hero-supporting">
-              Không cần thay đổi cả chế độ ăn. Chỉ cần một thứ đủ tiện để bạn thật sự muốn dùng lại trong những ngày bận rộn.
+              {t('hero.supporting')}
             </p>
           </RevealOnScroll>
 
           <RevealOnScroll delay={500} className="hero-actions">
             <Button onClick={scrollToPayment} className="hero-cta-main">
-              Đặt hàng ngay
+              {t('hero.ctaMain')}
             </Button>
             <button type="button" onClick={scrollToSurvey} className="btn btn-outline hero-cta-sub">
-              Nhận cookbook miễn phí
+              {t('hero.ctaSub')}
             </button>
           </RevealOnScroll>
 
@@ -81,9 +83,9 @@ export const Hero = () => {
             <div className="urgency-strip">
               <div className="urgency-pulse"></div>
               <div className="urgency-text">
-                <span className="urgency-badge">Hàng tươi – mở suất giới hạn mỗi ngày</span>
-                <strong>Hôm nay chỉ mở {CONFIG.limitedSlots} suất giữ chỗ</strong>
-                <span className="urgency-remaining">Còn đúng {CONFIG.slotsRemaining} suất</span>
+                <span className="urgency-badge">{t('hero.urgencyBadge')}</span>
+                <strong>{t('hero.urgencySlots', { slots: CONFIG.limitedSlots })}</strong>
+                <span className="urgency-remaining">{t('hero.urgencyRemaining', { remaining: CONFIG.slotsRemaining })}</span>
                 <span className="urgency-timer">{formatTime(timeLeft)}</span>
               </div>
             </div>
@@ -95,11 +97,11 @@ export const Hero = () => {
              <img 
                key={currentHeroIdx}
                src={CONFIG.images.heroCarousel ? CONFIG.images.heroCarousel[currentHeroIdx] : CONFIG.images.heroFood} 
-               alt="Món ăn xanh dinh dưỡng cùng Wolffia" 
+               alt="Wolffia" 
                className="hero-image slide-animation" 
              />
              <div className="hero-floating-badge animate-pulse">
-                🌱 Thay đổi cách ăn của bạn
+                {t('hero.floatingBadge')}
              </div>
           </RevealOnScroll>
         </div>

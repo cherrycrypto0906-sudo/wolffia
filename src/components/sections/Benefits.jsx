@@ -1,17 +1,13 @@
 import React from 'react';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaCheck } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './Benefits.css';
 
 export const Benefits = () => {
-  const benefitCards = [
-    "Dễ dùng, không rườm rà",
-    "Giúp bữa ăn đỡ nhàm chán",
-    "Nhìn tươi, đẹp, có cảm hứng hơn",
-    "Hợp với mẹ bỉm và người bận rộn",
-    "Không cần nấu quá cầu kỳ",
-    "Mở đơn giới hạn để ưu tiên độ tươi"
-  ];
+  const { t } = useTranslation();
+  const benefitCards = t('benefitsSection.cards', { returnObjects: true });
+
 
   return (
     <section className="benefits-section section-padding">
@@ -19,7 +15,7 @@ export const Benefits = () => {
         
         <RevealOnScroll className="text-center">
           <h2 className="benefits-headline">
-            Vì sao Wolffia hợp với những người muốn ăn tốt hơn nhưng không có nhiều thời gian?
+            {t('benefitsSection.headline')}
           </h2>
         </RevealOnScroll>
 

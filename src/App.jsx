@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageSwitcher } from './components/UI/LanguageSwitcher';
 import { Header } from './components/layout/Header';
 import { Hero } from './components/sections/Hero';
 import { PainSection } from './components/sections/PainSection';
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <>
+      <LanguageSwitcher />
       <Header />
       <main>
         <Hero />

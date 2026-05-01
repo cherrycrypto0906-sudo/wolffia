@@ -1,14 +1,20 @@
 import React from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
+import { useTranslation } from 'react-i18next';
 import './Testimonials.css';
 
 export const Testimonials = () => {
+  const { t } = useTranslation();
   // Group reviews into pairs (Customer + Shop Reply) to form single screenshots
+  const chatReviews = t('config.chatReviews', { returnObjects: true }) || [];
   const pairedReviews = [];
-  for (let i = 0; i < CONFIG.chatReviews.length; i += 2) {
-    if (CONFIG.chatReviews[i] && CONFIG.chatReviews[i+1]) {
-      pairedReviews.push([CONFIG.chatReviews[i], CONFIG.chatReviews[i+1]]);
+  for (let i = 0; i < chatReviews.length; i += 2) {
+    if (chatReviews[i] && chatReviews[i+1]) {
+      // get avatar from config
+      const c = Object.assign({}, chatReviews[i], { avatar: CONFIG.chatReviews[i]?.avatar });
+      const r = Object.assign({}, chatReviews[i+1]);
+      pairedReviews.push([c, r]);
     }
   }
 
@@ -20,11 +26,11 @@ export const Testimonials = () => {
         
         <div className="testimonials-header text-center">
           <RevealOnScroll>
-            <h2>Mọi người nói gì về Wolffia?</h2>
+            <h2>{t('testimonials.headline')}</h2>
           </RevealOnScroll>
           <RevealOnScroll delay={100}>
             <p className="testimonials-subheadline">
-              Tâm lý chung của rất nhiều khách hàng mới. Hãy xem những người đã trải nghiệm thực tế nói gì về "hạt xanh" này nhé.
+              {t('testimonials.subheadline')}
             </p>
           </RevealOnScroll>
         </div>
@@ -41,7 +47,7 @@ export const Testimonials = () => {
                     <img src={pair[0].avatar} alt={pair[0].name} />
                     <div className="fb-user-info">
                       <strong>{pair[0].name}</strong>
-                      <span>Đang hoạt động</span>
+                      <span>{t('testimonials.activeNow')}</span>
                     </div>
                   </div>
                 </div>

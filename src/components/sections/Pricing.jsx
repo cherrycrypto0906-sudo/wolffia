@@ -2,9 +2,11 @@ import React from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { Button } from '../UI/Button';
+import { useTranslation } from 'react-i18next';
 import './Pricing.css';
 
 export const Pricing = () => {
+  const { t } = useTranslation();
   const scrollToPayment = (packageId) => {
     window.sessionStorage.setItem('selectedPackageId', packageId);
     window.location.href = '/thanhtoan';
@@ -16,11 +18,11 @@ export const Pricing = () => {
         
         <div className="pricing-header text-center">
           <RevealOnScroll>
-            <h2>Chọn gói phù hợp với nhịp sống của bạn</h2>
+            <h2>{t('pricingSection.headline')}</h2>
           </RevealOnScroll>
           <RevealOnScroll delay={100}>
             <p className="pricing-subheadline">
-              Từ gói thử nhỏ đến gói dùng đều trong tuần, Diệp Châu có lựa chọn để bạn bắt đầu theo cách nhẹ nhàng nhất.
+              {t('pricingSection.subheadline')}
             </p>
           </RevealOnScroll>
         </div>
@@ -30,7 +32,7 @@ export const Pricing = () => {
             <RevealOnScroll key={index} delay={200 + index * 100} className={`pricing-card ${pkg.badge ? 'highlighted' : ''}`}>
               {pkg.badge && <div className="pricing-badge">{pkg.badge}</div>}
               <div className="pricing-content">
-                <h3 className="pkg-name">{pkg.name}</h3>
+                <h3 className="pkg-name">{t(`config.packages.${pkg.id}.name`)}</h3>
                 <div className="pkg-weight">{pkg.weight}</div>
                 <div className="pkg-price">
                   {pkg.originalPrice && <span className="original-price"><del>{pkg.originalPrice}đ</del></span>}
@@ -39,7 +41,7 @@ export const Pricing = () => {
                     <small className="currency-unit">đ</small>
                   </div>
                 </div>
-                <p className="pkg-desc">{pkg.description}</p>
+                <p className="pkg-desc">{t(`config.packages.${pkg.id}.description`)}</p>
               </div>
               <div className="pricing-footer">
                 <Button 
@@ -47,11 +49,11 @@ export const Pricing = () => {
                   className="w-100" 
                   onClick={() => scrollToPayment(pkg.id)}
                 >
-                  {pkg.ctaText}
+                  {t(`config.packages.${pkg.id}.ctaText`)}
                 </Button>
                 {pkg.badge && (
                   <div className="text-center mt-2" style={{ fontSize: '0.85rem', color: 'var(--primary)'}}>
-                    <i>* Quét QR để thanh toán đúng giá của gói này</i>
+                    <i>{t('pricingSection.qrNote')}</i>
                   </div>
                 )}
               </div>
@@ -60,15 +62,12 @@ export const Pricing = () => {
         </div>
 
         <RevealOnScroll delay={400} className="pricing-note text-center">
-          <p>
-            Hàng được vớt tươi, đóng hộp và giao lạnh ngay trong ngày để giữ độ giòn tốt nhất.<br/>
-            Nếu muốn tối ưu tiền hàng và tiền ship, <strong>Combo 3 hộp</strong> và <strong>Combo 5 hộp</strong> sẽ lợi hơn mua lẻ.
-          </p>
+          <p dangerouslySetInnerHTML={{ __html: t('pricingSection.deliveryNote') }} />
           <div className="scarcity-alert">
-            🚨 <strong>{CONFIG.scarcity}</strong>
+            🚨 <strong>{t('config.scarcity')}</strong>
           </div>
           <div className="guarantee-badge mt-3" style={{ color: "var(--primary-dark)", fontWeight: "500" }}>
-            🛡️ {CONFIG.guarantee}
+            🛡️ {t('config.guarantee')}
           </div>
         </RevealOnScroll>
 

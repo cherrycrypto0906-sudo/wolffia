@@ -2,20 +2,16 @@ import React, { useRef, useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import './FoodGallery.css';
 
 export const FoodGallery = () => {
+  const { t } = useTranslation();
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const galleryItems = [
-    { title: "Gỏi / Salad", image: CONFIG.images.salad },
-    { title: "Cơm / Cháo", image: CONFIG.images.soup },
-    { title: "Bánh xèo / Chiên", image: CONFIG.images.noodles },
-    { title: "Smoothie bowl", image: CONFIG.images.smoothie },
-    { title: "Bữa sáng healthy", image: CONFIG.images.breakfast }
-  ];
+  const galleryItems = t('config.galleryItems', { returnObjects: true }) || [];
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -48,11 +44,11 @@ export const FoodGallery = () => {
         
         <div className="gallery-header text-center">
           <RevealOnScroll>
-            <h2>Ngày bận vẫn có thể ăn xanh theo cách ngon mắt hơn</h2>
+            <h2>{t('foodGallery.headline')}</h2>
           </RevealOnScroll>
           <RevealOnScroll delay={100}>
             <p className="gallery-subheadline">
-              Chỉ cần thêm một chút Wolffia, món quen đã trông tươi hơn và bớt nhàm hơn rất nhiều.
+              {t('foodGallery.subheadline')}
             </p>
           </RevealOnScroll>
         </div>
@@ -73,12 +69,21 @@ export const FoodGallery = () => {
           ref={scrollRef}
           onScroll={checkScroll}
         >
-          {galleryItems.map((item, index) => (
-            <div key={index} className="gallery-item">
-              <img src={item.image} alt={item.title} />
-              <div className="gallery-item-title">{item.title}</div>
-            </div>
-          ))}
+          {galleryItems.map((item, index) => {
+            const configImage = [
+              CONFIG.images.salad,
+              CONFIG.images.soup,
+              CONFIG.images.noodles,
+              CONFIG.images.smoothie,
+              CONFIG.images.breakfast
+            ][index];
+            return (
+              <div key={index} className="gallery-item">
+                <img src={configImage || item.image} alt={item.title} />
+                <div className="gallery-item-title">{item.title}</div>
+              </div>
+            );
+          })}
         </div>
 
         <button 
@@ -92,7 +97,7 @@ export const FoodGallery = () => {
 
       <div className="container">
         <RevealOnScroll delay={300} className="gallery-closing text-center">
-          <p>Một nguyên liệu nhỏ, nhưng đủ để làm bạn muốn ăn ở nhà nhiều hơn.</p>
+          <p>{t('foodGallery.closing')}</p>
         </RevealOnScroll>
       </div>
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import salesScriptRaw from '../../../sales_script.md?raw';
 import './Chatbot.css';
 
@@ -88,6 +89,7 @@ const buildBotReply = (message, faqs, closeMessage, waitlistMessage) => {
 };
 
 export const Chatbot = () => {
+  const { t } = useTranslation();
   const greeting = useMemo(() => extractQuotedText(parseScriptSection('1. Câu chào khách')), []);
   const faqs = useMemo(() => parseFaqs(), []);
   const closeMessage = useMemo(() => extractQuotedText(parseScriptSection('3. Câu chốt đơn khi khách có vẻ quan tâm')), []);
@@ -175,14 +177,16 @@ export const Chatbot = () => {
         },
       ]);
     } catch {
+      const defaultFallback = t('chatbot.fallback');
       const reply = buildBotReply(trimmedText, faqs, closeMessage, waitlistMessage);
+      const textToUse = (reply.text === 'Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.') ? defaultFallback : reply.text;
 
       window.setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           {
             type: 'bot',
-            text: reply.text,
+            text: textToUse,
             showLeadButton: reply.showLeadButton,
           },
         ]);
@@ -219,8 +223,8 @@ export const Chatbot = () => {
         <div className="chatbot-window" role="dialog" aria-label="Chatbot tư vấn Wolffia">
           <div className="chatbot-header">
             <div>
-              <h3>Diep Chau tu van 24/7</h3>
-              <p>Hoi nhanh de Diep Chau tra loi lien</p>
+              <h3>{t('chatbot.header.title')}</h3>
+              <p>{t('chatbot.header.subtitle')}</p>
             </div>
             <button type="button" className="close-btn" onClick={() => setIsOpen(false)} aria-label="Đóng chatbot">
               <FaTimes size={18} />
@@ -233,7 +237,7 @@ export const Chatbot = () => {
                 <p>{message.text}</p>
                 {message.type === 'bot' && message.showLeadButton && (
                   <button type="button" className="message-cta" onClick={scrollToLeadForm}>
-                    Di den form danh sach cho
+                    {t('chatbot.messages.ctaLeadForm')}
                   </button>
                 )}
               </div>
@@ -242,7 +246,7 @@ export const Chatbot = () => {
           </div>
 
           <div className="chatbot-options">
-            <span className="options-label">Goi y de thu nhanh</span>
+            <span className="options-label">{t('chatbot.options.label')}</span>
             <div className="option-list">
               {suggestedQuestions.map((item) => (
                 <button
@@ -257,14 +261,14 @@ export const Chatbot = () => {
                 </button>
               ))}
               <button type="button" className="option-btn option-btn-highlight" onClick={() => {
-                void sendUserMessage('Mình muốn mua ngay');
+                void sendUserMessage(t('chatbot.options.buyNow'));
               }}>
-                Minh muon mua ngay
+                {t('chatbot.options.buyNow')}
               </button>
               <button type="button" className="option-btn" onClick={() => {
-                void sendUserMessage('Để mình nghĩ thêm');
+                void sendUserMessage(t('chatbot.options.thinkMore'));
               }}>
-                De minh nghi them
+                {t('chatbot.options.thinkMore')}
               </button>
             </div>
           </div>
@@ -274,7 +278,7 @@ export const Chatbot = () => {
               type="text"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder="Vi du: gia bao nhieu, co hop cho be khong..."
+              placeholder={t('chatbot.input.placeholder')}
               aria-label="Nhập câu hỏi cho chatbot"
               disabled={isLoading}
             />

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
+import { useTranslation } from 'react-i18next';
 import './LeadForm.css';
 
 const parsePrice = (value) => Number(String(value || '0').replace(/\./g, ''));
@@ -22,6 +23,7 @@ const fallbackPackage = CONFIG.packages[0]?.id || '';
 const PENDING_PAYMENT_KEY = 'pendingPaymentState';
 
 export const PaymentSection = () => {
+  const { t } = useTranslation();
   const pendingPayment = (() => {
     try {
       return JSON.parse(window.sessionStorage.getItem(PENDING_PAYMENT_KEY) || 'null');
@@ -92,7 +94,7 @@ export const PaymentSection = () => {
     slugTransferPart(formData.phone),
   ].filter(Boolean).join('-').slice(0, 120);
   const qrUrl = `https://img.vietqr.io/image/${CONFIG.sepayConfig.bankId}-${CONFIG.sepayConfig.accountNumber}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(CONFIG.sepayConfig.accountName)}`;
-  const transferNote = `Chuyen khoan dung ${amount.toLocaleString('vi-VN')}đ va giu nguyen noi dung ${transferContent}`;
+  const transferNote = t('paymentSection.qr.noteTemplate', { amount: amount.toLocaleString('vi-VN'), content: transferContent });
 
   useEffect(() => {
     const snapshot = {
@@ -178,7 +180,7 @@ export const PaymentSection = () => {
     } catch (error) {
       console.error('Order submission error:', error);
       setIsSubmitting(false);
-      alert('Lỗi gửi dữ liệu: ' + error.message);
+      alert('Lỗi: ' + error.message);
     }
   };
 
@@ -189,14 +191,14 @@ export const PaymentSection = () => {
           {step === 'form' && (
           <div className="form-wrapper order-form-card">
             <div className="form-header text-center">
-              <span className="form-kicker">Đặt hàng</span>
-              <h2>Điền thông tin nhận hàng rồi thanh toán</h2>
-              <p>Chọn gói, điền thông tin người nhận. Sau đó hệ thống sẽ hiện đúng mã QR và nội dung chuyển khoản cho đơn của bạn.</p>
+              <span className="form-kicker">{t('paymentSection.formKicker')}</span>
+              <h2>{t('paymentSection.formHeadline')}</h2>
+              <p>{t('paymentSection.formSubheadline')}</p>
             </div>
 
               <form className="lead-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label>Chọn gói muốn đặt *</label>
+                  <label>{t('paymentSection.labels.package')}</label>
                   <div className="package-picker package-picker-single">
                     {CONFIG.packages.map((pkg) => (
                       <button
@@ -205,7 +207,7 @@ export const PaymentSection = () => {
                         className={`package-chip ${selectedPackageId === pkg.id ? 'active' : ''}`}
                         onClick={() => handlePackageChange(pkg.id)}
                       >
-                        <strong>{pkg.name}</strong>
+                        <strong>{t(`config.packages.${pkg.id}.name`)}</strong>
                         <span>{pkg.price}đ</span>
                       </button>
                     ))}
@@ -213,31 +215,31 @@ export const PaymentSection = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Họ và tên *</label>
+                  <label>{t('paymentSection.labels.name')}</label>
                   <input
                     type="text"
                     name="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Nhập họ và tên người nhận"
+                    placeholder={t('paymentSection.labels.namePlaceholder')}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Số điện thoại *</label>
+                  <label>{t('paymentSection.labels.phone')}</label>
                   <input
                     type="text"
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Nhập số điện thoại nhận hàng"
+                    placeholder={t('paymentSection.labels.phonePlaceholder')}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Số lượng *</label>
+                  <label>{t('paymentSection.labels.quantity')}</label>
                   <input
                     type="number"
                     name="quantity"
@@ -245,35 +247,35 @@ export const PaymentSection = () => {
                     required
                     value={formData.quantity}
                     onChange={handleChange}
-                    placeholder="Nhập số lượng"
+                    placeholder={t('paymentSection.labels.quantityPlaceholder')}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Địa chỉ nhận hàng *</label>
+                  <label>{t('paymentSection.labels.address')}</label>
                   <textarea
                     name="address"
                     rows="3"
                     required
                     value={formData.address}
                     onChange={handleChange}
-                    placeholder="Nhập địa chỉ nhận hàng đầy đủ"
+                    placeholder={t('paymentSection.labels.addressPlaceholder')}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label>Ghi chú thêm (không bắt buộc)</label>
+                  <label>{t('paymentSection.labels.note')}</label>
                   <textarea
                     name="note"
                     rows="3"
                     value={formData.note}
                     onChange={handleChange}
-                    placeholder="Ví dụ: giao giờ nào tiện, gọi trước khi giao, lưu ý ship..."
+                    placeholder={t('paymentSection.labels.notePlaceholder')}
                   />
                 </div>
 
                 <Button type="submit" className="w-100 btn-submit" disabled={isSubmitting}>
-                  {isSubmitting ? 'Đang lưu đơn...' : 'Đặt hàng ngay'}
+                  {isSubmitting ? t('paymentSection.labels.submitting') : t('paymentSection.labels.submit')}
                 </Button>
               </form>
           </div>
@@ -282,14 +284,14 @@ export const PaymentSection = () => {
           {step === 'qr' && (
             <RevealOnScroll className="form-wrapper payment-card payment-page-card">
               <div className="form-header text-center">
-                <span className="form-kicker">Thanh toán SePay</span>
-                <h2>Quét QR cho đơn hàng của bạn</h2>
-                <p>Thông tin thanh toán đã sẵn sàng. Chỉ cần chuyển đúng như bên dưới.</p>
+                <span className="form-kicker">{t('paymentSection.qr.kicker')}</span>
+                <h2>{t('paymentSection.qr.headline')}</h2>
+                <p>{t('paymentSection.qr.subheadline')}</p>
               </div>
 
               <div className="payment-state text-center">
-                <div className="payment-badge">Đơn hàng: {selectedPackage.name}</div>
-                <p className="payment-subtitle">{selectedPackage.description}</p>
+                <div className="payment-badge">{t('paymentSection.qr.orderLabel')}: {t(`config.packages.${selectedPackage.id}.name`)}</div>
+                <p className="payment-subtitle">{t(`config.packages.${selectedPackage.id}.description`)}</p>
 
                 <div className="qr-container">
                   <div className="qr-frame">
@@ -298,48 +300,48 @@ export const PaymentSection = () => {
 
                   <div className="bank-details-card">
                     <div className="detail-item">
-                      <span className="label">Ngân hàng</span>
+                      <span className="label">{t('paymentSection.qr.bank')}</span>
                       <span className="value">{CONFIG.sepayConfig.bankName}</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Số tài khoản</span>
+                      <span className="label">{t('paymentSection.qr.accountNumber')}</span>
                       <span className="value mono">{CONFIG.sepayConfig.accountNumber}</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Chủ tài khoản</span>
+                      <span className="label">{t('paymentSection.qr.accountName')}</span>
                       <span className="value">{CONFIG.sepayConfig.accountName}</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Khách hàng</span>
+                      <span className="label">{t('paymentSection.qr.customer')}</span>
                       <span className="value">{formData.name}</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Số điện thoại</span>
+                      <span className="label">{t('paymentSection.qr.phone')}</span>
                       <span className="value mono">{formData.phone}</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Số tiền</span>
+                      <span className="label">{t('paymentSection.qr.amount')}</span>
                       <span className="value highlight">{amount.toLocaleString('vi-VN')}đ</span>
                     </div>
                     <div className="detail-item">
-                      <span className="label">Nội dung CK</span>
+                      <span className="label">{t('paymentSection.qr.transferContent')}</span>
                       <span className="value mono">{transferContent}</span>
                     </div>
                   </div>
 
                   <div className="transfer-note-alert">
-                    <strong>Lưu ý:</strong> {transferNote}. Nội dung chuyển khoản đang theo công thức <strong>{CONFIG.sepayConfig.transferPrefix} + tên gói + tên + số điện thoại</strong> và đã được nhúng trực tiếp vào mã QR. Vui lòng không sửa nội dung này.
+                    <strong>Lưu ý:</strong> {transferNote}. <span dangerouslySetInnerHTML={{ __html: t('paymentSection.qr.noteFull', { prefix: CONFIG.sepayConfig.transferPrefix }) }} />
                   </div>
-                  <p className="payment-status-hint">Đang chờ xác nhận thanh toán từ ngân hàng...</p>
+                  <p className="payment-status-hint">{t('paymentSection.qr.statusHint')}</p>
                   <div className="info-alert">
-                    Sau khi bạn chuyển khoản xong, trang này sẽ tự cập nhật khi đơn hàng được xác nhận thanh toán.
+                    {t('paymentSection.qr.infoAlert')}
                   </div>
                   <div className="payment-actions">
                     <Button onClick={() => { void checkOrderStatus(); }}>
-                      Kiểm tra thanh toán
+                      {t('paymentSection.qr.checkBtn')}
                     </Button>
                     <Button onClick={() => setStep('form')} variant="outline">
-                      Sửa lại thông tin đơn hàng
+                      {t('paymentSection.qr.editBtn')}
                     </Button>
                   </div>
                 </div>
@@ -351,12 +353,12 @@ export const PaymentSection = () => {
             <RevealOnScroll className="form-wrapper payment-card payment-page-card">
               <div className="success-state text-center">
                 <div className="success-icon">🎉</div>
-                <h3>Diệp Châu đã nhận thanh toán của bạn rồi</h3>
-                <p>Cảm ơn bạn nhiều nha. Bên Diệp Châu sẽ chuẩn bị đơn <strong>{selectedPackage.name}</strong> và liên hệ lại sớm để chốt thời gian giao hàng phù hợp nhất.</p>
+                <h3>{t('paymentSection.success.headline')}</h3>
+                <p dangerouslySetInnerHTML={{ __html: t('paymentSection.success.message', { package: t(`config.packages.${selectedPackage.id}.name`) }) }} />
                 <div className="success-zalo-box">
-                  <p>Bạn cứ để ý điện thoại giúp Diệp Châu. Nếu cần hỗ trợ thêm, chat ngay ở góc phải là được.</p>
+                  <p>{t('paymentSection.success.hint')}</p>
                   <Button onClick={() => { setStep('form'); setPaymentStatus('pending_payment'); setFormData({ name: '', phone: '', address: '', quantity: '1', note: '' }); }} variant="outline">
-                    Tạo đơn mới
+                    {t('paymentSection.success.newOrderBtn')}
                   </Button>
                 </div>
               </div>

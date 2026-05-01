@@ -1,0 +1,303 @@
+{
+  "header": {
+    "orderNow": "Order Now"
+  },
+  "hero": {
+    "eyebrow": "For days when you want to eat better, but have no time to prepare",
+    "headlinePrefix": "Want to eat well, but always",
+    "headlineHighlight": "too busy",
+    "subheadline": "Diệp Châu introduces fresh Wolffia – a new, tiny, easy-to-use green ingredient that can be added to any familiar dish to make every meal fresher, simpler, and less stressful.",
+    "supporting": "No need to change your whole diet. Just something convenient enough that you'll actually want to use on busy days.",
+    "ctaMain": "Order Now",
+    "ctaSub": "Get Free Cookbook",
+    "urgencyBadge": "Fresh product – limited daily slots",
+    "urgencySlots": "Only {{slots}} slots opened today",
+    "urgencyRemaining": "Exactly {{remaining}} slots left",
+    "floatingBadge": "🌱 Change the way you eat"
+  },
+  "config": {
+    "guarantee": "100% fresh harvested daily - Money-back guarantee if not fresh",
+    "scarcity": "Limited to 50 portions/day to ensure peak freshness",
+    "socialProof": {
+      "recentActivities": [
+        "Linh in Thu Duc just ordered the 100g trial box",
+        "A customer in District 7 just left info to receive a gift",
+        "Mai just ordered a 3-box Combo with same-day cold delivery",
+        "A customer in Binh Thanh just chose the 5-box Combo"
+      ]
+    },
+    "galleryItems": [
+      { "title": "Salad" },
+      { "title": "Rice / Porridge" },
+      { "title": "Pancake / Fried dishes" },
+      { "title": "Smoothie bowl" },
+      { "title": "Healthy breakfast" }
+    ],
+    "faq": [
+      {
+        "q": "What is this exactly?",
+        "a": "This is Diệp Châu Wolffia, a selected green protein, grown in high-tech greenhouses with pure filtered water and organic nutrients. Our process is clean and enclosed, so you can use it with complete peace of mind."
+      },
+      {
+        "q": "Do I need to wash or cook it?",
+        "a": "No need. Just open the box and sprinkle it directly into porridge, smoothies, or salads and eat right away. Eating raw is the best way to keep 100% of the precious protein and Vitamin B12 in Wolffia."
+      },
+      {
+        "q": "Is it bitter or grassy?",
+        "a": "Absolutely not. The taste is light and refreshing like cool water, with a slightly crunchy texture like caviar. Whatever dish you sprinkle it on, it takes on that flavor, making it extremely easy to eat, even for small children."
+      },
+      {
+        "q": "Does it have a fishy or muddy smell?",
+        "a": "None at all. Because we don't harvest from natural ponds, but grow it in an enclosed greenhouse system with clean water. So it tastes very clean, not pungent, not fishy, and has no muddy smell."
+      },
+      {
+        "q": "Can babies starting solids eat it?",
+        "a": "It's ideal. The seeds are super small, soft, and won't cause choking. Moms just need to sprinkle 1 teaspoon into a bowl of porridge, stir well, and the baby has added fiber and plant protein."
+      },
+      {
+        "q": "Which package should I start with?",
+        "a": "If you're just trying it out, start with the 100g trial box for 49,000 VND. If you want to optimize product and shipping costs, the 3-Box or 5-Box Combo is a much better deal."
+      },
+      {
+        "q": "Is there fast same-day delivery?",
+        "a": "Yes. We support express delivery in HCMC. The product is harvested fresh, boxed, and delivered cold within the day to maintain crispness."
+      },
+      {
+        "q": "How should it be stored properly?",
+        "a": "Upon receiving, immediately place it in the fridge at 4-8°C. Best consumed within 5-7 days. When using, remember to use a clean spoon, tightly close the lid, and do not put it in the freezer."
+      }
+    ],
+    "chatReviews": [
+      {
+        "name": "Lan Anh",
+        "time": "Today 09:12",
+        "messages": [
+          "I thought my kid would spit it out because of the green color, but the tiny seeds made him think it was candy so he ate it all. Thankfully he's been going to the bathroom more regularly, saving me from forcing him to eat vegetables every meal."
+        ]
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Today 09:15",
+        "messages": [
+          "Thank you! The small, slightly crunchy Wolffia seeds are often better received by kids than leafy greens. Just sprinkle it on familiar dishes and they'll eat it naturally."
+        ]
+      },
+      {
+        "name": "Hoang",
+        "time": "Today 12:30",
+        "messages": [
+          "Looking for a plant-based protein alternative to chicken breast so I don't get bored, and found this. Pouring 1 box into the blender with whey makes a quick drink without the bloating from beans."
+        ]
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Today 12:45",
+        "messages": [
+          "That's right! Many customers who work out love it because they can add green protein while staying light, without the complex prep of normal snacks."
+        ]
+      }
+    ],
+    "packages": {
+      "gia-dung-thu": {
+        "name": "Trial Box",
+        "description": "Launch offer for a new batch, for those wanting to test freshness and taste first",
+        "badge": "Easiest to try",
+        "ctaText": "Order now"
+      },
+      "combo-3-hop": {
+        "name": "3-Box Combo",
+        "description": "Suitable for a family of 3-4 to eat in 2-3 days",
+        "badge": "Best seller",
+        "ctaText": "Order now"
+      },
+      "combo-5-hop": {
+        "name": "5-Box Combo",
+        "description": "Enough for 1 week of eat-clean, includes a Recipe guide",
+        "badge": "Free recipe",
+        "ctaText": "Order now"
+      }
+    }
+  },
+  "painSection": {
+    "headline": "Knowing you should eat better is one thing.<br/>Maintaining it daily is another.",
+    "subheadline": "Most people do not lack eating awareness. Life is simply too busy, so meals are often made quickly, for convenience, to just get it done.",
+    "splitText1": "Moms are busy with kids and house.<br/>Workers juggle jobs and countless small chores.<br/>Those who want to eat healthier often give up because preparation takes too much time.",
+    "splitText2": "Want to eat greener, but hate the prep.<br/>Want quick healthy meals that aren't boring.<br/>Want self-care, but don't want extra work.",
+    "highlight": "What many really need isn't more pressure.<br/>It's a better way to eat that is easy enough to do every day.",
+    "cards": [
+      {
+        "title": "Want to eat better but too busy",
+        "text": "Not enough time to plan menus, go to the market, cook, and clean up every day."
+      },
+      {
+        "title": "Want to be healthier but hate prep",
+        "text": "Hate the cumbersome tasks of prepping, blanching, boiling, and blending vegetables."
+      },
+      {
+        "title": "Want to maintain but easily give up",
+        "text": "Eating boiled food gets boring, diversifying takes effort, and eventually returning to old habits."
+      }
+    ]
+  },
+  "solutionSection": {
+    "badge": "Neat, clean, perfectly fresh",
+    "headline": "Diệp Châu chooses Wolffia as a gentler green eating method for busy days",
+    "subheadline": "Easy to add to familiar dishes. Quick. Looks beautiful. Doesn't feel like you are trying too hard.",
+    "body": "Wolffia is an ingredient you can quickly add to salads, porridge, soups, noodles, or breakfast bowls. Just a little is enough to make a meal look fresher, more stylish, and makes eating well easier to restart.",
+    "nutritionTitle": "Outstanding Nutritional Profile",
+    "benefits": [
+      "Easy for daily use",
+      "Less pressure",
+      "Fits familiar dishes",
+      "Appetizing looks"
+    ]
+  },
+  "benefitsSection": {
+    "headline": "Why does Wolffia suit those who want to eat better but lack time?",
+    "cards": [
+      "Easy to use, no hassle",
+      "Helps meals feel less boring",
+      "Looks fresh, beautiful, inspiring",
+      "Great for moms and busy folks",
+      "No complex cooking needed",
+      "Limited daily orders for freshness"
+    ]
+  },
+  "pricingSection": {
+    "headline": "Choose a package that fits your lifestyle",
+    "subheadline": "From a small trial pack to a weekly supply, Diệp Châu has options for you to start the gentlest way.",
+    "qrNote": "* Scan QR to pay the exact price of this package",
+    "deliveryNote": "Freshly harvested, boxed, and delivered cold on the same day to maintain maximum crispness.<br/>To optimize cost and shipping, <strong>3-Box Combo</strong> and <strong>5-Box Combo</strong> are a better deal than single boxes."
+  },
+  "paymentSection": {
+    "formKicker": "Order",
+    "formHeadline": "Fill in delivery info and pay",
+    "formSubheadline": "Select a package, fill in recipient info. The system will then display the correct QR code and transfer content for your order.",
+    "labels": {
+      "package": "Select package *",
+      "name": "Full name *",
+      "namePlaceholder": "Enter recipient's full name",
+      "phone": "Phone number *",
+      "phonePlaceholder": "Enter delivery phone number",
+      "quantity": "Quantity *",
+      "quantityPlaceholder": "Enter quantity",
+      "address": "Delivery address *",
+      "addressPlaceholder": "Enter full delivery address",
+      "note": "Additional notes (optional)",
+      "notePlaceholder": "E.g., convenient delivery time, call before delivery...",
+      "submit": "Order now",
+      "submitting": "Saving order..."
+    },
+    "qr": {
+      "kicker": "SePay Payment",
+      "headline": "Scan QR for your order",
+      "subheadline": "Payment information is ready. Just transfer exactly as below.",
+      "orderLabel": "Order",
+      "bank": "Bank",
+      "accountNumber": "Account number",
+      "accountName": "Account holder",
+      "customer": "Customer",
+      "phone": "Phone number",
+      "amount": "Amount",
+      "transferContent": "Transfer content",
+      "noteTemplate": "Transfer exactly {{amount}} and keep the content {{content}}",
+      "noteFull": "The transfer content follows the formula <strong>{{prefix}} + package name + name + phone number</strong> and is embedded in the QR code. Please do not edit this content.",
+      "statusHint": "Waiting for payment confirmation from bank...",
+      "infoAlert": "After you complete the transfer, this page will automatically update once the payment is confirmed.",
+      "checkBtn": "Check payment",
+      "editBtn": "Edit order info"
+    },
+    "success": {
+      "headline": "Diệp Châu has received your payment",
+      "message": "Thank you very much. Diệp Châu will prepare your <strong>{{package}}</strong> order and contact you soon to arrange the best delivery time.",
+      "hint": "Please keep an eye on your phone. If you need further assistance, just chat with us on the bottom right.",
+      "newOrderBtn": "Create new order"
+    }
+  },
+  "leadForm": {
+    "giftInfo": {
+      "kicker": "Receive Gift",
+      "headline": "Quick survey for a free cookbook",
+      "subheadline": "Fill a short survey, join the Zalo group, and download the PDF right on the website.",
+      "processTitle": "Gift receiving process",
+      "steps": [
+        "Step 1: take the survey so Diệp Châu understands your needs",
+        "Step 2: join the Zalo group to see real dishes and order openings",
+        "Step 3: unlock the PDF cookbook download button on the website"
+      ]
+    },
+    "form": {
+      "kicker": "Gift Survey",
+      "headline": "Get Wolffia Delicious Cookbook",
+      "subheadline": "Answer a few quick questions so Diệp Châu can email you a tailored gift.",
+      "labels": {
+        "name": "Your name *",
+        "namePlaceholder": "Enter your name",
+        "email": "Email for the gift *",
+        "emailPlaceholder": "Enter your email",
+        "persona": "Which group do you belong to? *",
+        "personaPlaceholder": "Select the best fit",
+        "challenge": "What is your biggest daily eating challenge? *",
+        "benefit": "If you had fresh, easy-to-use Wolffia, how would you want it to help you most? *",
+        "benefitPlaceholder": "Select what matters most",
+        "gift": "Do you want a free cookbook? *",
+        "note": "What else would you like Diệp Châu to share in the cookbook? (optional)",
+        "notePlaceholder": "E.g., breakfast dishes, kid-friendly meals, smoothies, eat-clean...",
+        "submit": "Receive gift",
+        "submitting": "Submitting survey..."
+      }
+    },
+    "zaloStep": {
+      "headline": "Survey completed",
+      "subheadline": "Join the Zalo group first, then confirm to unlock the PDF download page.",
+      "boxText": "Join the Zalo group to see real dishes, real feedback, and new batch updates.",
+      "joinBtn": "Join Zalo group",
+      "joinedBtn": "I have joined Zalo"
+    },
+    "downloadStep": {
+      "headline": "Your gift is ready",
+      "subheadline": "You can download the PDF below. If you want to order immediately, proceed to the ordering section.",
+      "downloadBtn": "Download PDF file",
+      "orderBtn": "Go to order section"
+    }
+  },
+  "faqSection": {
+    "headline": "You might also be wondering"
+  },
+  "foodGallery": {
+    "headline": "Even on busy days, you can eat green in a more appetizing way",
+    "subheadline": "Just a little Wolffia makes familiar dishes look fresher and much less boring.",
+    "closing": "A tiny ingredient, but enough to make you want to eat at home more often."
+  },
+  "socialProof": {
+    "headline": "Many customers secure spots early because they don't want to miss out when they finally have time",
+    "stats": {
+      "interested": "People left their information",
+      "inZalo": "Customers subscribed to updates",
+      "slots": "Slots remaining today"
+    }
+  },
+  "testimonials": {
+    "headline": "What do people say about Wolffia?",
+    "subheadline": "The common sentiment of many new customers. Let's see what people who actually tried this \"green seed\" have to say.",
+    "activeNow": "Active now"
+  },
+  "chatbot": {
+    "fallback": "I understand. If you want, just ask me about prices, how to use it for kids, delivery, storage, or tell me what you're hesitating about, and I'll give you a quick answer.",
+    "header": {
+      "title": "Diệp Châu 24/7 Support",
+      "subtitle": "Ask quickly for an instant reply"
+    },
+    "messages": {
+      "ctaLeadForm": "Go to waitlist form"
+    },
+    "options": {
+      "label": "Suggestions for quick questions",
+      "buyNow": "I want to buy now",
+      "thinkMore": "Let me think about it"
+    },
+    "input": {
+      "placeholder": "E.g.: how much, is it good for kids..."
+    }
+  }
+}
