@@ -299,5 +299,42 @@
     "input": {
       "placeholder": "Ví dụ: giá bao nhiêu, có hợp cho bé không..."
     }
+  },
+  "nutritionInfo": {
+    "headline": "Wolffia là gì mà nhiều người ăn healthy bắt đầu quan tâm?",
+    "subheadline": "Không chỉ mới lạ và đẹp mắt, Wolffia còn là một nguyên liệu xanh có hồ sơ dinh dưỡng khá thú vị.",
+    "body": "Wolffia là một loại thực vật nước siêu nhỏ, đã được dùng làm thực phẩm ở một số nơi tại châu Á. Nhiều nghiên cứu trên Wolffia ghi nhận đây là một nguyên liệu thực vật có hồ sơ dinh dưỡng đáng chú ý, với protein thực vật, các acid amin thiết yếu, chất xơ và một số vi chất như sắt, kẽm, cùng các hợp chất chống oxy hoá như polyphenol.",
+    "disclaimer": "Với Diệp Châu, Wolffia không phải là thứ để nói quá lên như một giải pháp thần kỳ.<br/>Đây đơn giản là một <strong>lựa chọn xanh mới, gọn, đẹp và đáng thử</strong> cho những ai muốn ăn tốt hơn theo cách dễ duy trì hơn.",
+    "cards": [
+      "Nguồn đạm thực vật thú vị",
+      "Có đủ các acid amin thiết yếu",
+      "Có chất xơ và vi chất đáng chú ý",
+      "Dễ thêm vào bữa ăn hằng ngày",
+      "Hợp với người muốn ăn xanh đa dạng hơn"
+    ]
+  },
+  "bonus": {
+    "headline": "Muốn xem thêm ý tưởng món ăn trước thì nhận quà miễn phí",
+    "benefits": [
+      "Nhận cookbook món nhanh với Wolffia",
+      "Có thêm ý tưởng bữa sáng, sinh tố, salad",
+      "Dễ hình dung cách dùng trước khi mua",
+      "Phù hợp cho người mới chưa biết bắt đầu sao",
+      "Điền nhanh trong 1 phút là xong"
+    ],
+    "cta": "Đi đến khảo sát nhận quà"
+  },
+  "finalCta": {
+    "headline": "Không cần ăn hoàn hảo. <br className=\"desktop-only\"/>Chỉ cần bắt đầu bằng một cách dễ hơn.",
+    "subheadline": "Nếu bạn đang muốn ăn tốt hơn nhưng không có nhiều thời gian, hãy giữ chỗ Wolffia tươi từ Diệp Châu ngay hôm nay.",
+    "slotsText": "Còn đúng {{slots}} suất giữ chỗ",
+    "orderBtn": "Đặt hàng ngay",
+    "giftBtn": "Nhận quà miễn phí",
+    "footer": "© {{year}} Diệp Châu. Cây Nhỏ Nhất - Siêu Dưỡng Chất."
+  },
+  "zaloCommunity": {
+    "headline": "Chưa mua ngay cũng được, vào Zalo trước để theo dõi đợt mở đơn",
+    "subheadline": "Trong nhóm, bạn sẽ được xem món ăn thực tế, lịch mở suất và cập nhật đợt hàng mới sớm hơn.",
+    "cta": "Vào cộng đồng Zalo"
   }
 }

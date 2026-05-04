@@ -299,5 +299,42 @@
     "input": {
       "placeholder": "E.g.: how much, is it good for kids..."
     }
+  },
+  "nutritionInfo": {
+    "headline": "What is Wolffia and why are healthy eaters starting to care?",
+    "subheadline": "Not just novel and visually pleasing, Wolffia is a green ingredient with quite an interesting nutritional profile.",
+    "body": "Wolffia is an ultra-small aquatic plant that has been used as food in parts of Asia. Many studies on Wolffia note that it is a plant ingredient with a remarkable nutritional profile, containing plant protein, essential amino acids, dietary fiber, and notable micronutrients like iron, zinc, along with antioxidants such as polyphenols.",
+    "disclaimer": "At Diệp Châu, Wolffia is not something we overhype as a magical solution.<br/>It is simply a <strong>new, neat, beautiful, and worth-trying green option</strong> for those who want to eat better in a more sustainable way.",
+    "cards": [
+      "Interesting plant protein source",
+      "Contains all essential amino acids",
+      "Notable dietary fiber and micronutrients",
+      "Easy to add to daily meals",
+      "Ideal for those wanting diverse green eating"
+    ]
+  },
+  "bonus": {
+    "headline": "Want to see more meal ideas first? Get a free gift",
+    "benefits": [
+      "Get a quick-meal cookbook with Wolffia",
+      "More ideas for breakfast, smoothies, salads",
+      "Easy to visualize usage before buying",
+      "Suitable for beginners not knowing where to start",
+      "Quick to fill out in just 1 minute"
+    ],
+    "cta": "Go to gift survey"
+  },
+  "finalCta": {
+    "headline": "No need for perfect eating. <br className=\"desktop-only\"/>Just start an easier way.",
+    "subheadline": "If you want to eat better but don't have much time, secure your fresh Wolffia spot from Diệp Châu today.",
+    "slotsText": "Exactly {{slots}} spots left",
+    "orderBtn": "Order now",
+    "giftBtn": "Get free gift",
+    "footer": "© {{year}} Diệp Châu. Smallest Plant - Super Nutrients."
+  },
+  "zaloCommunity": {
+    "headline": "No need to buy right away, join Zalo first to track new batches",
+    "subheadline": "In the group, you'll see real dishes, slot opening schedules, and get early updates on new batches.",
+    "cta": "Join Zalo community"
   }
 }

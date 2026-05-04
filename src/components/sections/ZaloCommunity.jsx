@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { Button } from '../UI/Button';
 import { FaComments } from 'react-icons/fa';
 
 export const ZaloCommunity = () => {
+  const { t } = useTranslation();
   return (
     <section className="zalo-section section-padding" style={{ backgroundColor: 'white' }}>
       <div className="container" style={{ maxWidth: '700px', textAlign: 'center' }}>
@@ -13,13 +15,13 @@ export const ZaloCommunity = () => {
             <FaComments />
           </div>
           <h2 style={{ fontSize: '2.2rem', marginBottom: '16px' }}>
-            Chưa mua ngay cũng được, vào Zalo trước để theo dõi đợt mở đơn
+            {t('zaloCommunity.headline')}
           </h2>
         </RevealOnScroll>
         
         <RevealOnScroll delay={100}>
           <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', marginBottom: '32px' }}>
-            Trong nhóm, bạn sẽ được xem món ăn thực tế, lịch mở suất và cập nhật đợt hàng mới sớm hơn.
+            {t('zaloCommunity.subheadline')}
           </p>
         </RevealOnScroll>
 
@@ -34,7 +36,7 @@ export const ZaloCommunity = () => {
               padding: '14px 32px'
             }}
           >
-            Vào cộng đồng Zalo
+            {t('zaloCommunity.cta')}
           </Button>
         </RevealOnScroll>
       </div>
