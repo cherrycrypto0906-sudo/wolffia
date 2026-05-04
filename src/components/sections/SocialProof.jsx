@@ -11,7 +11,8 @@ export const SocialProof = () => {
 
   useEffect(() => {
     // Luân phiên hiển thị popup live activity
-    const activities = t('config.socialProof.recentActivities', { returnObjects: true }) || [];
+    const activitiesRaw = t('config.socialProof.recentActivities', { returnObjects: true });
+    const activities = Array.isArray(activitiesRaw) ? activitiesRaw : [];
     let index = 0;
     
     // Initial delay before showing first popup

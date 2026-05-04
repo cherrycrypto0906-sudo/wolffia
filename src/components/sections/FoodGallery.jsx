@@ -11,7 +11,8 @@ export const FoodGallery = () => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const galleryItems = t('config.galleryItems', { returnObjects: true }) || [];
+  const galleryItemsRaw = t('config.galleryItems', { returnObjects: true });
+  const galleryItems = Array.isArray(galleryItemsRaw) ? galleryItemsRaw : [];
 
   const checkScroll = () => {
     if (scrollRef.current) {

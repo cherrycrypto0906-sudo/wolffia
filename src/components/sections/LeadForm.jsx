@@ -37,10 +37,17 @@ const GIFT_OPTIONS = [
 export const LeadForm = () => {
   const { t } = useTranslation();
   
-  const PERSONA_OPTIONS = t('leadForm.form.options.persona', { returnObjects: true });
-  const CHALLENGE_OPTIONS = t('leadForm.form.options.challenges', { returnObjects: true });
-  const BENEFIT_OPTIONS = t('leadForm.form.options.benefits', { returnObjects: true });
-  const GIFT_OPTIONS = t('leadForm.form.options.gifts', { returnObjects: true });
+  const personaRaw = t('leadForm.form.options.persona', { returnObjects: true });
+  const PERSONA_OPTIONS = Array.isArray(personaRaw) ? personaRaw : [];
+  
+  const challengeRaw = t('leadForm.form.options.challenges', { returnObjects: true });
+  const CHALLENGE_OPTIONS = Array.isArray(challengeRaw) ? challengeRaw : [];
+  
+  const benefitRaw = t('leadForm.form.options.benefits', { returnObjects: true });
+  const BENEFIT_OPTIONS = Array.isArray(benefitRaw) ? benefitRaw : [];
+  
+  const giftRaw = t('leadForm.form.options.gifts', { returnObjects: true });
+  const GIFT_OPTIONS = Array.isArray(giftRaw) ? giftRaw : [];
 
   const [formData, setFormData] = useState({
     name: '',
@@ -147,7 +154,7 @@ export const LeadForm = () => {
                 <div className="gift-info-box">
                   <h3>{t('leadForm.giftInfo.processTitle')}</h3>
                   <ul>
-                    {t('leadForm.giftInfo.steps', { returnObjects: true }).map((step, idx) => (
+                    {(Array.isArray(t('leadForm.giftInfo.steps', { returnObjects: true })) ? t('leadForm.giftInfo.steps', { returnObjects: true }) : []).map((step, idx) => (
                       <li key={idx}>{step}</li>
                     ))}
                   </ul>

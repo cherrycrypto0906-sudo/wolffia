@@ -7,7 +7,8 @@ import './Testimonials.css';
 export const Testimonials = () => {
   const { t } = useTranslation();
   // Group reviews into pairs (Customer + Shop Reply) to form single screenshots
-  const chatReviews = t('config.chatReviews', { returnObjects: true }) || [];
+  const chatReviewsRaw = t('config.chatReviews', { returnObjects: true });
+  const chatReviews = Array.isArray(chatReviewsRaw) ? chatReviewsRaw : [];
   const pairedReviews = [];
   for (let i = 0; i < chatReviews.length; i += 2) {
     if (chatReviews[i] && chatReviews[i+1]) {

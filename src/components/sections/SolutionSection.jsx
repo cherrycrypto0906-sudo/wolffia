@@ -8,7 +8,8 @@ import nutritionChartImg from '../../assets/wolffia_nutrition_v2.jpg';
 
 export const SolutionSection = () => {
   const { t } = useTranslation();
-  const benefits = t('solutionSection.benefits', { returnObjects: true });
+  const benefitsRaw = t('solutionSection.benefits', { returnObjects: true });
+  const benefits = Array.isArray(benefitsRaw) ? benefitsRaw : [];
 
 
   return (

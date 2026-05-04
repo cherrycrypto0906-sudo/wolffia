@@ -6,7 +6,8 @@ import './Benefits.css';
 
 export const Benefits = () => {
   const { t } = useTranslation();
-  const benefitCards = t('benefitsSection.cards', { returnObjects: true });
+  const benefitCardsRaw = t('benefitsSection.cards', { returnObjects: true });
+  const benefitCards = Array.isArray(benefitCardsRaw) ? benefitCardsRaw : [];
 
 
   return (

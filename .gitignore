@@ -27,3 +27,4 @@ resend_config.txt
 *.sln
 *.sw?
 .vercel
+.env*.local

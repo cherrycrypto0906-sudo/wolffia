@@ -10,7 +10,8 @@ export const FAQ = () => {
 
   // We can derive faqs from the translation keys or use config. 
   // Wait, I will use `t('config.faq', { returnObjects: true })`
-  const faqs = t('config.faq', { returnObjects: true }) || [];
+  const faqsRaw = t('config.faq', { returnObjects: true });
+  const faqs = Array.isArray(faqsRaw) ? faqsRaw : [];
 
   return (
     <section className="faq-section section-padding">
