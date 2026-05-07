@@ -11,7 +11,7 @@ export const SocialProof = () => {
 
   useEffect(() => {
     // Luân phiên hiển thị popup live activity
-    const activitiesRaw = t('config.socialProof.recentActivities', { returnObjects: true });
+    const activitiesRaw = t('socialProof.recentActivities', { returnObjects: true });
     const activities = Array.isArray(activitiesRaw) ? activitiesRaw : [];
     let index = 0;
     

@@ -30,11 +30,12 @@ export const Pricing = () => {
         <div className="pricing-grid">
           {CONFIG.packages.map((pkg, index) => (
             <RevealOnScroll key={index} delay={200 + index * 100} className={`pricing-card ${pkg.badge ? 'highlighted' : ''}`}>
-              {pkg.badge && <div className="pricing-badge">{pkg.badge}</div>}
+              {pkg.badge && <div className="pricing-badge">{t(`config.packages.${pkg.id}.badge`)}</div>}
               <div className="pricing-content">
                 <h3 className="pkg-name">{t(`config.packages.${pkg.id}.name`)}</h3>
-                <div className="pkg-weight">{pkg.weight}</div>
-                <div className="pkg-price">
+                <div className="pkg-weight">{t(`config.packages.${pkg.id}.weight`)}</div>
+                
+                <div className="pricing-numbers">
                   {pkg.originalPrice && <span className="original-price"><del>{pkg.originalPrice}đ</del></span>}
                   <div className="pkg-price-row" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                     <span className="current-price">{pkg.price}</span>

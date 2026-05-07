@@ -1,35 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaPaperPlane, FaTimes } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import salesScriptRaw from '../../../sales_script.md?raw';
 import './Chatbot.css';
-
-const parseScriptSection = (heading) => {
-  const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(`## ${escapedHeading}\\n([\\s\\S]*?)(?=\\n## |$)`);
-  const match = salesScriptRaw.match(pattern);
-  return match ? match[1].trim() : '';
-};
-
-const extractQuotedText = (text) => {
-  const match = text.match(/"([\s\S]*?)"/);
-  return match ? match[1].trim() : text.trim();
-};
-
-const parseFaqs = () => {
-  const faqSection = parseScriptSection('2. 10 câu hỏi khách hay hỏi nhất');
-  const blocks = faqSection.split(/\n(?=\d+\. \*\*Hỏi: )/).filter(Boolean);
-
-  return blocks.map((block) => {
-    const questionMatch = block.match(/\*\*Hỏi:\s*"([\s\S]*?)"\*\*/);
-    const answerMatch = block.match(/\*\*Diệp Châu đáp:\*\*\s*"([\s\S]*?)"/);
-
-    return {
-      question: questionMatch ? questionMatch[1].trim() : '',
-      answer: answerMatch ? answerMatch[1].trim() : '',
-    };
-  }).filter((item) => item.question && item.answer);
-};
 
 const normalizeText = (text) =>
   text
@@ -39,22 +11,22 @@ const normalizeText = (text) =>
     .replace(/đ/g, 'd');
 
 const KEYWORD_GROUPS = [
-  { keywords: ['beo cam', 'beo ao', 'ngoai ao', 'beo'], faqIndex: 0 },
-  { keywords: ['rua', 'nau chin', 'an song', 'mo hop'], faqIndex: 1 },
-  { keywords: ['dang', 'mui co', 'de an', 'vi no', 'mui'], faqIndex: 2 },
-  { keywords: ['tanh', 'mui bun', 'hang mui bun'], faqIndex: 3 },
-  { keywords: ['an dam', '6-8 thang', 'tre nho', 'be', 'em be'], faqIndex: 4 },
-  { keywords: ['giun san', 'an toan', 'khong sach', 'duoi nuoc'], faqIndex: 5 },
-  { keywords: ['goi nao', 'combo nao', 'bat dau', 'gia bao nhieu', '49k', 'gia'], faqIndex: 6 },
-  { keywords: ['giao nhanh', 'hoa toc', 'ship', 'tphcm', 'giao trong ngay'], faqIndex: 7 },
-  { keywords: ['bao quan', 'tu lanh', 'ngan mat', 'de duoc bao lau'], faqIndex: 8 },
-  { keywords: ['dat', 'cao', 'rau ngoai cho'], faqIndex: 9 },
+  { keywords: ['beo cam', 'beo ao', 'ngoai ao', 'beo', 'what exactly', 'is this'], faqIndex: 0 },
+  { keywords: ['rua', 'nau chin', 'an song', 'mo hop', 'wash', 'cook'], faqIndex: 1 },
+  { keywords: ['dang', 'mui co', 'de an', 'vi no', 'mui', 'bitter', 'smell', 'taste'], faqIndex: 2 },
+  { keywords: ['tanh', 'mui bun', 'hang mui bun', 'fishy', 'muddy'], faqIndex: 3 },
+  { keywords: ['an dam', '6-8 thang', 'tre nho', 'be', 'em be', 'baby', 'babies', 'kids'], faqIndex: 4 },
+  { keywords: ['giun san', 'an toan', 'khong sach', 'duoi nuoc', 'parasites', 'water', 'safe'], faqIndex: 5 },
+  { keywords: ['goi nao', 'combo nao', 'bat dau', 'gia bao nhieu', '49k', 'gia', 'price', 'package', 'start'], faqIndex: 6 },
+  { keywords: ['giao nhanh', 'hoa toc', 'ship', 'tphcm', 'giao trong ngay', 'delivery', 'fast', 'same-day'], faqIndex: 7 },
+  { keywords: ['bao quan', 'tu lanh', 'ngan mat', 'de duoc bao lau', 'store', 'fridge'], faqIndex: 8 },
+  { keywords: ['dat', 'cao', 'rau ngoai cho', 'expensive', 'vegetables'], faqIndex: 9 },
 ];
 
-const BUY_KEYWORDS = ['mua', 'chot', 'lay combo', 'lay 1 hop', 'dat hang', 'quan tam', 'muon thu'];
-const HESITATE_KEYWORDS = ['nghi them', 'de em xem', 'de minh xem', 'chua san sang', 'phan van', 'can nhac'];
+const BUY_KEYWORDS = ['mua', 'chot', 'lay combo', 'lay 1 hop', 'dat hang', 'quan tam', 'muon thu', 'buy', 'order', 'interested', 'try'];
+const HESITATE_KEYWORDS = ['nghi them', 'de em xem', 'de minh xem', 'chua san sang', 'phan van', 'can nhac', 'think about it', 'not ready'];
 
-const buildBotReply = (message, faqs, closeMessage, waitlistMessage) => {
+const buildBotReply = (message, faqs, closeMessage, waitlistMessage, fallbackMessage) => {
   const normalizedMessage = normalizeText(message);
 
   if (BUY_KEYWORDS.some((keyword) => normalizedMessage.includes(keyword))) {
@@ -83,17 +55,20 @@ const buildBotReply = (message, faqs, closeMessage, waitlistMessage) => {
   }
 
   return {
-    text: 'Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.',
+    text: fallbackMessage,
     showLeadButton: false,
   };
 };
 
 export const Chatbot = () => {
   const { t } = useTranslation();
-  const greeting = useMemo(() => extractQuotedText(parseScriptSection('1. Câu chào khách')), []);
-  const faqs = useMemo(() => parseFaqs(), []);
-  const closeMessage = useMemo(() => extractQuotedText(parseScriptSection('3. Câu chốt đơn khi khách có vẻ quan tâm')), []);
-  const waitlistMessage = useMemo(() => extractQuotedText(parseScriptSection('4. Câu hướng khách điền form khi chưa sẵn sàng mua ngay')), []);
+  
+  const greeting = t('chatbot.greeting');
+  const closeMessage = t('chatbot.closeMessage');
+  const waitlistMessage = t('chatbot.waitlistMessage');
+  const fallbackMessage = t('chatbot.fallback');
+  const faqsRaw = t('chatbot.faqs', { returnObjects: true });
+  const faqs = Array.isArray(faqsRaw) ? faqsRaw : [];
 
   const [isOpen, setIsOpen] = useState(false);
   const [draft, setDraft] = useState('');
@@ -134,6 +109,11 @@ export const Chatbot = () => {
       'combo 3',
       'combo 5',
       'hop dung thu',
+      'waitlist',
+      'leave',
+      'try',
+      'buy now',
+      'trial box',
     ].some((keyword) => combined.includes(keyword));
   };
 
@@ -177,16 +157,14 @@ export const Chatbot = () => {
         },
       ]);
     } catch {
-      const defaultFallback = t('chatbot.fallback');
-      const reply = buildBotReply(trimmedText, faqs, closeMessage, waitlistMessage);
-      const textToUse = (reply.text === 'Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.') ? defaultFallback : reply.text;
+      const reply = buildBotReply(trimmedText, faqs, closeMessage, waitlistMessage, fallbackMessage);
 
       window.setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           {
             type: 'bot',
-            text: textToUse,
+            text: reply.text,
             showLeadButton: reply.showLeadButton,
           },
         ]);
@@ -210,7 +188,7 @@ export const Chatbot = () => {
           type="button"
           className="chatbot-bubble"
           onClick={() => setIsOpen(true)}
-          aria-label="Mở chatbot tư vấn"
+          aria-label={t('chatbot.header.title')}
         >
           <span className="chatbot-badge">
             <strong>24/7</strong>
@@ -220,13 +198,13 @@ export const Chatbot = () => {
       )}
 
       {isOpen && (
-        <div className="chatbot-window" role="dialog" aria-label="Chatbot tư vấn Wolffia">
+        <div className="chatbot-window" role="dialog" aria-label={t('chatbot.header.title')}>
           <div className="chatbot-header">
             <div>
               <h3>{t('chatbot.header.title')}</h3>
               <p>{t('chatbot.header.subtitle')}</p>
             </div>
-            <button type="button" className="close-btn" onClick={() => setIsOpen(false)} aria-label="Đóng chatbot">
+            <button type="button" className="close-btn" onClick={() => setIsOpen(false)} aria-label="Close">
               <FaTimes size={18} />
             </button>
           </div>
@@ -279,10 +257,10 @@ export const Chatbot = () => {
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
               placeholder={t('chatbot.input.placeholder')}
-              aria-label="Nhập câu hỏi cho chatbot"
+              aria-label={t('chatbot.input.placeholder')}
               disabled={isLoading}
             />
-            <button type="submit" aria-label="Gửi câu hỏi" disabled={isLoading}>
+            <button type="submit" aria-label="Send" disabled={isLoading}>
               <FaPaperPlane size={16} />
             </button>
           </form>

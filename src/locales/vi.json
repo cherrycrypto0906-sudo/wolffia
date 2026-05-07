@@ -97,21 +97,28 @@
         ]
       }
     ],
+    "floatingActions": {
+      "orderNow": "Đặt hàng ngay",
+      "slotsRemaining": "Chỉ còn {{slots}} suất"
+    },
     "packages": {
       "gia-dung-thu": {
         "name": "Gói dùng thử",
+        "weight": "100g / 1 hộp",
         "description": "Ưu đãi ra mắt mẻ mới cho người muốn thử độ tươi và độ dễ ăn trước",
         "badge": "Dễ thử nhất",
         "ctaText": "Đặt hàng ngay"
       },
       "combo-3-hop": {
         "name": "Combo 3 hộp",
+        "weight": "3 x 100g",
         "description": "Phù hợp cho gia đình 3-4 người ăn trong 2-3 ngày",
         "badge": "Bán chạy nhất",
         "ctaText": "Đặt hàng ngay"
       },
       "combo-5-hop": {
         "name": "Combo 5 hộp",
+        "weight": "5 x 100g",
         "description": "Đủ dùng cho 1 tuần eat-clean, tặng kèm cẩm nang Recipe",
         "badge": "Tặng recipe",
         "ctaText": "Đặt hàng ngay"
@@ -243,8 +250,36 @@
         "gift": "Bạn có muốn nhận cookbook miễn phí không? *",
         "note": "Bạn muốn Diệp Châu chia sẻ thêm điều gì trong cookbook? (không bắt buộc)",
         "notePlaceholder": "Ví dụ: món cho bữa sáng, món cho bé, smoothie, eat-clean...",
-        "submit": "Nhận quà tặng",
-        "submitting": "Đang gửi khảo sát..."
+        "submit": "Nhận quà",
+        "submitting": "Đang nộp khảo sát...",
+        "options": {
+          "personas": [
+            "Dân văn phòng bận rộn",
+            "Mẹ bỉm muốn chuẩn bị bữa nhanh mà đủ chất",
+            "Người ăn chay / plant-based",
+            "Người tập luyện muốn bổ sung dinh dưỡng xanh",
+            "Người lười ăn rau nhưng vẫn muốn khỏe"
+          ],
+          "challenges": [
+            "Không có thời gian chuẩn bị bữa ăn",
+            "Khó ăn đủ rau mỗi ngày",
+            "Muốn ăn lành mạnh hơn nhưng chưa biết bắt đầu từ đâu",
+            "Cần món nhanh, gọn mà vẫn đủ chất",
+            "Muốn đổi bữa cho đỡ ngán"
+          ],
+          "benefits": [
+            "Ăn xanh dễ hơn mỗi ngày",
+            "Có thêm đạm thực vật và dinh dưỡng tự nhiên",
+            "Chuẩn bị bữa ăn nhanh hơn",
+            "Hỗ trợ giữ dáng, đẹp da, nhẹ bụng",
+            "Có thêm lựa chọn lành mạnh cho cả nhà"
+          ],
+          "gifts": [
+            "Có, gửi mình ngay nhé",
+            "Có, nhưng mình muốn xem thêm thông tin trước",
+            "Hiện tại mình chưa cần"
+          ]
+        }
       }
     },
     "zaloStep": {
@@ -275,7 +310,47 @@
       "interested": "Người đã để lại thông tin",
       "inZalo": "Khách đã đăng ký nhận tin",
       "slots": "Suất còn lại hôm nay"
-    }
+    },
+    "recentActivities": [
+      "Chị Linh ở Thủ Đức vừa chốt hộp dùng thử 100g",
+      "Một khách hàng ở Quận 7 vừa để lại thông tin nhận quà",
+      "Chị Mai vừa đặt Combo 3 hộp giao lạnh trong ngày",
+      "Khách tại Bình Thạnh vừa chọn Combo 5 hộp"
+    ],
+    "chatReviews": [
+      {
+        "name": "Lan Anh",
+        "time": "Hôm nay 09:12",
+        "messages": [
+          "Cứ tưởng con sẽ nhè ra vì màu xanh, ai dè hạt nhỏ tí bé tưởng kẹo nên xúc ăn ngon lành. Trộm vía dạo này con đi vệ sinh đều hơn, mẹ đỡ phải ép ăn rau mỗi bữa."
+        ],
+        "isCustomer": true
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Hôm nay 09:15",
+        "messages": [
+          "Dạ em cảm ơn chị ạ, hạt Wolffia nhỏ và giòn nhẹ nên nhiều bé đón nhận dễ hơn rau lá. Nhà mình cứ rắc vào món quen là bé ăn tự nhiên lắm ạ."
+        ],
+        "isCustomer": false
+      },
+      {
+        "name": "Anh Hoàng",
+        "time": "Hôm nay 12:30",
+        "messages": [
+          "Tìm nguồn đạm thực vật thay ức gà cho đỡ ngán thì gặp cái này. Đổ 1 hộp vào máy xay chung với whey, uống nhanh gọn mà không bị đầy bụng như ăn đậu."
+        ],
+        "isCustomer": true
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Hôm nay 12:45",
+        "messages": [
+          "Dạ đúng rồi anh, nhiều khách tập luyện cũng thích vì thêm được đạm xanh mà vẫn nhẹ bụng, không cần chuẩn bị cầu kỳ như bữa phụ thông thường ạ."
+        ],
+        "isCustomer": false
+      }
+    ]
   },
   "testimonials": {
     "headline": "Mọi người nói gì về Wolffia?",
@@ -283,6 +358,51 @@
     "activeNow": "Đang hoạt động"
   },
   "chatbot": {
+    "greeting": "Chào chị nha, Diệp Châu đây. Nếu chị đang tò mò Wolffia là gì, vị ra sao, có hợp với bé hay hợp với nhà mình không thì cứ hỏi Diệp Châu thoải mái nha. Diệp Châu trả lời ngắn gọn, dễ hiểu cho chị luôn.",
+    "closeMessage": "Nếu chị đang muốn thử cho biết độ tươi với độ dễ ăn, mình đi từ hộp dùng thử 49k là nhẹ nhất nha. Còn nếu chị sợ phí ship cao thì Diệp Châu khuyên thật là lấy Combo 3 hoặc Combo 5 sẽ lời hơn nhiều. Chị bấm vào form giúp Diệp Châu, em giữ mẻ gần nhất cho chị luôn.",
+    "waitlistMessage": "Dạ không sao chị nha, mình cứ xem thêm cho yên tâm. Nếu chưa muốn chốt ngay thì chị để lại form trước giúp Diệp Châu, khi có mẻ mới, lịch giao hoặc recipe hay em nhắn chị đầu tiên. Như vậy mình không bị lỡ đợt hàng mà cũng không cần quyết liền lúc này.",
+    "faqs": [
+      {
+        "question": "Cái này là gì vậy em?",
+        "answer": "Dạ đây là Wolffia Diệp Châu chị nha, một loại đạm xanh được tuyển chọn và nuôi trong nhà màng công nghệ cao với nước lọc tinh khiết cùng dinh dưỡng hữu cơ. Bên em làm theo hướng sạch, khép kín nên chị có thể dùng rất yên tâm ạ."
+      },
+      {
+        "question": "Có cần rửa lại hay nấu chín không?",
+        "answer": "Không cần luôn chị. Mở hộp là chị rắc trực tiếp vào cháo, salad, sữa chua hay sinh tố là dùng được rồi. Thật ra ăn kiểu này lại giữ được trọn dinh dưỡng hơn nữa."
+      },
+      {
+        "question": "Vị nó có đắng hay nồng mùi cỏ không?",
+        "answer": "Hoàn toàn không chị nhé. Vị nó thanh nhẹ, giòn xốp li ti, nhiều người ăn lần đầu hay ví như cảm giác trứng cá xanh vậy đó. Rắc vào món nào thì nó đi theo vị món đó, nên rất dễ ăn."
+      },
+      {
+        "question": "Sản phẩm này ăn có tanh hay hăng mùi không?",
+        "answer": "Không có luôn chị ạ. Vì bên em không vớt từ ao tự nhiên mà nuôi trong hệ thống nhà màng khép kín với nước sạch. Nên ăn rất thanh, không hăng, không tanh, không có mùi bùn đâu chị."
+      },
+      {
+        "question": "Bé 6-8 tháng ăn dặm dùng được chưa?",
+        "answer": "Dùng được chị nha. Hạt nó siêu nhỏ, mềm, không gây hóc. Mẹ chỉ cần rắc 1 muỗng cà phê vào chén cháo vừa múc ra là bé đã có thêm chất xơ với đạm thực vật rồi."
+      },
+      {
+        "question": "Sợ trồng dưới nước không sạch, lỡ có giun sán thì sao?",
+        "answer": "Đây là câu nhiều mẹ hỏi lắm nên em hiểu cảm giác này. Bên em không trồng ao bùn mà nuôi trong hệ thống khép kín, nước đã qua xử lý và kiểm định. Nên chị có thể yên tâm mở hộp dùng luôn cho cả nhà."
+      },
+      {
+        "question": "Nên bắt đầu với gói nào?",
+        "answer": "Nếu chị muốn thử trước cho yên tâm thì lấy hộp dùng thử 100g giá 49.000đ là nhẹ nhất. Còn nếu chị thấy nhà mình dùng được đều thì Combo 3 hộp hoặc Combo 5 hộp sẽ tiết kiệm tiền hàng với tiền ship hơn."
+      },
+      {
+        "question": "Có giao nhanh trong ngày không?",
+        "answer": "Có chị nha. Bên em hỗ trợ giao hỏa tốc tại TP.HCM. Hàng được vớt tươi, đóng hộp và giao lạnh ngay trong ngày để giữ độ giòn xốp đẹp nhất."
+      },
+      {
+        "question": "Bảo quản sao cho đúng?",
+        "answer": "Nhận hàng xong chị cho ngay vào ngăn mát tủ lạnh 4-8 độ C giúp em. Dùng ngon nhất trong 5-7 ngày. Khi lấy thì dùng muỗng sạch, đậy kín nắp lại và đừng để ngăn đá chị nha."
+      },
+      {
+        "question": "49k một hộp vẫn thấy hơi cao so với rau bình thường.",
+        "answer": "Dạ nếu nhìn theo kiểu rau thì sẽ thấy hơi cao thật. Nhưng nếu nhìn nó như một dạng đạm xanh sạch, mở hộp là dùng được ngay thì sẽ dễ hiểu hơn. Một hộp 100g chia ra được 4-5 bữa, tính ra mỗi bữa chỉ khoảng 10k thôi, mà mẹ đỡ mất công chuẩn bị nhiều."
+      }
+    ],
     "fallback": "Diệp Châu hiểu nè. Nếu chị muốn, cứ hỏi Diệp Châu về giá, cách dùng cho bé, giao hàng, bảo quản hoặc cứ nói thẳng là chị đang phân vân chỗ nào, em trả lời gọn cho mình luôn.",
     "header": {
       "title": "Diệp Châu tư vấn 24/7",

@@ -1,6 +1,4 @@
-import { readFile } from 'node:fs/promises';
-
-const SALES_SCRIPT_PATH = new URL('../sales_script.md', import.meta.url);
+import { SALES_SCRIPT } from './salesScript.js';
 
 const normalizeMessages = (messages = []) =>
   messages
@@ -13,23 +11,23 @@ const normalizeMessages = (messages = []) =>
     .filter((message) => message.content);
 
 const buildSystemPrompt = (salesScript) => `
-Bạn là Diệp Châu, chatbot bán hàng cho Wolffia Diệp Châu.
+You are Diệp Châu, a sales chatbot for Wolffia Diệp Châu.
 
-Mục tiêu:
-- Trả lời tự nhiên, ngắn gọn, gần gũi, đúng giọng người bán thật.
-- Dựa trên kịch bản và dữ liệu có sẵn, không bịa thông tin ngoài đó.
-- Khi khách có vẻ quan tâm mua, chủ động gợi họ điền form danh sách chờ.
-- Khi khách chưa sẵn sàng mua, giữ giọng mềm, không ép.
-- QUAN TRỌNG: Khách hỏi bằng ngôn ngữ nào, hãy trả lời bằng ngôn ngữ đó.
+Objectives:
+- Answer naturally, concisely, warmly, like a real seller.
+- Strictly base your answers on the provided sales script. Do not invent information.
+- If the user shows buying interest, proactively suggest they fill the waitlist form.
+- If they aren't ready, keep it soft and don't push.
+- CRITICAL INSTRUCTION: You must strictly reply in the EXACT SAME LANGUAGE that the user is currently using. If the user writes in English, reply entirely in English. If Vietnamese, reply in Vietnamese. Detect the language from their last message.
 
-Quy tắc giọng điệu:
-- Viết tự nhiên theo ngôn ngữ của khách.
-- Xưng là Diệp Châu. Nếu dùng tiếng Việt, xưng là Diệp Châu hoặc em, gọi khách là chị hoặc mình tùy ngữ cảnh.
-- Câu ngắn, dễ hiểu, không corporate, không khoa trương.
-- Không dùng các từ liên tưởng tới "bèo" để gọi sản phẩm, trừ khi khách hỏi trực tiếp và cần giải thích.
-- Nếu chưa chắc câu trả lời, nói thẳng là Diệp Châu chưa dám nói quá và mời khách để lại form để được tư vấn kỹ hơn.
+Tone guidelines:
+- If replying in Vietnamese, call yourself "Diệp Châu" or "em", and the user "chị" or "mình".
+- If replying in English, call yourself "Diệp Châu", and keep a polite, friendly tone.
+- Keep sentences short, easy to read, not corporate or boastful.
+- Do not use words like "duckweed" unless explaining the product explicitly.
+- If unsure, honestly say you don't want to over-promise and invite them to leave info for human consultation.
 
-Kịch bản nguồn:
+Sales Script Context:
 ${salesScript}
 `;
 
@@ -53,8 +51,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing conversation messages' });
     }
 
-    const salesScript = await readFile(SALES_SCRIPT_PATH, 'utf8');
-    const systemPrompt = buildSystemPrompt(salesScript);
+    const systemPrompt = buildSystemPrompt(SALES_SCRIPT);
 
     const upstreamResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',

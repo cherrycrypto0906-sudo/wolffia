@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
+import { useTranslation } from 'react-i18next';
 import './FloatingActions.css';
 
 export const FloatingActions = () => {
+  const { t } = useTranslation();
   const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
@@ -31,11 +33,11 @@ export const FloatingActions = () => {
       <div className={`sticky-cta ${showSticky ? 'visible' : ''}`}>
         <div className="sticky-content">
           <div className="sticky-text">
-            <strong>Đặt hàng ngay</strong>
-            <span>Chỉ còn {CONFIG.slotsRemaining} suất</span>
+            <strong>{t('floatingActions.orderNow')}</strong>
+            <span>{t('floatingActions.slotsRemaining', { slots: CONFIG.slotsRemaining })}</span>
           </div>
           <button onClick={scrollToPayment} className="btn btn-primary sticky-btn">
-            Đặt hàng ngay
+            {t('floatingActions.orderNow')}
           </button>
         </div>
       </div>

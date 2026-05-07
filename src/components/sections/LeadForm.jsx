@@ -4,49 +4,18 @@ import { Button } from '../UI/Button';
 import { useTranslation } from 'react-i18next';
 import './LeadForm.css';
 
-const PERSONA_OPTIONS = [
-  'Dân văn phòng bận rộn',
-  'Mẹ bỉm muốn chuẩn bị bữa nhanh mà đủ chất',
-  'Người ăn chay / plant-based',
-  'Người tập luyện muốn bổ sung dinh dưỡng xanh',
-  'Người lười ăn rau nhưng vẫn muốn khỏe',
-];
-
-const CHALLENGE_OPTIONS = [
-  'Không có thời gian chuẩn bị bữa ăn',
-  'Khó ăn đủ rau mỗi ngày',
-  'Muốn ăn lành mạnh hơn nhưng chưa biết bắt đầu từ đâu',
-  'Cần món nhanh, gọn mà vẫn đủ chất',
-  'Muốn đổi bữa cho đỡ ngán',
-];
-
-const BENEFIT_OPTIONS = [
-  'Ăn xanh dễ hơn mỗi ngày',
-  'Có thêm đạm thực vật và dinh dưỡng tự nhiên',
-  'Chuẩn bị bữa ăn nhanh hơn',
-  'Hỗ trợ giữ dáng, đẹp da, nhẹ bụng',
-  'Có thêm lựa chọn lành mạnh cho cả nhà',
-];
-
-const GIFT_OPTIONS = [
-  'Có, gửi mình ngay nhé',
-  'Có, nhưng mình muốn xem thêm thông tin trước',
-  'Hiện tại mình chưa cần',
-];
-
 export const LeadForm = () => {
   const { t } = useTranslation();
-  
-  const personaRaw = t('leadForm.form.options.persona', { returnObjects: true });
+  const personaRaw = t('leadForm.form.labels.options.personas', { returnObjects: true });
   const PERSONA_OPTIONS = Array.isArray(personaRaw) ? personaRaw : [];
   
-  const challengeRaw = t('leadForm.form.options.challenges', { returnObjects: true });
+  const challengeRaw = t('leadForm.form.labels.options.challenges', { returnObjects: true });
   const CHALLENGE_OPTIONS = Array.isArray(challengeRaw) ? challengeRaw : [];
   
-  const benefitRaw = t('leadForm.form.options.benefits', { returnObjects: true });
+  const benefitRaw = t('leadForm.form.labels.options.benefits', { returnObjects: true });
   const BENEFIT_OPTIONS = Array.isArray(benefitRaw) ? benefitRaw : [];
   
-  const giftRaw = t('leadForm.form.options.gifts', { returnObjects: true });
+  const giftRaw = t('leadForm.form.labels.options.gifts', { returnObjects: true });
   const GIFT_OPTIONS = Array.isArray(giftRaw) ? giftRaw : [];
 
   const [formData, setFormData] = useState({

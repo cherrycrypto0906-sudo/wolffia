@@ -97,21 +97,28 @@
         ]
       }
     ],
+    "floatingActions": {
+      "orderNow": "Order now",
+      "slotsRemaining": "Only {{slots}} slots left"
+    },
     "packages": {
       "gia-dung-thu": {
         "name": "Trial Box",
+        "weight": "100g / 1 box",
         "description": "Launch offer for a new batch, for those wanting to test freshness and taste first",
         "badge": "Easiest to try",
         "ctaText": "Order now"
       },
       "combo-3-hop": {
         "name": "3-Box Combo",
+        "weight": "3 x 100g",
         "description": "Suitable for a family of 3-4 to eat in 2-3 days",
         "badge": "Best seller",
         "ctaText": "Order now"
       },
       "combo-5-hop": {
         "name": "5-Box Combo",
+        "weight": "5 x 100g",
         "description": "Enough for 1 week of eat-clean, includes a Recipe guide",
         "badge": "Free recipe",
         "ctaText": "Order now"
@@ -244,7 +251,35 @@
         "note": "What else would you like Diệp Châu to share in the cookbook? (optional)",
         "notePlaceholder": "E.g., breakfast dishes, kid-friendly meals, smoothies, eat-clean...",
         "submit": "Receive gift",
-        "submitting": "Submitting survey..."
+        "submitting": "Submitting survey...",
+        "options": {
+          "personas": [
+            "Busy office worker",
+            "Mom looking for quick nutritious meals",
+            "Vegetarian / plant-based",
+            "Fitness enthusiast seeking green nutrition",
+            "Lazy to eat veggies but want to stay healthy"
+          ],
+          "challenges": [
+            "No time for meal prep",
+            "Hard to eat enough veggies daily",
+            "Want to eat healthier but don't know where to start",
+            "Need quick, convenient, and nutritious meals",
+            "Want to switch up meals to avoid getting bored"
+          ],
+          "benefits": [
+            "Easier to eat greens daily",
+            "Add plant protein and natural nutrition",
+            "Faster meal prep",
+            "Support staying in shape, good skin, light stomach",
+            "More healthy choices for the whole family"
+          ],
+          "gifts": [
+            "Yes, send it to me now",
+            "Yes, but I want to see more info first",
+            "Not needed right now"
+          ]
+        }
       }
     },
     "zaloStep": {
@@ -275,7 +310,47 @@
       "interested": "People left their information",
       "inZalo": "Customers subscribed to updates",
       "slots": "Slots remaining today"
-    }
+    },
+    "recentActivities": [
+      "Ms. Linh from Thu Duc just ordered a 100g trial box",
+      "A customer from District 7 just signed up for a gift",
+      "Ms. Mai just placed an order for the 3-Box Combo, delivered today",
+      "A customer from Binh Thanh selected the 5-Box Combo"
+    ],
+    "chatReviews": [
+      {
+        "name": "Lan Anh",
+        "time": "Today 09:12",
+        "messages": [
+          "I thought my kid would spit it out because it's green, but the tiny seeds looked like candy so she ate it all up! Her digestion is much better lately, and I don't have to force her to eat veggies."
+        ],
+        "isCustomer": true
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Today 09:15",
+        "messages": [
+          "Thank you! Wolffia is tiny and lightly crunchy, so kids accept it more easily than leafy greens. Just sprinkle it on familiar dishes and they eat it naturally."
+        ],
+        "isCustomer": false
+      },
+      {
+        "name": "Hoang",
+        "time": "Today 12:30",
+        "messages": [
+          "I was looking for a plant-based protein source to replace chicken breast. Poured a box into the blender with my whey, quick to drink and doesn't cause bloating like beans."
+        ],
+        "isCustomer": true
+      },
+      {
+        "name": "Diệp Châu Wolffia",
+        "time": "Today 12:45",
+        "messages": [
+          "Exactly! Many fitness customers love it because it adds green protein while staying light on the stomach, without the complex prep of normal snacks."
+        ],
+        "isCustomer": false
+      }
+    ]
   },
   "testimonials": {
     "headline": "What do people say about Wolffia?",
@@ -283,6 +358,51 @@
     "activeNow": "Active now"
   },
   "chatbot": {
+    "greeting": "Hi there, I'm Diệp Châu. If you're curious about what Wolffia is, how it tastes, whether it's good for kids, or if it fits your family's needs, feel free to ask me. I'll give you quick and easy-to-understand answers.",
+    "closeMessage": "If you just want to test its freshness and taste, starting with the 49k trial box is the easiest option. But if you're worried about high shipping fees, I highly recommend Combo 3 or Combo 5 for much better value. Please click the form, and I'll save the freshest batch for you.",
+    "waitlistMessage": "No problem at all, take your time to consider. If you're not ready to buy right now, please fill out the form first. I'll text you first whenever there's a new batch, delivery schedule, or a great recipe. This way you won't miss out without having to decide immediately.",
+    "faqs": [
+      {
+        "question": "What exactly is this?",
+        "answer": "This is Wolffia by Diệp Châu. It's a premium green superfood grown in a high-tech greenhouse using purified water and organic nutrients. Our process is 100% clean and enclosed, so you can use it with complete peace of mind."
+      },
+      {
+        "question": "Do I need to wash or cook it?",
+        "answer": "No need at all! Just open the box and sprinkle it directly on porridge, salads, yogurt, or smoothies. Actually, eating it this way preserves its full nutritional value."
+      },
+      {
+        "question": "Is it bitter or does it smell like grass?",
+        "answer": "Absolutely not! It has a light, crispy, and fluffy texture. Many people compare their first bite to green caviar. It absorbs the flavor of whatever dish you sprinkle it on, making it very easy to eat."
+      },
+      {
+        "question": "Does it have a fishy or muddy smell?",
+        "answer": "Not at all. Since we don't harvest from natural ponds but grow it in an enclosed greenhouse system with clean water, it tastes very fresh and has no muddy or fishy smell."
+      },
+      {
+        "question": "Is it safe for 6-8 month old babies?",
+        "answer": "Yes, absolutely! The particles are super small, soft, and don't cause a choking hazard. Moms can just sprinkle 1 teaspoon into a bowl of warm porridge to add fiber and plant protein."
+      },
+      {
+        "question": "I'm worried about parasites if it's grown in water.",
+        "answer": "Many moms ask this, so I totally understand. We don't grow it in mud ponds; it's grown in a closed system with treated and tested water. So you can safely open the box and serve it to your whole family."
+      },
+      {
+        "question": "Which package should I start with?",
+        "answer": "If you want to try it out first, the 100g trial box for 49k is the easiest start. But if you think your family will use it regularly, Combo 3 or Combo 5 will save you more on both the product and shipping costs."
+      },
+      {
+        "question": "Do you offer same-day fast delivery?",
+        "answer": "Yes, we do! We offer express delivery in HCMC. The Wolffia is freshly harvested, packed, and delivered cold within the day to keep it perfectly crisp."
+      },
+      {
+        "question": "How do I store it properly?",
+        "answer": "Once you receive it, please put it in the fridge immediately (4-8°C). It's best consumed within 5-7 days. When serving, use a clean spoon, seal the lid tightly, and do not freeze it."
+      },
+      {
+        "question": "49k for a box seems a bit expensive for vegetables.",
+        "answer": "If you look at it just as a vegetable, it might seem high. But if you view it as a clean, ready-to-eat green protein, it makes more sense. A 100g box serves 4-5 meals, which comes down to about 10k per meal, saving moms a lot of prep time."
+      }
+    ],
     "fallback": "I understand. If you want, just ask me about prices, how to use it for kids, delivery, storage, or tell me what you're hesitating about, and I'll give you a quick answer.",
     "header": {
       "title": "Diệp Châu 24/7 Support",
