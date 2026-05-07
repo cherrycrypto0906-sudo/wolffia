@@ -35,7 +35,7 @@ export const Pricing = () => {
                 <h3 className="pkg-name">{t(`config.packages.${pkg.id}.name`)}</h3>
                 <div className="pkg-weight">{t(`config.packages.${pkg.id}.weight`)}</div>
                 
-                <div className="pricing-numbers">
+                <div className="pkg-price">
                   {pkg.originalPrice && <span className="original-price"><del>{pkg.originalPrice}đ</del></span>}
                   <div className="pkg-price-row" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
                     <span className="current-price">{pkg.price}</span>
