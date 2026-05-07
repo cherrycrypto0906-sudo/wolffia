@@ -14,11 +14,13 @@ export const CONFIG = {
   socialProof: {
     totalInterested: 127,
     totalInZalo: 43,
-      recentActivities: [
+    recentActivities: [
       "Chị Linh ở Thủ Đức vừa chốt hộp dùng thử 100g",
-      "Một khách hàng ở Quận 7 vừa để lại thông tin nhận quà",
-      "Chị Mai vừa đặt Combo 3 hộp giao lạnh trong ngày",
-      "Khách tại Bình Thạnh vừa chọn Combo 5 hộp"
+      "Chị Vy ở Quận 7 vừa đặt Combo 5 hộp và nhận E-Cookbook",
+      "Chị Mai ở Tân Bình vừa đặt Combo 3 hộp giao lạnh trong ngày",
+      "Anh Tuấn ở Quận 2 vừa chốt Combo 5 hộp cho cả nhà",
+      "Cô Hạnh ở Bình Thạnh vừa nhận Combo 3 hộp cho cháu ăn dặm",
+      "Chị Lan ở Gò Vấp vừa chuyển khoản đặt Gói dùng thử"
     ]
   },
 

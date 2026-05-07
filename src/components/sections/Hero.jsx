@@ -3,28 +3,22 @@ import { CONFIG } from '../../config/landingConfig';
 import { Button } from '../UI/Button';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from '../../context/AppContext';
 import './Hero.css';
 
 export const Hero = () => {
   const { t } = useTranslation();
-  const [timeLeft, setTimeLeft] = useState(CONFIG.countdownMinutes * 60);
+  const { timeLeft, slots } = useAppContext();
   const [currentHeroIdx, setCurrentHeroIdx] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-
     const slideTimer = setInterval(() => {
       if (CONFIG.images.heroCarousel && CONFIG.images.heroCarousel.length > 0) {
         setCurrentHeroIdx(prev => (prev + 1) % CONFIG.images.heroCarousel.length);
       }
     }, 3500);
 
-    return () => {
-      clearInterval(timer);
-      clearInterval(slideTimer);
-    };
+    return () => clearInterval(slideTimer);
   }, []);
 
   const formatTime = (seconds) => {
@@ -85,7 +79,6 @@ export const Hero = () => {
               <div className="urgency-text">
                 <span className="urgency-badge">{t('hero.urgencyBadge')}</span>
                 <strong>{t('hero.urgencySlots', { slots: CONFIG.limitedSlots })}</strong>
-                <span className="urgency-remaining">{t('hero.urgencyRemaining', { remaining: CONFIG.slotsRemaining })}</span>
                 <span className="urgency-timer">{formatTime(timeLeft)}</span>
               </div>
             </div>

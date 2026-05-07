@@ -3,37 +3,13 @@ import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { FaUserPlus, FaBell, FaFire } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from '../../context/AppContext';
 import './SocialProof.css';
 
 export const SocialProof = () => {
   const { t } = useTranslation();
   const [activePopup, setActivePopup] = useState(null);
-  
-  // State for dynamic numbers
-  const [interested, setInterested] = useState(CONFIG.socialProof.totalInterested);
-  const [inZalo, setInZalo] = useState(CONFIG.socialProof.totalInZalo);
-  const [slots, setSlots] = useState(CONFIG.slotsRemaining);
-
-  useEffect(() => {
-    // Dynamic number increments
-    const interestedInterval = setInterval(() => {
-      setInterested(prev => prev + Math.floor(Math.random() * 3));
-    }, 12000);
-    
-    const zaloInterval = setInterval(() => {
-      setInZalo(prev => prev + Math.floor(Math.random() * 2));
-    }, 18000);
-    
-    const slotsInterval = setInterval(() => {
-      setSlots(prev => (prev > 3 ? prev - 1 : prev));
-    }, 25000);
-    
-    return () => {
-      clearInterval(interestedInterval);
-      clearInterval(zaloInterval);
-      clearInterval(slotsInterval);
-    };
-  }, []);
+  const { interested, inZalo, slots } = useAppContext();
 
   useEffect(() => {
     // Luân phiên hiển thị popup live activity

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { useTranslation } from 'react-i18next';
+import { useAppContext } from '../../context/AppContext';
 import './FloatingActions.css';
 
 export const FloatingActions = () => {
   const { t } = useTranslation();
   const [showSticky, setShowSticky] = useState(false);
+  const { slots } = useAppContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +36,7 @@ export const FloatingActions = () => {
         <div className="sticky-content">
           <div className="sticky-text">
             <strong>{t('floatingActions.orderNow')}</strong>
-            <span>{t('floatingActions.slotsRemaining', { slots: CONFIG.slotsRemaining })}</span>
+            <span>{t('floatingActions.slotsRemaining', { slots })}</span>
           </div>
           <button onClick={scrollToPayment} className="btn btn-primary sticky-btn">
             {t('floatingActions.orderNow')}

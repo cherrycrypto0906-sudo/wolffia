@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CONFIG } from '../../config/landingConfig';
 import { RevealOnScroll } from '../UI/RevealOnScroll';
 import { Button } from '../UI/Button';
+import { useAppContext } from '../../context/AppContext';
 import './FinalCTA.css';
 
 export const FinalCTA = () => {
   const { t } = useTranslation();
-  const [timeLeft, setTimeLeft] = useState(CONFIG.countdownMinutes * 60);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const { timeLeft, slots } = useAppContext();
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
@@ -44,7 +38,7 @@ export const FinalCTA = () => {
 
           <div className="urgency-strip dark-mode">
             <div className="urgency-text">
-              <strong>{t('finalCta.slotsText', { slots: CONFIG.slotsRemaining })}</strong>
+              <strong>{t('finalCta.slotsText', { slots })}</strong>
             </div>
             <span className="urgency-timer">{formatTime(timeLeft)}</span>
           </div>
