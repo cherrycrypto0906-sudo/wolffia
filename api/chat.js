@@ -5,10 +5,10 @@ const normalizeMessages = (messages = []) =>
     .filter((message) => message && (message.role === 'user' || message.role === 'assistant') && typeof message.content === 'string')
     .slice(-12)
     .map((message) => ({
-      role: message.role,
-      content: message.content.trim(),
+      role: message.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: message.content.trim() }],
     }))
-    .filter((message) => message.content);
+    .filter((message) => message.parts[0].text);
 
 const buildSystemPrompt = (salesScript) => `
 You are Diệp Châu, a sales chatbot for Wolffia Diệp Châu.
@@ -37,10 +37,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY?.trim();
-  const model = process.env.OPENROUTER_MODEL?.trim() || 'openai/gpt-4o-mini';
+  const apiKey = process.env.GEMINI_API_KEY?.trim() || 'AIzaSyDZ0-Ha8v1dkur8CKF4nfpG7GDiJjhSjdQ';
+  
   if (!apiKey) {
-    return res.status(500).json({ error: 'Missing OPENROUTER_API_KEY' });
+    return res.status(500).json({ error: 'Missing GEMINI_API_KEY' });
   }
 
   try {
@@ -53,22 +53,20 @@ export default async function handler(req, res) {
 
     const systemPrompt = buildSystemPrompt(SALES_SCRIPT);
 
-    const upstreamResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const upstreamResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-        'HTTP-Referer': req.headers.origin || 'https://localhost',
-        'X-Title': 'Wolffia Chatbot',
       },
       body: JSON.stringify({
-        model,
-        temperature: 0.5,
-        max_tokens: 300,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          ...conversation,
-        ],
+        system_instruction: {
+          parts: [{ text: systemPrompt }]
+        },
+        contents: conversation,
+        generationConfig: {
+          temperature: 0.5,
+          maxOutputTokens: 300,
+        }
       }),
     });
 
@@ -76,11 +74,11 @@ export default async function handler(req, res) {
 
     if (!upstreamResponse.ok) {
       return res.status(upstreamResponse.status).json({
-        error: payload?.error?.message || 'OpenRouter request failed',
+        error: payload?.error?.message || 'Gemini API request failed',
       });
     }
 
-    const content = payload?.choices?.[0]?.message?.content?.trim();
+    const content = payload?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
 
     if (!content) {
       return res.status(502).json({ error: 'Empty model response' });
