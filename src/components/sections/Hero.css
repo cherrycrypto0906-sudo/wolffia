@@ -190,6 +190,10 @@
     flex-direction: column;
     text-align: center;
   }
+  .hero-visual {
+    width: 100%;
+    margin-top: 40px;
+  }
   .hero-content {
     align-items: center;
     display: flex;

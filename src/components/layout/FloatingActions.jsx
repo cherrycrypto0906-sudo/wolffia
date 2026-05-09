@@ -7,7 +7,6 @@ import './FloatingActions.css';
 export const FloatingActions = () => {
   const { t } = useTranslation();
   const [showSticky, setShowSticky] = useState(false);
-  const { slots } = useAppContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,12 +32,8 @@ export const FloatingActions = () => {
       </a>
 
       <div className={`sticky-cta ${showSticky ? 'visible' : ''}`}>
-        <div className="sticky-content">
-          <div className="sticky-text">
-            <strong>{t('floatingActions.orderNow')}</strong>
-            <span>{t('floatingActions.slotsRemaining', { slots })}</span>
-          </div>
-          <button onClick={scrollToPayment} className="btn btn-primary sticky-btn">
+        <div className="sticky-content" style={{ justifyContent: 'center' }}>
+          <button onClick={scrollToPayment} className="btn btn-primary sticky-btn full-width">
             {t('floatingActions.orderNow')}
           </button>
         </div>

@@ -8,7 +8,7 @@ import './FinalCTA.css';
 
 export const FinalCTA = () => {
   const { t } = useTranslation();
-  const { timeLeft, slots } = useAppContext();
+  const { timeLeft } = useAppContext();
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
@@ -36,12 +36,7 @@ export const FinalCTA = () => {
             </p>
           </div>
 
-          <div className="urgency-strip dark-mode">
-            <div className="urgency-text">
-              <strong>{t('finalCta.slotsText', { slots })}</strong>
-            </div>
-            <span className="urgency-timer">{formatTime(timeLeft)}</span>
-          </div>
+
 
           <div className="final-actions">
             <Button onClick={scrollToPayment} className="btn-final-primary">

@@ -73,6 +73,13 @@
   padding: 10px 24px;
 }
 
+.sticky-btn.full-width {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(79, 138, 56, 0.4);
+}
+
 @media (max-width: 768px) {
   .sticky-cta {
     display: block;
