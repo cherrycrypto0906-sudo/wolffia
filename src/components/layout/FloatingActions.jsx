@@ -34,7 +34,7 @@ export const FloatingActions = () => {
       <div className={`sticky-cta ${showSticky ? 'visible' : ''}`}>
         <div className="sticky-content" style={{ justifyContent: 'center' }}>
           <button onClick={scrollToPayment} className="btn btn-primary sticky-btn full-width">
-            {t('floatingActions.orderNow')}
+            {t('config.floatingActions.orderNow')}
           </button>
         </div>
       </div>
