@@ -87,12 +87,24 @@ export const Hero = () => {
 
         <div className="hero-visual">
           <RevealOnScroll delay={300} className="hero-image-wrapper">
-             <img 
-               key={currentHeroIdx}
-               src={CONFIG.images.heroCarousel ? CONFIG.images.heroCarousel[currentHeroIdx] : CONFIG.images.heroFood} 
-               alt="Wolffia" 
-               className="hero-image slide-animation" 
-             />
+             <div className="hero-image-container">
+               {CONFIG.images.heroCarousel && CONFIG.images.heroCarousel.length > 0 ? (
+                 CONFIG.images.heroCarousel.map((imgSrc, idx) => (
+                   <img 
+                     key={idx}
+                     src={imgSrc} 
+                     alt={`Wolffia ${idx + 1}`} 
+                     className={`hero-image carousel-image ${idx === currentHeroIdx ? 'active' : ''}`} 
+                   />
+                 ))
+               ) : (
+                 <img 
+                   src={CONFIG.images.heroFood} 
+                   alt="Wolffia" 
+                   className="hero-image active" 
+                 />
+               )}
+             </div>
              <div className="hero-floating-badge animate-pulse">
                 {t('hero.floatingBadge')}
              </div>
