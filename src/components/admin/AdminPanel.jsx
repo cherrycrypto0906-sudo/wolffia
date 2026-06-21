@@ -56,12 +56,21 @@ export const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('products');
   const [db, setDb] = useState(INITIAL_DATA);
   const [surveyLeads, setSurveyLeads] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [authChecking, setAuthChecking] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [authLoading, setAuthLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [productForm, setProductForm] = useState(productDefaults);
   const [customerForm, setCustomerForm] = useState(customerDefaults);
   const [orderForm, setOrderForm] = useState(orderDefaults);
+
+  const resetAdminData = () => {
+    setDb(INITIAL_DATA);
+    setSurveyLeads([]);
+  };
 
   const loadDb = async () => {
     setLoading(true);
@@ -74,6 +83,12 @@ export const AdminPanel = () => {
       ]);
       const payload = await response.json();
       const leadsPayload = await leadsResponse.json();
+
+      if (response.status === 401 || leadsResponse.status === 401) {
+        setIsAuthenticated(false);
+        resetAdminData();
+        throw new Error('Phiên đăng nhập admin đã hết hạn. Vui lòng đăng nhập lại.');
+      }
 
       if (!response.ok || !payload?.ok) {
         throw new Error(payload?.message || 'Không tải được dữ liệu admin');
@@ -97,8 +112,79 @@ export const AdminPanel = () => {
   };
 
   useEffect(() => {
-    void loadDb();
+    const checkSession = async () => {
+      setAuthChecking(true);
+      setError('');
+
+      try {
+        const response = await fetch('/api/admin-session');
+        const payload = await response.json();
+
+        if (!response.ok || !payload?.ok) {
+          throw new Error(payload?.message || 'Không kiểm tra được phiên admin');
+        }
+
+        if (payload.authenticated) {
+          setIsAuthenticated(true);
+          await loadDb();
+        } else {
+          setIsAuthenticated(false);
+          resetAdminData();
+        }
+      } catch (err) {
+        setIsAuthenticated(false);
+        resetAdminData();
+        setError(err.message || 'Không kiểm tra được phiên admin');
+      } finally {
+        setAuthChecking(false);
+      }
+    };
+
+    void checkSession();
   }, []);
+
+  const submitLogin = async (event) => {
+    event.preventDefault();
+    setAuthLoading(true);
+    setError('');
+
+    try {
+      const response = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const payload = await response.json();
+
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload?.message || 'Đăng nhập admin thất bại');
+      }
+
+      setPassword('');
+      setIsAuthenticated(true);
+      await loadDb();
+    } catch (err) {
+      setIsAuthenticated(false);
+      resetAdminData();
+      setError(err.message || 'Đăng nhập admin thất bại');
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const logoutAdmin = async () => {
+    setAuthLoading(true);
+    setError('');
+
+    try {
+      await fetch('/api/admin-logout', { method: 'POST' });
+    } finally {
+      setPassword('');
+      setIsAuthenticated(false);
+      resetAdminData();
+      setAuthLoading(false);
+    }
+  };
 
   const productOptions = useMemo(
     () => db.products.map((product) => ({ ...product, stock_quantity: Number(product.stock_quantity || 0) })),
@@ -284,6 +370,54 @@ export const AdminPanel = () => {
     await saveRecord({ resource, action: 'delete', id });
   };
 
+  if (authChecking) {
+    return (
+      <div className="admin-page">
+        <div className="admin-shell container">
+          <div className="admin-list-card">Đang kiểm tra quyền truy cập admin...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="admin-page">
+        <div className="admin-shell container">
+          <div className="admin-hero">
+            <div>
+              <p className="admin-kicker">/admin</p>
+              <h1>Đăng nhập quản trị</h1>
+              <p>Nhập mật khẩu admin để tải dữ liệu khách hàng, đơn hàng và sản phẩm.</p>
+            </div>
+            <a href="/" className="btn btn-outline">Về website</a>
+          </div>
+
+          {error && <div className="admin-list-card" style={{ color: '#b42318' }}>{error}</div>}
+
+          <section className="admin-login-shell">
+            <form className="admin-form admin-login-card" onSubmit={(event) => { void submitLogin(event); }}>
+              <h2>Mật khẩu admin</h2>
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Nhập mật khẩu"
+                autoComplete="current-password"
+                required
+              />
+              <div className="admin-actions">
+                <button type="submit" className="btn btn-primary" disabled={authLoading}>
+                  {authLoading ? 'Đang đăng nhập...' : 'Đăng nhập'}
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-page">
       <div className="admin-shell container">
@@ -293,7 +427,12 @@ export const AdminPanel = () => {
             <h1>Admin panel bán hàng</h1>
             <p>Quản lý sản phẩm, khách hàng và đơn hàng bằng dữ liệu chung. Truy cập ở trình duyệt nào cũng thấy cùng một dữ liệu.</p>
           </div>
-          <a href="/" className="btn btn-outline">Về website</a>
+          <div className="admin-hero-actions">
+            <button type="button" className="btn btn-outline" onClick={() => { void logoutAdmin(); }} disabled={authLoading}>
+              {authLoading ? 'Đang đăng xuất...' : 'Đăng xuất'}
+            </button>
+            <a href="/" className="btn btn-outline">Về website</a>
+          </div>
         </div>
 
         {error && <div className="admin-list-card" style={{ color: '#b42318' }}>{error}</div>}

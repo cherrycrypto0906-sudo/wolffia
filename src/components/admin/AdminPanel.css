@@ -36,6 +36,12 @@
   color: var(--text-muted);
 }
 
+.admin-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .admin-tabs {
   display: flex;
   gap: 10px;
@@ -76,6 +82,15 @@
   flex-direction: column;
   gap: 12px;
   align-self: start;
+}
+
+.admin-login-shell {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-login-card {
+  width: min(100%, 420px);
 }
 
 .admin-form h2,

@@ -1,4 +1,5 @@
 import { FORM_DESTINATION, assertBackendConfig } from '../lib/backendConfig.js';
+import { isAdminAuthenticatedRequest } from '../lib/adminAuth.js';
 
 const buildUrl = (resource, action = 'list') => {
   const url = new URL(FORM_DESTINATION);
@@ -47,6 +48,10 @@ const normalizePayload = (payload) => {
 
 export default async function handler(req, res) {
   try {
+    if (!isAdminAuthenticatedRequest(req)) {
+      return res.status(401).json({ ok: false, message: 'Unauthorized admin request' });
+    }
+
     assertBackendConfig();
 
     if (req.method === 'GET') {

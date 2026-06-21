@@ -4,6 +4,14 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import {
+    clearAdminSessionCookie,
+    isAdminAuthConfigured,
+    isAdminAuthenticatedRequest,
+    requireAdminAuth,
+    setAdminSessionCookie,
+    verifyAdminPassword,
+} from './lib/adminAuth.js';
 
 dotenv.config();
 
@@ -25,6 +33,39 @@ app.get('/health', (_req, res) => {
         timestamp: new Date().toISOString(),
     });
 });
+
+app.get('/api/admin-session', (req, res) => {
+    if (!isAdminAuthConfigured()) {
+        return res.status(500).json({ ok: false, message: 'Missing ADMIN_PASSWORD environment variable' });
+    }
+
+    return res.status(200).json({
+        ok: true,
+        authenticated: isAdminAuthenticatedRequest(req),
+    });
+});
+
+app.post('/api/admin-login', (req, res) => {
+    if (!isAdminAuthConfigured()) {
+        return res.status(500).json({ ok: false, message: 'Missing ADMIN_PASSWORD environment variable' });
+    }
+
+    const password = typeof req.body?.password === 'string' ? req.body.password : '';
+    if (!verifyAdminPassword(password)) {
+        clearAdminSessionCookie(res);
+        return res.status(401).json({ ok: false, message: 'Sai mật khẩu admin' });
+    }
+
+    setAdminSessionCookie(res);
+    return res.status(200).json({ ok: true, authenticated: true });
+});
+
+app.post('/api/admin-logout', (_req, res) => {
+    clearAdminSessionCookie(res);
+    return res.status(200).json({ ok: true, authenticated: false });
+});
+
+app.use('/api/admin-db', requireAdminAuth);
 
 // Serve static files from Vite build
 app.use(express.static(path.join(__dirname, 'dist')));

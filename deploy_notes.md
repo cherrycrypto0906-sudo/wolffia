@@ -27,6 +27,7 @@ Notes:
 - `FORM_DESTINATION` is the Google Apps Script endpoint used by admin/order APIs
 - `OPENROUTER_API_KEY` is present in env files but appears unused right now
 - `DATABASE_URL` and `ADMIN_PASSWORD` are placeholders for future/adjacent admin features
+- `ADMIN_PASSWORD` is now required for the in-app `/admin` login and to protect `/api/admin-db`
 - Set `NODE_ENV=production` in PM2, systemd, or the shell command that starts Node rather than inside Vite-loaded `.env`
 
 ## Commands To Run On VPS
@@ -94,6 +95,7 @@ curl https://wolffia.io.vn/health
 
 ## Admin Protection
 - `/admin` is protected by Nginx basic auth
+- `/admin` also requires an app-level password session backed by `ADMIN_PASSWORD`
 - Username: `admin`
 - Password is stored on the VPS in `/etc/nginx/.htpasswd-mywebsite`
 - If you need to rotate the password, update the htpasswd file and reload Nginx
