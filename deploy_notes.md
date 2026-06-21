@@ -94,11 +94,9 @@ curl https://wolffia.io.vn/health
 ```
 
 ## Admin Protection
-- `/admin` is protected by Nginx basic auth
-- `/admin` also requires an app-level password session backed by `ADMIN_PASSWORD`
-- Username: `admin`
-- Password is stored on the VPS in `/etc/nginx/.htpasswd-mywebsite`
-- If you need to rotate the password, update the htpasswd file and reload Nginx
+- `/admin` is protected at the application layer by the in-app password screen
+- Admin session is backed by `ADMIN_PASSWORD`
+- Nginx no longer uses basic auth for `/admin`, so users only log in once
 
 ## Backup Policy
 - `brain.db` is backed up daily at `02:00`
