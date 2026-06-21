@@ -42,7 +42,7 @@ const loadRoutes = async () => {
     }
 };
 
-app.get('*', (req, res) => {
+app.use((req, res) => {
     if (req.originalUrl.startsWith('/api')) {
         return res.status(404).json({ error: 'API route not found' });
     }
