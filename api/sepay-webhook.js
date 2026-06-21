@@ -1,4 +1,4 @@
-import { FORM_DESTINATION } from '../lib/backendConfig.js';
+import { FORM_DESTINATION, assertBackendConfig } from '../lib/backendConfig.js';
 
 const buildUrl = (resource) => {
   const url = new URL(FORM_DESTINATION);
@@ -75,6 +75,8 @@ export default async function handler(req, res) {
   }
 
   try {
+    assertBackendConfig();
+
     const payload = req.body || {};
     const transferType = String(payload.transferType || '').toLowerCase();
     const transferAmount = Number(payload.transferAmount || 0);

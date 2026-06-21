@@ -1,4 +1,4 @@
-import { FORM_DESTINATION } from '../lib/backendConfig.js';
+import { FORM_DESTINATION, assertBackendConfig } from '../lib/backendConfig.js';
 
 const buildUrl = (resource, action = 'list') => {
   const url = new URL(FORM_DESTINATION);
@@ -47,6 +47,8 @@ const normalizePayload = (payload) => {
 
 export default async function handler(req, res) {
   try {
+    assertBackendConfig();
+
     if (req.method === 'GET') {
       const resource = req.query.resource || 'all';
       const payload = normalizePayload(await fetchJsonFromAppsScript(buildUrl(resource)));
