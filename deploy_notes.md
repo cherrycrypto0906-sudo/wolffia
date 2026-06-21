@@ -49,6 +49,63 @@ pm2 startup
 - The server listens on: `process.env.PORT || 3000`
 - Default port if `.env` is missing `PORT`: `3000`
 
+## Production URLs
+- Main site: `https://wolffia.io.vn`
+- Admin: `https://wolffia.io.vn/admin`
+- Health check: `https://wolffia.io.vn/health`
+
+## VPS Paths
+- App directory: `/opt/my-website`
+- Service file: `/etc/systemd/system/mywebsite.service`
+- Deploy script: `/usr/local/bin/deploy-mywebsite.sh`
+- Backup script: `/usr/local/bin/backup-brain-db.sh`
+- Backup directory: `/opt/my-website/backups`
+
+## Operations
+- Deploy latest code:
+```bash
+/usr/local/bin/deploy-mywebsite.sh
+```
+
+- Check service status:
+```bash
+systemctl status mywebsite
+```
+
+- Restart app:
+```bash
+systemctl restart mywebsite
+```
+
+- Tail app logs:
+```bash
+journalctl -u mywebsite -f
+```
+
+- Test health endpoint:
+```bash
+curl https://wolffia.io.vn/health
+```
+
+- Manual backup:
+```bash
+/usr/local/bin/backup-brain-db.sh
+```
+
+## Admin Protection
+- `/admin` is protected by Nginx basic auth
+- Username: `admin`
+- Password is stored on the VPS in `/etc/nginx/.htpasswd-mywebsite`
+- If you need to rotate the password, update the htpasswd file and reload Nginx
+
+## Backup Policy
+- `brain.db` is backed up daily at `02:00`
+- Backups older than `14` days are deleted automatically
+- Backup log file:
+```bash
+/var/log/backup-brain-db.log
+```
+
 ## Git / Secrets Hygiene
 - Do not commit `.env`
 - Do not commit `brain.db` or any nested `brain.db`
