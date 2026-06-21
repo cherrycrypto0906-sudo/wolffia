@@ -15,6 +15,7 @@ dist-ssr
 .env.*
 !.env.example
 resend_config.txt
+brain.db
 
 # Editor directories and files
 .vscode/*

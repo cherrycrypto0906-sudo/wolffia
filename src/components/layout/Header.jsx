@@ -2,6 +2,7 @@ import React from 'react';
 import { CONFIG } from '../../config/landingConfig';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../UI/Button';
+import { LanguageSwitcher } from '../UI/LanguageSwitcher';
 import './Header.css';
 
 export const Header = () => {
@@ -18,6 +19,7 @@ export const Header = () => {
           <img src={CONFIG.images.logo} alt="Wolffia tươi Diệp Châu" className="logo-img" />
         </a>
         <div className="header-actions">
+          <LanguageSwitcher />
           <Button onClick={scrollToPayment} className="header-cta">
             {t('header.orderNow')}
           </Button>
