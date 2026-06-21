@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './AdminPanel.css';
-import { CONFIG } from '../../config/landingConfig';
 
 const INITIAL_DATA = {
   products: [],
@@ -253,16 +252,27 @@ export const AdminPanel = () => {
     setError('');
 
     try {
-      await fetch(CONFIG.formDestination, {
+      const response = await fetch('/api/admin-db', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
-        mode: 'no-cors',
       });
+
+      const payload = await response.json();
+
+      if (response.status === 401) {
+        setIsAuthenticated(false);
+        resetAdminData();
+        throw new Error('Phiên đăng nhập admin đã hết hạn. Vui lòng đăng nhập lại.');
+      }
+
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload?.message || 'Không lưu được dữ liệu');
+      }
 
       await new Promise((resolve) => setTimeout(resolve, 900));
       await loadDb();
-      return body.record || null;
+      return payload?.data || body.record || null;
     } catch (err) {
       setError(err.message || 'Không lưu được dữ liệu');
       throw err;
