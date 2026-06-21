@@ -13,6 +13,7 @@ Create `/path/to/project/.env` on the VPS with values for:
 
 ```env
 PORT=3000
+MCP_PORT=3001
 GEMINI_API_KEY=""
 RESEND_API_KEY=""
 OPENROUTER_API_KEY=""
@@ -35,6 +36,7 @@ Notes:
 npm install
 npm run build
 npm run start
+npm run start:mcp
 ```
 
 ## PM2 Example
@@ -49,6 +51,8 @@ pm2 startup
 ## Listening Port
 - The server listens on: `process.env.PORT || 3000`
 - Default port if `.env` is missing `PORT`: `3000`
+- MCP server listens on: `process.env.MCP_PORT || 3001`
+- MCP bind host defaults to: `127.0.0.1`
 
 ## Production URLs
 - Main site: `https://wolffia.io.vn`
@@ -58,6 +62,7 @@ pm2 startup
 ## VPS Paths
 - App directory: `/opt/my-website`
 - Service file: `/etc/systemd/system/mywebsite.service`
+- MCP service file: `/etc/systemd/system/mcp-server.service`
 - Deploy script: `/usr/local/bin/deploy-mywebsite.sh`
 - Backup script: `/usr/local/bin/backup-brain-db.sh`
 - Backup directory: `/opt/my-website/backups`
@@ -78,14 +83,29 @@ systemctl status mywebsite
 systemctl restart mywebsite
 ```
 
+- Restart MCP server:
+```bash
+systemctl restart mcp-server
+```
+
 - Tail app logs:
 ```bash
 journalctl -u mywebsite -f
 ```
 
+- Tail MCP logs:
+```bash
+journalctl -u mcp-server -f
+```
+
 - Test health endpoint:
 ```bash
 curl https://wolffia.io.vn/health
+```
+
+- Test MCP health endpoint on VPS:
+```bash
+curl http://127.0.0.1:3001/health
 ```
 
 - Manual backup:
@@ -97,6 +117,11 @@ curl https://wolffia.io.vn/health
 - `/admin` is protected at the application layer by the in-app password screen
 - Admin session is backed by `ADMIN_PASSWORD`
 - Nginx no longer uses basic auth for `/admin`, so users only log in once
+
+## MCP Server
+- MCP transport: `streamable-http`
+- MCP URL for goClaw on the same VPS: `http://127.0.0.1:3001/mcp`
+- Suggested tool prefix in goClaw: `biz`
 
 ## Backup Policy
 - `brain.db` is backed up daily at `02:00`
