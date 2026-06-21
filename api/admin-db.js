@@ -13,6 +13,26 @@ const extractRedirectUrl = (text) => {
   return match ? match[1].replace(/&amp;/g, '&') : '';
 };
 
+const buildRedirectOptions = (url, options = {}) => {
+  const nextUrl = new URL(url, FORM_DESTINATION).toString();
+  const nextOptions = { ...options };
+  const method = String(nextOptions.method || 'GET').toUpperCase();
+
+  if (method !== 'GET' && method !== 'HEAD') {
+    nextOptions.method = 'GET';
+    delete nextOptions.body;
+
+    if (nextOptions.headers) {
+      const headers = { ...nextOptions.headers };
+      delete headers['Content-Type'];
+      delete headers['content-type'];
+      nextOptions.headers = headers;
+    }
+  }
+
+  return { nextUrl, nextOptions };
+};
+
 const fetchJsonFromAppsScript = async (url, options = {}, depth = 0) => {
   const response = await fetch(url, { redirect: 'manual', ...options });
   const text = await response.text();
@@ -20,14 +40,16 @@ const fetchJsonFromAppsScript = async (url, options = {}, depth = 0) => {
   if (response.status >= 300 && response.status < 400) {
     const redirectUrl = response.headers.get('location') || extractRedirectUrl(text);
     if (redirectUrl && depth < 3) {
-      return fetchJsonFromAppsScript(redirectUrl, options, depth + 1);
+      const { nextUrl, nextOptions } = buildRedirectOptions(redirectUrl, options);
+      return fetchJsonFromAppsScript(nextUrl, nextOptions, depth + 1);
     }
   }
 
   if (text.trim().startsWith('<')) {
     const redirectUrl = extractRedirectUrl(text);
     if (redirectUrl && depth < 3) {
-      return fetchJsonFromAppsScript(redirectUrl, options, depth + 1);
+      const { nextUrl, nextOptions } = buildRedirectOptions(redirectUrl, options);
+      return fetchJsonFromAppsScript(nextUrl, nextOptions, depth + 1);
     }
   }
 
